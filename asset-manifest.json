@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/https://github.com/wang-hsoo/film/static/css/main.da8986fb.css",
-    "main.js": "/https://github.com/wang-hsoo/film/static/js/main.37591cd2.js",
-    "index.html": "/https://github.com/wang-hsoo/film/index.html",
-    "main.da8986fb.css.map": "/https://github.com/wang-hsoo/film/static/css/main.da8986fb.css.map",
-    "main.37591cd2.js.map": "/https://github.com/wang-hsoo/film/static/js/main.37591cd2.js.map"
+    "main.css": "/film/static/css/main.da8986fb.css",
+    "main.js": "/film/static/js/main.51a87109.js",
+    "index.html": "/film/index.html",
+    "main.da8986fb.css.map": "/film/static/css/main.da8986fb.css.map",
+    "main.51a87109.js.map": "/film/static/js/main.51a87109.js.map"
   },
   "entrypoints": [
     "static/css/main.da8986fb.css",
-    "static/js/main.37591cd2.js"
+    "static/js/main.51a87109.js"
   ]
 }
