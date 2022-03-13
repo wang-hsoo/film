@@ -12,14 +12,16 @@ const AppRouter = (() => {
     
 
     return(
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route exact path="/login">
+                 <Route path="/Login">
                     <Login />
                 </Route>
+
+                <Route path="/">
+                    <Home />
+                </Route>
+                
             </Switch>
         </Router>
     )
