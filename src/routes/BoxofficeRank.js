@@ -9,16 +9,16 @@ function BoxofficeRanck(){
     const [movie, setMovie] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
 
-    // useEffect(() => {
-    //     var now = new Date;
-    //     var year = now.getFullYear();
-    //     var month = now.getMonth() + 1 > 10 ? now.getMonth()+1  : `0`+(now.getMonth()+1);
-    //     var day = now.getDate() > 10 ? now.getDate()  : `0`+ now.getDate();
+    useEffect(() => {
+        var now = new Date;
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1 > 10 ? now.getMonth()+1  : `0`+(now.getMonth()+1);
+        var day = now.getDate() > 10 ? now.getDate()  : `0`+ now.getDate();
 
-    //     let today = `${year}${month}${day}`;
+        let today = `${year}${month}${day}`;
 
-    //     setDate(today);
-    // },[]);
+        setDate(today);
+    },[]);
 
     
     
