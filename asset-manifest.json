@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/https://github.com/wang-hsoo/film/static/css/main.da8986fb.css",
+    "main.js": "/https://github.com/wang-hsoo/film/static/js/main.56d9c2af.js",
+    "index.html": "/https://github.com/wang-hsoo/film/index.html",
+    "main.da8986fb.css.map": "/https://github.com/wang-hsoo/film/static/css/main.da8986fb.css.map",
+    "main.56d9c2af.js.map": "/https://github.com/wang-hsoo/film/static/js/main.56d9c2af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da8986fb.css",
+    "static/js/main.56d9c2af.js"
+  ]
+}
