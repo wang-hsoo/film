@@ -8,28 +8,20 @@ function BoxofficeRanck(){
     const [getDate, setDate] = useState("");
     const [movie, setMovie] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        var now = new Date;
-        var year = now.getFullYear();
-        var month = now.getMonth() + 1 > 10 ? now.getMonth()+1  : `0`+(now.getMonth()+1);
-        var day = now.getDate() > 10 ? now.getDate()  : `0`+ now.getDate();
 
-        let today = `${year}${month}${day}`;
-
-        setDate(today);
-    },[]);
-
-    
     
 
     const getmovie = async() =>{
         const json = await(
-            await fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=d57f7dfe38d2def2190a41bfc774f8b6&targetDt=${getDate}`)
+            await fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=d57f7dfe38d2def2190a41bfc774f8b6&targetDt=${getDate}&weekGb=0`)
         ).json();
         
-        setMovie(json.boxOfficeResult ? json.boxOfficeResult.dailyBoxOfficeList : null);
-        console.log(json.boxOfficeResult.dailyBoxOfficeList);
+        setMovie(json.boxOfficeResult.weeklyBoxOfficeList);
+        console.log(json);
+        setLoading(false);
+        
     
     }
 
@@ -38,7 +30,7 @@ function BoxofficeRanck(){
     const dPick = (date) => {
         let year = date.getFullYear();
         let month = date.getMonth() + 1 > 10 ? date.getMonth()+1  : `0`+(date.getMonth()+1);
-        let day = date.getDate() > 10 ? date.getDate()  : `0`+ date.getDate()
+        let day = date.getDate() > 10 ? date.getDate() - 1  : `0`+ (date.getDate() -1);
         let today = `${year}${month}${day}`;
         setDate(today);
     }
@@ -59,12 +51,10 @@ function BoxofficeRanck(){
         );
       };
 
-      useEffect(() => {
-        getmovie();
-     },[]);
+     
 
   
-    
+
     
 
     return(
@@ -72,7 +62,13 @@ function BoxofficeRanck(){
             <h3>boxofficeRank</h3>
             <Datepick />
 
-            { movie ?  <div>
+            { loading ?  
+            
+            <div>Loading...</div>
+
+            : 
+            
+            <div>
 
             {movie.map((movies) => {
                 return(
@@ -82,9 +78,7 @@ function BoxofficeRanck(){
                         <div>{movies.audiAcc}</div>
                     </div>
                     );
-            })}</div>: 
-            
-            <div>다른 날짜를 선택해 주세요...</div>
+            })}</div>
 
 
         }
