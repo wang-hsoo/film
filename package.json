@@ -1,0 +1,22 @@
+{
+  "name": "film",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cheerio": "^1.0.0-rc.10",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.4"
+  },
+  "scripts": {
+    "server": "cd server && nodemon server",
+    "client": "cd client && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  }
+}
