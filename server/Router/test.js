@@ -1,43 +1,42 @@
 const axios = require("axios"); 
 const cheerio = require("cheerio");
-let mega = [];
+var FormData = require('form-data');
 
 
-const getHTML = async() => {
-    try{
-        return await axios.get("https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1");
-    }catch(err){
-        console.log(err);
-    }   
+    const getHTML = async() => {
+        try{
+            var form = new FormData(form)
+
+            var dic = {"MethodName":"GetMoviesToBe",
+                "channelType":"HO",
+                "osType":"Chrome",
+                "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36",
+                "multiLanguageID":"KR",
+                "division":1,
+                "moviePlayYN":"Y",
+                "orderType":"1",
+                "blockSize":100,
+                "pageNo":1,
+                "memberOnNo":""};
+
+            form.append('paramList', JSON.stringify(dic));
+
+            const config = {header: {
+                'Content-Type': "multipart/form-data",
+                // 'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36',
+                // 'referer': 'https://www.lottecinema.co.kr/NLCHS/Movie/List?flag=1'
+            }};
+
+            return await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx",  form, config);
+        }catch(err){
+            console.log(err);
+        }   
+    }
+    
+    const parsing =async() => {
+        const html = await getHTML();
+        
+        console.log(html);
 }
 
-const parsing =async() => {
-    const html = await getHTML();
-    const $ = cheerio.load(html.data);
-    const $coureList = $(".movie_list type2");
-
-    
-
-
-
-$coureList.each((idx, node) => {
-    const title = $(node).find(".tit_info").text();
-
-    console.log(title);
-
-    mega.push({
-        company: "MEGABOX",
-        title: $(node).find(".tit_info").text(),
-        percent: $(node).find(".rate_info").text().replace(/\n/g, "").replace(/\s*/g, ""),
-        // open: $(node).find(".date").text(),
-        img: $(node).find(".poster_info > img").attr("src"),
-        // age: $(node).find(".tit-area > p:first-child").ClassName()
-    })
-    
-});
-
-// console.log(mega);
-}
-
-
-parsing();
+    parsing();
