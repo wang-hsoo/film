@@ -6,11 +6,11 @@ import {
 
   import Home from "../routes/Home";
 
-  function AppRouter(movie){
+  function AppRouter(){
       return(
         <Router basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/" element = {<Home movie = {movie}/>} />
+          <Route path="/" element = {<Home />} />
           
         </Routes>
       </Router>
