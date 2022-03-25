@@ -29,6 +29,7 @@ function getCgv(){
             open: $(node).find(".txt-info").text().replace(/\n/g, "").replace(/\s*/g, ""),
             img: $(node).find(".thumb-image > img").attr("src"),
             age: $(node).find(".thumb-image > span").text(),
+            key: $(node).find(".box-image > a").attr("href")
         })
         
     });
@@ -64,7 +65,8 @@ function getLotte(){
                 genre: Movies[i].MovieGenreName,
                 img: Movies[i].PosterURL,
                 age: Movies[i].ViewGradeNameKR,
-                percent: Movies[i].BookingRate
+                percent: Movies[i].BookingRate,
+                key: Movies[i].RepresentationMovieCode
             })
         }
         
