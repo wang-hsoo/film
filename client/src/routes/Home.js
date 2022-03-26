@@ -50,18 +50,16 @@ function Home(){
         <div>
             {loading ? 
               <> 
-                <hearder>
-                    <h2>Film</h2>
+                <header>
+                    <h2 style ={{'color' : '#f5c510'}}>Film</h2>
                     <Link to={'/Login'}>Login</Link>
-                </hearder>
+                </header>
                 <main>
                     <div className="slide-container">
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
                                 <div className="each-slide" key={index}>
-                                <div style={{'backgroundImage': `url(${slideImage.url})`, 'height': '82vh'}}>
-                                    <span>{slideImage.caption}</span>
-                                </div>
+                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '82vh'}} />
                                 </div>
                             ))} 
                         </Slide>
