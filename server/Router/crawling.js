@@ -24,6 +24,7 @@ function getCgv(){
     $coureList.each((idx, node) => {
         
         cgv.push({
+            company: "CGV",
             title: $(node).find(".title").text(),
             percent: $(node).find(".percent").text(),
             open: $(node).find(".txt-info").text().replace(/\n/g, "").replace(/\s*/g, ""),
@@ -61,6 +62,7 @@ function getLotte(){
         
         for(let i = 0; i < Movies.length;i++){
             lotte.push({
+                company:  "LOTTE",
                 title: Movies[i].MovieNameKR,
                 genre: Movies[i].MovieGenreName,
                 img: Movies[i].PosterURL,

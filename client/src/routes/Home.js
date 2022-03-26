@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
+import { Link } from "react-router-dom";
 
 function Home(){
+    // let moviesA = [];
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(false);
     const slideImages  = [{
@@ -25,25 +27,35 @@ function Home(){
       setMovie(response.data);
 
       if(movie){
-          console.log(response.data);
           setLoading(true);
       }
+    };
+
+    const movieAdd = () => {
+        console.log(movie.lotte);
+        movie.lotte&&movie.lotte.map( (x) => console.log(x));
     };
   
     useEffect(()=>{
       callApi();
+      movieAdd();
     }, []);
+
+    
    
 
     
 
     return(
         <div>
-            <h3>Film</h3>
-            <div>
-                {loading ? 
-                  <>    
-                     <div className="slide-container">
+            {loading ? 
+              <> 
+                <hearder>
+                    <h2>Film</h2>
+                    <Link to={'/Login'}>Login</Link>
+                </hearder>
+                <main>
+                    <div className="slide-container">
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
                                 <div className="each-slide" key={index}>
@@ -54,36 +66,22 @@ function Home(){
                             ))} 
                         </Slide>
                     </div>
-
-                        <ul>
-                        {movie.cgv?.map( (movies) => (
-                            
-                                <li key = {movies.key} style={{display: "inline-block"}}>
-                                    <span>{movies.title}</span>
-                                    <img src={movies.img} width="100px"></img>
-                                    <div>{movies.key}</div>
-                                </li>
-                            
-                        ))}
-                        
-                        {movie.lotte?.map( (movies) => (
-                            
-                            <li key = {movies.key} style={{display: "inline-block"}}>
-                                <span>{movies.title}</span>
-                                <img src={movies.img} width="100px"></img>
-                                <div>{movies.key}</div>
-                            </li>
-                        
-                        ))}
-                        </ul> 
-                    </>:
                     <div>
-                        Loading...
-                    </div>
+                        <h3>현재 상영중인 영화</h3>
+                        <div>
 
-                }
-            
-            </div>
+                        </div>
+                    </div>
+                </main>
+         
+                    
+                </>:
+                <div>
+                    Loading...
+                </div>
+        
+            }
+        
         </div>
     )
 
