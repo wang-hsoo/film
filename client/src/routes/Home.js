@@ -5,7 +5,7 @@ import 'react-slideshow-image/dist/styles.css'
 import { Link } from "react-router-dom";
 
 function Home(){
-    // let moviesA = [];
+    let moviesA = [];
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(false);
     const slideImages  = [{
@@ -31,16 +31,26 @@ function Home(){
       }
     };
 
-    const movieAdd = () => {
-        console.log(movie.lotte);
-        movie.lotte&&movie.lotte.map( (x) => console.log(x));
-    };
+    const filter = () => {
+        movie.cgv?.map( (cgv) => {
+            movie.lotte?.map( (lotte) => {
+                if(cgv.title === lotte.title){
+                    moviesA.push(cgv);
+                }
+            })
+        })
+
+        console.log(movie.cgv);
+        
+
+    }
+
   
     useEffect(()=>{
       callApi();
-      movieAdd();
     }, []);
 
+    filter();
     
    
 
@@ -59,15 +69,28 @@ function Home(){
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
                                 <div className="each-slide" key={index}>
-                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '82vh'}} />
+                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '774px'}} />
                                 </div>
                             ))} 
                         </Slide>
                     </div>
+
                     <div>
                         <h3>현재 상영중인 영화</h3>
                         <div>
+                            <ul>
+                            {moviesA?.map( (movies) => (
 
+                                <li key = {movies.key} style={{display: "inline-block"}}>
+                                    <span>{movies.title}</span>
+                                    <img src={movies.img} width="100px"></img>
+                                    <span>{movies.percent}</span>
+                                    <span>{movies.open}</span>
+                                    <span>{movies.age}</span>
+                                </li>
+
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </main>
