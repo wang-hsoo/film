@@ -1,0 +1,76 @@
+/*h3는 임의로 정해둔거여서 스타일에 따라 바꿔도 무관 바꿀 때 Home.js 부분도 수정*/
+/*Home.js Link to 는 버튼이라고 생각하면 됨*/
+
+/*header*/
+header{
+    
+}
+
+header > h2 {
+    color: #f5c510;
+}
+.loginBtn{
+
+}
+
+/*main*/
+.top_movie{
+/*현재 상영중인 영화 전체 묶음*/
+}
+
+.top_movie > h3{
+
+}
+.allBtn{
+    /*영화 전체 보기 페이지 버튼으로 바꿀예정*/
+}
+
+.top_movie_group{
+/*영화 리스트 전체 묶음*/
+}
+
+.top_movie_group > ul{
+
+}
+
+.top_movie_li{
+    display: inline-block;
+}
+
+.top_movie_li_title{
+
+}
+
+.top_movie_li > img{
+    width: 100px;
+}
+
+.top_movie_li_percent{
+
+}
+
+.top_movie_li_open{
+
+}
+
+.top_movie_li_age{
+
+}
+
+/*trailer*/
+.trailer{
+    /*트레일러 전체 묶음*/
+}
+
+.trailer > h3{
+
+}
+
+.trailer_group{
+    /*트레일러 영상 영역*/
+}
+
+
+
+
+
