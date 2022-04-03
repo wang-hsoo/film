@@ -45,7 +45,7 @@ function Trailer(lotte) {
                         <li>
                             <div>{trail}</div>
                         </li>
-                        {console.log(trail)}
+                        
                     })}
 
                     

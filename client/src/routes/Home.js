@@ -12,15 +12,12 @@ function Home(){
     const [loading, setLoading] = useState(false);
     const slideImages  = [{
         url : "https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg",
-        caption:'Slide 1'
     }, 
     {
         url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Movi/0323/Movi_1920774.jpg",
-        caption:'Slide 2'
     } ,
     {
         url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Super/Super_1920774.jpg",
-        caption:'Slide 3'
     } ]
     
     const callApi = async()=>{
