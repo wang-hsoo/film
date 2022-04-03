@@ -100,7 +100,7 @@ function Home(){
                         <h3>트레일러</h3>
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
-                            <Trailer movie = {movie.cgv} />
+                            <Trailer movie = {movie.lotte} />
                         </div>
                     </div>
                 </main>

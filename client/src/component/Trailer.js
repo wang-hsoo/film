@@ -1,10 +1,12 @@
 
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-function Trailer(cgv) {
+function Trailer(lotte) {
     let movieKey = [];
+    const [trailer, setTrailer] = useState([]);
 
-    cgv.movie?.map((movie) => {
+    lotte.movie?.map((movie) => {
             movieKey.push(movie.key)
     })
   
@@ -21,12 +23,35 @@ function Trailer(cgv) {
     useEffect(() => {
         post();
     },[])
+
+    const callApi = async()=>{
+        const response = await axios.get('http://localhost:5000/key');
+  
+        setTrailer(response.data.key);
+  
+      };
     
     
+    useEffect(()=>{
+        callApi();
+      }, []);
 
     return(
         <div>
             <div>예고편</div>
+            <div>
+                <ul>
+                    {trailer?.map( (trail) => {
+                        <li>
+                            <div>{trail}</div>
+                        </li>
+                        {console.log(trail)}
+                    })}
+
+                    
+                    
+                </ul>
+            </div>
         </div>
     )
 }

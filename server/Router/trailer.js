@@ -3,18 +3,31 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const axios = require("axios"); 
+
 const router = express.Router();
-require('../server.js');
 
-
-
-
-let k;
 
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+const a = [];
+
+router.post('/key', (req, res) => {
+    key = req.body;
+
+
+    for(let i = 0; i < 10; i++){
+        if(key[i] === "AD"){
+            continue;
+        }else {
+            a.push(`https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202203/${key[i]}_301_1.mp4`);
+        }
+       
+    }
+    
+});
 
 
 
@@ -22,27 +35,13 @@ app.use(bodyParser.json());
 router.get('/key', (req,res) => {
     res.send({
         name: "트레일러",
-        key: key,
+        key: a,
     });
+
+    
 });
 
 
-
-const getKey = async() => {
-    try{
-        return await axios.get("http://localhost:5000/key");
-    }catch(err){
-        console.log(err);
-    }
-}
-
-const parsing = async() => {
-    const html = await getKey();
-    
-}
-
-
-parsing();
 
 
 

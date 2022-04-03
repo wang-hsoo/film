@@ -14,13 +14,10 @@ const port=5000;
 
 
 
-
 app.get('/', crawling);
+app.post('/key', trailer);
 app.get('/key', trailer);
 
-app.post("/key", (req, res) => {
-    key = req.body;
-});
 
 
 
