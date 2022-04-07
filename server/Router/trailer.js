@@ -17,50 +17,43 @@ const a = [];
 
 
 
+
 router.post('/key', (req, res) => {
     key = req.body;
 
 
-    for(let i = 0; i < 10; i++){
-        if(key[i] === "AD"){
-            continue;
-        }else {
-            if(a.length < 10){
-                a.push(`https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202203/${key[i]}_301_1.mp4`);
-            }else {
-                break;
+    const trailerImg = async() => {
+
+    
+            
+            for(let i = 0; i < 10; i++){
+                if(key[i] === "AD"){
+                    continue;
+                }else {
+                    if(img.length < 10){
+                        var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${key[i]}`,"memberOnNo":""}
+            
+                        const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
+                        const imgUrl = html.data.Trailer.Items[0].ImageURL;
+                        console.log(html.data);
+                        a.push(
+                            {mp4 : `https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202203/${key[i]}_301_1.mp4`, 
+                            img : imgUrl }
+                        );
+                
+                    }else {
+                        break;
+                    }
+                    
+                }
+               
             }
+        };
             
-        }
+            
+
+        trailerImg();
        
-    }
-
-    const getHtml = async() => {
-        try{
-            return await axios.get("https://www.lottecinema.co.kr/NLCHS/Movie/MovieDetailView?movie=18540");
-            
-        }catch(err){
-            console.log(err);
-        }
-        
-    }
-
-    const parsing = async() => {
-        const html = await getHtml();
-        const $ = cheerio.load(html.data);
-        const $coureList = $("#movie_trailer_0");
-        
-        $coureList.each((idx, node) => {
-        
-            const img =  $(node).find("a > em > img").attr("src");
-            console.log(img);
-            
-        });
-    }
-
-   
-
-    parsing();
     
 });
 
@@ -70,11 +63,13 @@ router.post('/key', (req, res) => {
 router.get('/key', (req,res) => {
     res.send({
         name: "트레일러",
-        key: a,
+        trailer: a,
+        
     });
 
     
 });
+
 
 
 

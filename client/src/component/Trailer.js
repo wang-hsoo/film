@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 function Trailer(lotte) {
     let movieKey = [];
     const [trailer, setTrailer] = useState([]);
+    
 
     lotte.movie?.map((movie) => {
             movieKey.push(movie.key)
@@ -27,8 +28,9 @@ function Trailer(lotte) {
     const callApi = async()=>{
         const response = await axios.get('http://localhost:5000/key');
   
-        setTrailer(response.data.key);
-  
+        setTrailer(response.data.trailer);
+       
+        
       };
     
     
@@ -36,18 +38,19 @@ function Trailer(lotte) {
         callApi();
       }, []);
 
+    
+      
     return(
         <div>
             <div>예고편</div>
             <div>
                 <ul>
-                    {trailer?.map( (trail) => {
-                        <li>
-                            <div>{trail}</div>
-                        </li>
-                        
-                    })}
-
+                {trailer?.map( (trailer) => (
+                    <li>
+                        <img src={trailer.img} width ="200px"></img>
+                    </li>
+                    
+                ))}
                     
                     
                 </ul>

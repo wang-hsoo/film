@@ -1,36 +1,47 @@
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const bodyParser = require("body-parser");
 const axios = require("axios"); 
 const cheerio = require("cheerio");
-var FormData = require('form-data');
-let lotte = [];
 
-const getHTML = async() => {
-    try{
-        return await axios.get("https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg");
-    }catch(err){
-        console.log(err);
-    }   
-}
+const router = express.Router();
 
-const parsing =async() => {
-    const html = await getHTML();
-    const $ = cheerio.load(html.data);
-    const $coureList = $(".item");
+
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+
+
+
+
+
+
+    const getHtml = async() => {
+        try{
+            var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":"18551","memberOnNo":""}
+            
+            return await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
+            
+        }catch(err){
+            console.log(err);
+        }
+        
+    }
+
+    const parsing = async() => {
+        const html = await getHtml();
+
+
+        console.log(html.data.Trailer.Items[0].ImageURL);
+        
+        
+    }
+
+   
+
+    parsing();
     
-    console.log(html);
-    
 
-$coureList.each((idx, node) => {
-    const img = $(node).find("a > img").attr("src");
-    
-    
-    lotte.push({
-        img: $(node).find("a > img").attr("src"),
-    })
-    
-});
-
-
-}
-
-
-parsing();
