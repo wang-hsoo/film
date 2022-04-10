@@ -68,6 +68,13 @@ header > h2 {
 
 .trailer_group{
     /*트레일러 영상 영역*/
+    
+}
+.trailer_group >div{
+    display: inline-block;
+}
+.trailer_group > div > div >img{
+    width: 10vw;
 }
 
 

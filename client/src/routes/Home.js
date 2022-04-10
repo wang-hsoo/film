@@ -10,6 +10,7 @@ function Home(){
     let moviesA = [];
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [trailer, setTrailer] = useState([]);
     const slideImages  = [{
         url : "https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg",
     }, 
@@ -24,6 +25,7 @@ function Home(){
       const response = await axios.get('http://localhost:5000/');
 
       setMovie(response.data);
+      setTrailer(response.data.trailer);
 
       if(movie){
           setLoading(true);
@@ -41,6 +43,8 @@ function Home(){
         
 
     }
+
+  
 
   
     useEffect(()=>{
@@ -95,10 +99,22 @@ function Home(){
 
                     <div className={style.trailer}>
                         <h3>트레일러</h3>
+                        
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
-                            <Trailer movie = {movie.lotte} />
+                            
+                            {trailer.map( (trailer) => (   
+                                <Trailer 
+                                    id = {trailer.num}
+                                    name = {trailer.name}
+                                    key = {trailer.name}
+                                    trailer = {trailer.mp4}
+                                    img = {trailer.img}
+                                /> 
+                            ))}
+                        
                         </div>
+                        
                     </div>
                 </main>
          

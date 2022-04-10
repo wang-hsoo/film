@@ -3,7 +3,6 @@ const app = express();
 const crawling = require('./Router/crawling');
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const trailer = require("./Router/trailer");
 
 
 app.use(cors());
@@ -15,8 +14,7 @@ const port=5000;
 
 
 app.get('/', crawling);
-app.post('/key', trailer);
-app.get('/key', trailer);
+
 
 
 
