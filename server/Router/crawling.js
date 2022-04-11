@@ -102,7 +102,7 @@ function getTrailer() {
                     a.push(
                         {   num:i,
                             key:trailerKey[i],
-                        mp4 : `https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202203/${trailerKey[i]}_301_1.mp4`, 
+                        mp4 : `https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202204/${trailerKey[i]}_301_1.mp4`, 
                         img : imgUrl,
                         name: name }
                     );

@@ -11,6 +11,7 @@ function Home(){
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(false);
     const [trailer, setTrailer] = useState([]);
+    const [genre, setGenre] = useState("드라마");
     const slideImages  = [{
         url : "https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg",
     }, 
@@ -42,6 +43,10 @@ function Home(){
         })
         
 
+    }
+
+    const changeGenre = (event) => {
+        setGenre(event.target.innerText);
     }
 
   
@@ -115,6 +120,28 @@ function Home(){
                         
                         </div>
                         
+                    </div>
+
+                    <div>
+                        <h3>장르별</h3>
+                        <div>
+                            <button onClick={changeGenre}>드라마</button>
+                            <button onClick={changeGenre}>액션</button>
+                            <button onClick={changeGenre}>애니메이션</button>
+                            <button onClick={changeGenre}>범죄</button>
+                        </div>
+                        <div>
+                            {movie.lotte?.map( (lotte) => (
+                                <div>
+                                    {genre === lotte.genre ? 
+                                    <li>
+                                        <img src={lotte.img} />
+                                        <span>{lotte.title}</span>
+                                    </li> : null    
+                                }
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </main>
          
