@@ -72,12 +72,25 @@ header > h2 {
 }
 .trailer_group >div{
     display: inline-block;
+    cursor: pointer;
 }
-.trailer_group > div > div >img{
+
+.tailerImg{
     width: 10vw;
+    position: relative;
 }
 
-
-
+.playBtn{
+    z-index: 1;
+    position: absolute;
+}
+.playBtnBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 192px;
+    height: 127px;
+}
 
 

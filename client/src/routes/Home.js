@@ -135,7 +135,7 @@ function Home(){
                                 <div>
                                     {genre === lotte.genre ? 
                                     <li>
-                                        <img src={lotte.img} />
+                                        <img src={lotte.img} width="100px" />
                                         <span>{lotte.title}</span>
                                     </li> : null    
                                 }

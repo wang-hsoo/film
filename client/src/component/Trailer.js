@@ -1,6 +1,8 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import style from "../routes/Home.module.css";
+import play from "../img/play.png"
 
 function Trailer( {id , name, key, trailer, img}) {
     const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +23,8 @@ function Trailer( {id , name, key, trailer, img}) {
         return (
             <div>
                 {open ? (
-                    <section>
+                    <section >
+                        
                         <button onClick={close}>x</button>
                         <video autoPlay>
                             <source src={trailer}/>
@@ -36,9 +39,13 @@ function Trailer( {id , name, key, trailer, img}) {
     
       
     return(
-        <div id={id}>
+        <div id={id} >
             <div onClick={openModal} >
-                <img src={img} />
+                <div className={style.playBtnBox} >
+                <img src={play} className={style.playBtn} />
+                </div>
+                
+                <img src={img} className={style.tailerImg} />
                 <div>{name}</div>
             </div>
             
