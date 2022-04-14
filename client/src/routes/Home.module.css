@@ -70,10 +70,6 @@ header > h2 {
     /*트레일러 영상 영역*/
     
 }
-.trailer_group >div{
-    display: inline-block;
-    cursor: pointer;
-}
 
 .tailerImg{
     width: 10vw;
@@ -93,4 +89,56 @@ header > h2 {
     height: 127px;
 }
 
+/*트레일러 영상 팝업 부분*/
+ .ss{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    
+} 
+.movieTrail{
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    top: 0;
+}
+.modarTrailer{
 
+}
+
+/*장르별*/
+.genre{
+
+}
+
+.genre h3{
+
+}
+
+.genreBtns{
+
+}
+
+.genreBtns > button{
+
+}
+
+.genreList{
+
+}
+
+.genreMovies{
+
+}
+
+.genreMovies li{
+
+}
+
+.genreMovies li img{
+
+}
+
+.genreMovies li span{
+
+}

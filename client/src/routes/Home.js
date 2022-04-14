@@ -122,17 +122,17 @@ function Home(){
                         
                     </div>
 
-                    <div>
+                    <div className={style.genre}>
                         <h3>장르별</h3>
-                        <div>
+                        <div className={style.genreBtns}>
                             <button onClick={changeGenre}>드라마</button>
                             <button onClick={changeGenre}>액션</button>
                             <button onClick={changeGenre}>애니메이션</button>
                             <button onClick={changeGenre}>범죄</button>
                         </div>
-                        <div>
+                        <div className={style.genreList}>
                             {movie.lotte?.map( (lotte) => (
-                                <div>
+                                <div className={style.genreMovies}>
                                     {genre === lotte.genre ? 
                                     <li>
                                         <img src={lotte.img} width="100px" />

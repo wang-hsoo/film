@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import style from "../routes/Home.module.css";
-import play from "../img/play.png"
+import play from "../img/play.png";
 
 function Trailer( {id , name, key, trailer, img}) {
     const [modalOpen, setModalOpen] = useState(false);
@@ -18,12 +18,13 @@ function Trailer( {id , name, key, trailer, img}) {
    
     const Modal = (props) => {
         const {open, close, header } = props;
+
         
 
         return (
-            <div>
+            <div className = {style.movieTrail} >
                 {open ? (
-                    <section >
+                    <section className={style.modarTrailer}>
                         
                         <button onClick={close}>x</button>
                         <video autoPlay>
@@ -39,7 +40,7 @@ function Trailer( {id , name, key, trailer, img}) {
     
       
     return(
-        <div id={id} >
+        <div className={style.ss} >
             <div onClick={openModal} >
                 <div className={style.playBtnBox} >
                 <img src={play} className={style.playBtn} />
