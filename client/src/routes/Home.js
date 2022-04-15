@@ -8,7 +8,9 @@ import style from "./Home.module.css";
 
 function Home(){
     let moviesA = [];
+    let moving = 0;
     const [movie, setMovie] = useState([]);
+    const [move, setMove] = useState(0);
     const [loading, setLoading] = useState(false);
     const [trailer, setTrailer] = useState([]);
     const [genre, setGenre] = useState("드라마");
@@ -28,9 +30,30 @@ function Home(){
       setMovie(response.data);
       setTrailer(response.data.trailer);
 
+    
       if(movie){
           setLoading(true);
       }
+    };
+
+    const sliderNext = () => {
+        let length = moviesA.length;
+        const ulWidth = length * 19 - 100;
+        if(move > -ulWidth){
+            moving = move - 50;
+            setMove(moving);
+        } 
+
+    }
+
+    const sliderPrev = () => { 
+        if(move === 0){
+
+        }else if(move < 0){
+            moving = move + 50;
+            setMove(moving);
+        }
+        
     };
 
     const filter = () => {
@@ -81,11 +104,13 @@ function Home(){
                         </Slide>
                     </div>
 
-                    <div className={style.top_movie}>
+                    <div className={style.top_movie} >
                         <h3>현재 상영중인 영화</h3>
                         <div className={style.allBtn}>모두보기</div>
-                        <div className={style.top_movie_group}>
-                            <ul>
+                        <div id={style.top_movie_group} className={style.nonscroll}>
+                            <button onClick={sliderPrev}> prev</button>
+                            <button onClick={sliderNext}> next</button>
+                            <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
 
                                 <li key = {movies.key} className = {style.top_movie_li}>
@@ -99,6 +124,7 @@ function Home(){
 
                                 ))}
                             </ul>
+                            
                         </div>
                     </div>
 
