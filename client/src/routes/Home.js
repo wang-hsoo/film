@@ -9,8 +9,10 @@ import style from "./Home.module.css";
 function Home(){
     let moviesA = [];
     let moving = 0;
+    let trailMoving = 0;
     const [movie, setMovie] = useState([]);
     const [move, setMove] = useState(0);
+    const [trailmove, settrailMove] = useState(0);
     const [loading, setLoading] = useState(false);
     const [trailer, setTrailer] = useState([]);
     const [genre, setGenre] = useState("드라마");
@@ -55,6 +57,25 @@ function Home(){
         }
         
     };
+
+    const trailerNext = () => {
+        let length = trailer.length;
+        const ulWidth = length * 25 - 100;
+        if(trailmove > -ulWidth){
+            moving = trailmove - 50;
+            settrailMove(moving);
+        } 
+    }
+
+    const trailerPrev = () => {
+        if(trailmove === 0){
+
+        }else if(trailmove < 0){
+            trailMoving = trailmove + 50;
+            settrailMove(trailMoving);
+        }
+
+    }
 
     const filter = () => {
         movie.cgv?.map( (cgv) => {
@@ -130,10 +151,13 @@ function Home(){
 
                     <div className={style.trailer}>
                         <h3>트레일러</h3>
+
+                        <button onClick={trailerPrev}> prev</button>
+                        <button onClick={trailerNext}> next</button>
                         
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
-                            
+                            <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}}>
                             {trailer.map( (trailer) => (   
                                 <Trailer 
                                     id = {trailer.num}
@@ -143,6 +167,7 @@ function Home(){
                                     img = {trailer.img}
                                 /> 
                             ))}
+                            </div>
                         
                         </div>
                         
