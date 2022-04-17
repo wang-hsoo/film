@@ -23,7 +23,7 @@ function Home(){
         url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Movi/0323/Movi_1920774.jpg",
     } ,
     {
-        url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Super/Super_1920774.jpg",
+        url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Ani/Ani_1920774.jpg",
     } ]
     
     const callApi = async()=>{
@@ -85,8 +85,6 @@ function Home(){
                 }
             })
         })
-        
-
     }
 
     const changeGenre = (event) => {
@@ -133,16 +131,16 @@ function Home(){
                             <button onClick={sliderNext}> next</button>
                             <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
-
-                                <li key = {movies.key} className = {style.top_movie_li}>
-                                    <span className = {style.top_movie_li_title}>{movies.title}</span>
-                                    <img src={movies.img}></img>
-                                    <span className = {style.top_movie_li_percent}>{movies.percent}</span>
-                                    <span  className = {style.top_movie_li_open}>{movies.open}</span>
-                                    <span className = {style.top_movie_li_age}>{movies.age}</span>
-                                    {/* 구성에 따라 순서 바꿔도 무관 */}
-                                </li>
-
+                                <Link to={`/film/${movies.title}`}>
+                                    <li key = {movies.key} className = {style.top_movie_li}>
+                                        <span className = {style.top_movie_li_title}>{movies.title}</span>
+                                        <img src={movies.img}></img>
+                                        <span className = {style.top_movie_li_percent}>{movies.percent}</span>
+                                        <span  className = {style.top_movie_li_open}>{movies.open}</span>
+                                        <span className = {style.top_movie_li_age}>{movies.age}</span>
+                                        {/* 구성에 따라 순서 바꿔도 무관 */}
+                                    </li>
+                                </Link>
                                 ))}
                             </ul>
                             
@@ -185,10 +183,12 @@ function Home(){
                             {movie.lotte?.map( (lotte) => (
                                 <div className={style.genreMovies}>
                                     {genre === lotte.genre ? 
-                                    <li>
-                                        <img src={lotte.img} width="100px" />
-                                        <span>{lotte.title}</span>
-                                    </li> : null    
+                                    <Link to={`/film/${lotte.title}`}>
+                                        <li>
+                                            <img src={lotte.img} width="100px" />
+                                            <span>{lotte.title}</span>
+                                        </li>
+                                    </Link> : null    
                                 }
                                 </div>
                             ))}

@@ -1,13 +1,5 @@
 import React from "react";
-import { Link2 } from "react-router-dom";
-import {
-  Button,
-  TextField,
-  Link,
-  Grid,
-  Container,
-  Typography,
-} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { signup } from "../service/ApiService";
 
 class SignUp extends React.Component {
@@ -33,69 +25,69 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <Container component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
+      <div component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
         <form noValidate onSubmit={this.handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography component="h1" variant="h5">
+          <div container spacing={2}>
+            <div item xs={12}>
+              <h3>
                 계정 생성
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+              </h3>
+            </div>
+            <div item xs={12}>
+              <input
                 autoComplete="fname"
                 name="username"
                 variant="outlined"
                 required
                 fullWidth
                 id="username"
-                label="유저 이름"
+                placeholder="유저 이름"
                 autoFocus
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+            </div>
+            <div item xs={12}>
+              <input
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
-                label="이메일 주소"
+                placeholder="이메일 주소"
                 name="email"
                 autoComplete="email"
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+            </div>
+            <div item xs={12}>
+              <input
                 variant="outlined"
                 required
                 fullWidth
                 name="password"
-                label="패스워드"
+                placeholder="패스워드"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
-            </Grid>
-            <Grid item xs={12}>
-              <Button
+            </div>
+            <div item xs={12}>
+              <button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
               >
                 계정 생성
-              </Button>
-            </Grid>
-          </Grid>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
+              </button>
+            </div>
+          </div>
+          <div container justify="flex-end">
+            <div item>
+              <Link to ={`/Login`}>
                 이미 계정이 있습니까? 로그인 하세요.
               </Link>
-            </Grid>
-          </Grid>
+            </div>
+          </div>
         </form>
-      </Container>
+      </div>
     );
   }
 }

@@ -1,13 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import { signin } from "../service/ApiService";
-import {
-  Button,
-  TextField,
-  Grid,
-  Container,
-  Typography,
-} from "@material-ui/core";
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -26,58 +20,58 @@ class Login extends React.Component {
   
     render() {
       return ( 
-        <Container component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
-            <Grid container spacing={2}>
-            <Link to={'/'}>Film</Link>
-            <Link to={'/SignUp'}>회원가입</Link>
-            </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography component="h1" variant="h5">
+        <div component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
+            <div container spacing={2}>
+              <Link to={'/'}>Film</Link>
+              <Link to={'/SignUp'}>회원가입</Link>
+            </div>
+          <div container spacing={2}>
+            <div item xs={12}>
+              <h3>
                 로그인
-              </Typography>
-            </Grid>
-          </Grid>
+              </h3>
+            </div>
+          </div>
           <form noValidate onSubmit={this.handleSubmit}>
             {" "}
             {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
+            <div container spacing={2}>
+              <div item xs={12}>
+                <input
                   variant="outlined"
                   required
-                  fullWidth
+                  type="text"
                   id="email"
-                  label="이메일 주소"
+                  placeholder="이메일 주소"
                   name="email"
                   autoComplete="email"
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
+              </div>
+              <div item xs={12}>
+                <input
                   variant="outlined"
                   required
                   fullWidth
                   name="password"
-                  label="패스워드"
+                  placeholder="패스워드"
                   type="password"
                   id="password"
                   autoComplete="current-password"
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
+              </div>
+              <div item xs={12}>
+                <button
                   type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
                 >
                   로그인
-                </Button>
-              </Grid>
-            </Grid>
+                </button>
+              </div>
+            </div>
           </form>
-        </Container>
+        </div>
       );
     }
   }
