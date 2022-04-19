@@ -91,6 +91,34 @@ function Home(){
         setGenre(event.target.innerText);
     }
 
+    const [modalOpen, setModalOpen] = useState(false);
+    
+    const openModal = (event) => {
+
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+    const Modal = (props) => {
+        const {open, close, header } = props;
+
+        
+
+        return (
+            <div className = {style.movieTrail} >
+                {open ? (
+                    <h2>하이</h2>
+                ): null}
+            </div>
+        )
+    }
+
+    const trailerClick = (event) => {
+        console.log(event);
+        console.log(trailer);
+    }
+
   
 
   
@@ -155,7 +183,7 @@ function Home(){
                         
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
-                            <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}}>
+                            <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>
                             {trailer.map( (trailer) => (   
                                 <Trailer 
                                     id = {trailer.num}
@@ -168,7 +196,7 @@ function Home(){
                             </div>
                         
                         </div>
-                        
+                        <Modal open= {modalOpen} close={closeModal}></Modal>
                     </div>
 
                     <div className={style.genre}>

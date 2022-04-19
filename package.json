@@ -19,6 +19,7 @@
     "material-components-web": "^13.0.0",
     "material-design-kit": "^2.2.1",
     "nodemon": "^2.0.15",
+    "react-modal": "^3.14.4",
     "react-router-dom": "^6.2.2",
     "react-slideshow-image": "^3.7.0"
   },
