@@ -6,6 +6,7 @@ let cgv = [];
 let lotte = [];
 let trailerKey = [];
 let a = [];
+let aa = [];
 
 function getCgv(){
     const getHTML = async() => {
@@ -119,10 +120,44 @@ function getTrailer() {
     trailerImg();
 }
 
+function getMovieDetail() {
+    const detail = async() => {
+
+       
+        key = await t;
+        console.log(key);
+        for(let i = 0; i < 10; i++){
+            if(key[i] === "AD"){
+                continue;
+            }else {
+                    console.log(key[i]);
+                    var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${key[i]}`,"memberOnNo":""}
+        
+                    const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
+                    const name = [];
+                    const image = [];
+                    for(let b = 0; b < html.data.Casting.Items.length; b++){
+                         name.push(html.data.Casting.Items[b].StaffName);
+                         image.push(html.data.Casting.Items[b].StaffImage);
+                    }
+                    
+
+                   
+                    
+            }
+           
+        }
+    };
+        
+        
+
+    detail();
+}
+
 getCgv();
 getLotte();
-
 getTrailer();
+getMovieDetail();
 
 router.get('/', (req, res)=>{
   res.send({
@@ -133,5 +168,6 @@ router.get('/', (req, res)=>{
 });
 
 module.exports = router;
+
 
 

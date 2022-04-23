@@ -93,8 +93,7 @@ function Home(){
 
     const [modalOpen, setModalOpen] = useState(false);
     
-    const openModal = (event) => {
-
+    const openModal = () => {
         setModalOpen(true);
     };
     const closeModal = () => {
@@ -115,8 +114,14 @@ function Home(){
     }
 
     const trailerClick = (event) => {
-        console.log(event);
-        console.log(trailer);
+
+        if(event.target.className == "Home_tailerImg__GTNWn"){
+            openModal(event.target.offsetParent.innerText);
+        }else if(event.target.className == "Home_playBtn__EKuPx"){
+            openModal(event.nativeEvent.path[2].innerText);
+        }
+        
+
     }
 
   
@@ -184,15 +189,15 @@ function Home(){
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
                             <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>
-                            {trailer.map( (trailer) => (   
-                                <Trailer 
-                                    id = {trailer.num}
-                                    name = {trailer.name}
-                                    key = {trailer.name}
-                                    trailer = {trailer.mp4}
-                                    img = {trailer.img}
-                                /> 
-                            ))}
+                                {trailer.map( (trailer) => (   
+                                    <Trailer 
+                                        id = {trailer.num}
+                                        name = {trailer.name}
+                                        key = {trailer.name}
+                                        trailer = {trailer.mp4}
+                                        img = {trailer.img}
+                                    /> 
+                                ))}
                             </div>
                         
                         </div>

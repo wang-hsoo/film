@@ -8,8 +8,7 @@ function Trailer( {id , name, key, trailer, img}) {
    
             
 
-   
-    
+  
 
 
     
