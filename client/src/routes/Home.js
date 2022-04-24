@@ -10,6 +10,7 @@ function Home(){
     let moviesA = [];
     let moving = 0;
     let trailMoving = 0;
+    const [trailerTitle, setTrailerTitle ] = useState("");
     const [movie, setMovie] = useState([]);
     const [move, setMove] = useState(0);
     const [trailmove, settrailMove] = useState(0);
@@ -91,34 +92,27 @@ function Home(){
         setGenre(event.target.innerText);
     }
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [Open, setlOpen] = useState("none");
     
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-    const Modal = (props) => {
-        const {open, close, header } = props;
+    const close = () => {
+        setlOpen("none");
 
-        
-
-        return (
-            <div className = {style.movieTrail} >
-                {open ? (
-                    <h2>하이</h2>
-                ): null}
-            </div>
-        )
+        const video = document.getElementById("Video1");
+        video.pause();
+       
     }
+    
+    
+  
 
     const trailerClick = (event) => {
 
         if(event.target.className == "Home_tailerImg__GTNWn"){
-            openModal(event.target.offsetParent.innerText);
+            setTrailerTitle(event.target.offsetParent.innerText);
+            setlOpen("inline-block");
         }else if(event.target.className == "Home_playBtn__EKuPx"){
-            openModal(event.nativeEvent.path[2].innerText);
+            setTrailerTitle(event.nativeEvent.path[2].innerText);
+            setlOpen("inline-block");
         }
         
 
@@ -201,7 +195,18 @@ function Home(){
                             </div>
                         
                         </div>
-                        <Modal open= {modalOpen} close={closeModal}></Modal>
+                        <div className={style.mainTrailer} style={{"display": `${Open}`}}>
+                            <button onClick={close}>X</button>
+                            {trailer.map( (trailer) => (   
+                                    trailerTitle === trailer.name ? 
+                                    <div>
+                                        <video autoPlay id="Video1">
+                                            <source src={trailer.mp4}/>
+                                        </video>
+                                    </div>: null
+                                    
+                                ))}
+                        </div>
                     </div>
 
                     <div className={style.genre}>
