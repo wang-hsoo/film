@@ -218,18 +218,22 @@ function Home(){
                             <button onClick={changeGenre}>범죄</button>
                         </div>
                         <div className={style.genreList}>
-                            {movie.lotte?.map( (lotte) => (
-                                <div className={style.genreMovies}>
-                                    {genre === lotte.genre ? 
-                                    <Link to={`/film/${lotte.title}`}>
-                                        <li>
-                                            <img src={lotte.img} width="100px" />
-                                            <span>{lotte.title}</span>
-                                        </li>
-                                    </Link> : null    
-                                }
-                                </div>
-                            ))}
+                            <ul>
+                                {movie.lotte?.map( (lotte) => (
+                                    <>
+                                        {genre === lotte.genre ? 
+                                        <div className={style.genreMovies}>
+                                            <Link to={`/film/${lotte.title}`}>
+                                                <li>
+                                                    <img src={lotte.img} />
+                                                    <span className={style.genreTitle}>{lotte.title}</span>
+                                                </li>
+                                            </Link> 
+                                        </div>: console.log("")
+                                        }
+                                    </>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </main>

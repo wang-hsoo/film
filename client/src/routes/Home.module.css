@@ -36,7 +36,7 @@ header > h2 {
 }
 .top_movie_ul{
     transition-duration: 1.7s;
-    display: inline-block;
+    
     width: 100vw;
     display: flex;
 }
@@ -146,7 +146,7 @@ display: block;
 
 /*장르별*/
 .genre{
-
+    
 }
 
 .genre h3{
@@ -160,21 +160,31 @@ display: block;
 .genreBtns > button{
 
 }
-
 .genreList{
 
 }
-
-.genreMovies{
-
+.genreList ul{
+    display: flex;
+    overflow: hidden;
+    justify-content: flex-start;
 }
 
-.genreMovies li{
+.genreMovies{
+    margin: 0;
+}
 
+.genreMovies a li{
+    
+    display: inline-block;
+    
+    
 }
 
 .genreMovies li img{
-
+    width: 10vw;
+}
+.genreTitle{
+    display: block;
 }
 
 .genreMovies li span{
