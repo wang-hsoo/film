@@ -5,6 +5,9 @@ import 'react-slideshow-image/dist/styles.css'
 import { Link } from "react-router-dom";
 import Trailer from "../component/Trailer";
 import style from "./Home.module.css";
+import next from "../img/next.png";
+import prev from "../img/prev.png";
+import closeBtn from "../img/close.png";
 
 function Home(){
     let moviesA = [];
@@ -16,7 +19,7 @@ function Home(){
     const [trailmove, settrailMove] = useState(0);
     const [loading, setLoading] = useState(false);
     const [trailer, setTrailer] = useState([]);
-    const [genre, setGenre] = useState("드라마");
+    const [genre, setGenre] = useState(["드라마", "멜로/로맨스"]);
     const slideImages  = [{
         url : "https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg",
     }, 
@@ -89,7 +92,17 @@ function Home(){
     }
 
     const changeGenre = (event) => {
-        setGenre(event.target.innerText);
+        const gen = event.target.innerText;
+
+        if(gen === "드라마"){
+            setGenre(["드라마", "멜로/로맨스"]);
+        }else if(gen === "액션"){
+            setGenre(["액션","범죄"]);
+        }else if(gen ==="애니메이션"){
+            setGenre(["애니메이션"]);
+        }else if (gen === "공포(호러)"){
+            setGenre(["공포(호러)","스릴러"]);
+        }
     }
 
     const [Open, setlOpen] = useState("none");
@@ -152,10 +165,10 @@ function Home(){
 
                     <div className={style.top_movie} >
                         <h3>현재 상영중인 영화</h3>
-                        <div className={style.allBtn}>모두보기</div>
+                        <Link to={'/film/movies'} className={style.allBtn}>모두보기</Link>
                         <div id={style.top_movie_group} className={style.nonscroll}>
-                            <button onClick={sliderPrev}> prev</button>
-                            <button onClick={sliderNext}> next</button>
+                            <div onClick={sliderPrev} className={style.btn}> <img src={prev} /> </div>
+                            <div onClick={sliderNext} className={style.btn}> <img src={next} /> </div>
                             <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
                                 <Link to={`/film/${movies.title}`}>
@@ -175,10 +188,10 @@ function Home(){
                     </div>
 
                     <div className={style.trailer}>
-                        <h3>트레일러</h3>
+                        <h3>예고편</h3>
 
-                        <button onClick={trailerPrev}> prev</button>
-                        <button onClick={trailerNext}> next</button>
+                        <div onClick={trailerPrev} className={style.btn}> <img src={prev} /> </div>
+                        <div onClick={trailerNext} className={style.btn}> <img src={next} /> </div>
                         
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
@@ -196,7 +209,7 @@ function Home(){
                         
                         </div>
                         <div className={style.mainTrailer} style={{"display": `${Open}`}}>
-                            <button onClick={close}>X</button>
+                            <div onClick={close} className={style.closeBtn}><img src={closeBtn} /> </div>
                             {trailer.map( (trailer) => (   
                                     trailerTitle === trailer.name ? 
                                     <div>
@@ -210,18 +223,20 @@ function Home(){
                     </div>
 
                     <div className={style.genre}>
-                        <h3>장르별</h3>
+                        <h3>장르별 영화</h3>
                         <div className={style.genreBtns}>
                             <button onClick={changeGenre}>드라마</button>
                             <button onClick={changeGenre}>액션</button>
                             <button onClick={changeGenre}>애니메이션</button>
-                            <button onClick={changeGenre}>범죄</button>
+                            <button onClick={changeGenre}>공포(호러)</button>
                         </div>
                         <div className={style.genreList}>
                             <ul>
+                                 {console.log(genre)}
                                 {movie.lotte?.map( (lotte) => (
                                     <>
-                                        {genre === lotte.genre ? 
+                                        
+                                        {genre[0] === lotte.genre ||  genre[1] === lotte.genre? 
                                         <div className={style.genreMovies}>
                                             <Link to={`/film/${lotte.title}`}>
                                                 <li>
@@ -229,7 +244,7 @@ function Home(){
                                                     <span className={style.genreTitle}>{lotte.title}</span>
                                                 </li>
                                             </Link> 
-                                        </div>: console.log("")
+                                        </div>: null
                                         }
                                     </>
                                 ))}
@@ -240,7 +255,7 @@ function Home(){
          
                     
                 </>:
-                <div>
+                <div className={style.loading}>
                     Loading...
                 </div>
         

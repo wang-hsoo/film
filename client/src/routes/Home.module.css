@@ -1,3 +1,11 @@
+.loading{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+}
 /*h3는 임의로 정해둔거여서 스타일에 따라 바꿔도 무관 바꿀 때 Home.js 부분도 수정*/
 /*Home.js Link to 는 버튼이라고 생각하면 됨*/
 
@@ -22,7 +30,11 @@ header > h2 {
 
 }
 .allBtn{
-    /*영화 전체 보기 페이지 버튼으로 바꿀예정*/
+  
+}
+.btn{
+    display: inline-block;
+    background-color: #ffffff;
 }
 
 #top_movie_group{
@@ -131,13 +143,14 @@ display: block;
     position: fixed;
     top: 0;
     z-index: 3;
-    background-color: rgba(5, 5, 5, 0.95);
+    background-color: rgba(5, 5, 5, 0.98);
     text-align: center;
 }
-.mainTrailer > button {
+.closeBtn {
     float: right;
     margin-right: 3vw;
     margin-top: 2vh;
+    cursor: pointer;
 }
 .mainTrailer > div > video{
     height: 90vh;

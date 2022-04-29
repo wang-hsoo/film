@@ -8,6 +8,7 @@ import Home from "../routes/Home";
 import Login from "../routes/Login";
 import SignUp from "../routes/SignUp";
 import MovieDetail from "../routes/MovieDetail";
+import AllMovie from "../routes/AllMovie";
 
 function AppRouter(){
     return(
@@ -17,6 +18,7 @@ function AppRouter(){
         <Route path="/Login" element = {<Login />} />
         <Route path="/SignUp" element = {<SignUp />} />
         <Route path="/film/:title" element={<MovieDetail />} />
+        <Route path="/film/movies" element={<AllMovie />} />
       </Routes>
     </Router>
     )
