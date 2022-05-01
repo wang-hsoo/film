@@ -130,22 +130,20 @@ function getMovieDetail() {
             if(key[i] === "AD"){
                 continue;
             }else {
-                
+                    
                     var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${key[i]}`,"memberOnNo":""}
         
                     const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
                     const name = [];
                     const image = [];
                     
+                    
                     for(let b = 0; b < html.data.Casting.Items.length; b++){
                          name.push(html.data.Casting.Items[b].StaffName);
                          image.push(html.data.Casting.Items[b].StaffImage);
                          
                     }
-                    // const Movieimg = [];
-                    // for(let a = 0; 0 < 5; a ++){
-                    //     console.log(html.data);
-                    // }
+                    
                     const title = html.data.Movie.MovieNameKR;
                     const genre1 = html.data.Movie.MovieGenreNameKR;
                     const genre2 = html.data.Movie.MovieGenreNameKR3;
@@ -158,6 +156,9 @@ function getMovieDetail() {
                     const AgePrefer20 = html.data.Movie.AgePrefer20;
                     const AgePrefer30 = html.data.Movie.AgePrefer30;
                     const AgePrefer40 = html.data.Movie.AgePrefer40;
+                    const trailImg = html.data.Trailer.Items;
+
+                    
                    
                     MovieDetail.push({
                         company: "LOTTE",
@@ -175,6 +176,7 @@ function getMovieDetail() {
                         AgePrefer20: AgePrefer20,
                         AgePrefer30: AgePrefer30,
                         AgePrefer40: AgePrefer40,
+                        trailImg: trailImg,
 
                     });
 

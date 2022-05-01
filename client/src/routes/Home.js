@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
+import 'react-slideshow-image/dist/styles.css';
 import { Link } from "react-router-dom";
 import Trailer from "../component/Trailer";
 import style from "./Home.module.css";

@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import style from "./Home.module.css";
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 
 
 function MovieDetail(){
@@ -35,7 +37,18 @@ function MovieDetail(){
             for(let i = 0; i < movieD.length; i++){
                 if(title === movieD[i].title){
                     getDetail(movieD[i]);
-                    setPosetr(imgD[i].img);
+                    
+                    if(i > 3){
+                        setPosetr(imgD[i+1].img);
+                        
+                    }else{
+                        setPosetr(imgD[i].img);
+                        
+                    }
+                        
+                    
+                    
+                    
                 }
             }
         }else if(company === "CGV"){
@@ -84,6 +97,17 @@ function MovieDetail(){
                         <div>
                             <div>연령별 선호도</div>
                         </div>
+                        <div className="slide-container">
+                            <Slide>
+                                {detail.trailImg.map( (detail, index) => (
+                                    <div>
+                                        <div className="each-slide" key={index}></div>
+                                        <div style={{'backgroundImage': `url(${detail.ImageURL})`, 'width': '900px' ,'height': '500px'}} />
+                                    </div>
+                                ))}
+                             </Slide>
+                        </div>
+                       
                     </div>
                     
 

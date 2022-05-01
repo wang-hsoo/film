@@ -67,6 +67,7 @@ function AllMovie(){
                     
                     <div>
                         {movie.lotte.map( (lotte) => (
+                            lotte.title === "AD" ? null :
                             <Link to={`/film/${lotte.title}/${lotte.company}`}>
                                 <div style={{"display" : `${lotteDisplay}`}}> 
                                     <div>{lotte.company}</div>
