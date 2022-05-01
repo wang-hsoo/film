@@ -32,6 +32,7 @@ function Home(){
     
     const callApi = async()=>{
       const response = await axios.get('http://localhost:5000/');
+      
 
       setMovie(response.data);
       setTrailer(response.data.trailer);
@@ -171,7 +172,7 @@ function Home(){
                             <div onClick={sliderNext} className={style.btn}> <img src={next} /> </div>
                             <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
-                                <Link to={`/film/${movies.title}`}>
+                                <Link to={`/film/${movies.title}/${movies.company}`} >
                                     <li key = {movies.key} className = {style.top_movie_li}>
                                         <span className = {style.top_movie_li_title}>{movies.title}</span>
                                         <img src={movies.img}></img>
@@ -232,13 +233,12 @@ function Home(){
                         </div>
                         <div className={style.genreList}>
                             <ul>
-                                 {console.log(genre)}
+                                
                                 {movie.lotte?.map( (lotte) => (
                                     <>
-                                        
                                         {genre[0] === lotte.genre ||  genre[1] === lotte.genre? 
                                         <div className={style.genreMovies}>
-                                            <Link to={`/film/${lotte.title}`}>
+                                            <Link to={`/film/${lotte.title}/${lotte.company}`} >
                                                 <li>
                                                     <img src={lotte.img} />
                                                     <span className={style.genreTitle}>{lotte.title}</span>

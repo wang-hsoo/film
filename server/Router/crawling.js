@@ -6,7 +6,7 @@ let cgv = [];
 let lotte = [];
 let trailerKey = [];
 let a = [];
-let aa = [];
+let MovieDetail = [];
 
 function getCgv(){
     const getHTML = async() => {
@@ -125,24 +125,60 @@ function getMovieDetail() {
 
        
         key = await t;
-        console.log(key);
-        for(let i = 0; i < 10; i++){
+        
+        for(let i = 0; i < key.length; i++){
             if(key[i] === "AD"){
                 continue;
             }else {
-                    console.log(key[i]);
+                
                     var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${key[i]}`,"memberOnNo":""}
         
                     const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
                     const name = [];
                     const image = [];
+                    
                     for(let b = 0; b < html.data.Casting.Items.length; b++){
                          name.push(html.data.Casting.Items[b].StaffName);
                          image.push(html.data.Casting.Items[b].StaffImage);
+                         
                     }
-                    
-
+                    // const Movieimg = [];
+                    // for(let a = 0; 0 < 5; a ++){
+                    //     console.log(html.data);
+                    // }
+                    const title = html.data.Movie.MovieNameKR;
+                    const genre1 = html.data.Movie.MovieGenreNameKR;
+                    const genre2 = html.data.Movie.MovieGenreNameKR3;
+                    const synops = html.data.Movie.SynopsisKR;
+                    const viewRate = html.data.Movie.ViewRate; //평점
+                    const age = html.data.Movie.ViewGradeCode;
+                    const viewEvalu = html.data.Movie.ViewEvaluation;//예매율
+                    const playTime = html.data.Movie.PlayTime;
+                    const AgePrefer10 = html.data.Movie.AgePrefer10;
+                    const AgePrefer20 = html.data.Movie.AgePrefer20;
+                    const AgePrefer30 = html.data.Movie.AgePrefer30;
+                    const AgePrefer40 = html.data.Movie.AgePrefer40;
                    
+                    MovieDetail.push({
+                        company: "LOTTE",
+                        title: title,
+                        name : name,
+                        image: image,
+                        genre1: genre1,
+                        genre2: genre2,
+                        synops: synops,
+                        viewRate: viewRate,
+                        age: age,
+                        viewEvalu: viewEvalu,
+                        playTime: playTime,
+                        AgePrefer10: AgePrefer10,
+                        AgePrefer20: AgePrefer20,
+                        AgePrefer30: AgePrefer30,
+                        AgePrefer40: AgePrefer40,
+
+                    });
+
+                    
                     
             }
            
@@ -163,7 +199,8 @@ router.get('/', (req, res)=>{
   res.send({
       cgv: cgv,
       lotte: lotte,
-      trailer: a
+      trailer: a,
+      lotteMovieDetail : MovieDetail
     });
 });
 
