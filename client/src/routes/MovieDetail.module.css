@@ -1,0 +1,73 @@
+.detail{
+
+}
+.detailPoster{
+
+}
+.detailContent{
+
+}
+
+.detailTitle{
+
+}
+.detailAge{
+
+}
+.detailGenre{
+    
+}
+.detailGenreTitle{
+
+}
+.detailGenre{
+
+}
+.viewRate{
+
+}
+.viewEvalu{
+
+}
+.playTime{
+
+}
+
+
+.movieCasting{
+
+}
+.movieMan{
+
+}
+
+.castingImg{
+
+}
+
+.movieFavorite{
+
+}
+
+.favoriteTitle{
+
+}
+.favoriteBox{
+    width: 500px;
+
+}
+.favoriteSet{
+    display: flex;
+    width: 200px;
+    align-items: center;
+}
+.favoriteAge{
+    margin: 0;
+    margin-right: 5px;
+}
+.favoriteBar{
+    margin: 0;
+    width: 100px;
+    height: 8px;
+    border-radius: 9%;
+}
