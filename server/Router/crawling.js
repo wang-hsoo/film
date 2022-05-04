@@ -144,10 +144,12 @@ function getTrailer() {
                     const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
                     const name = html.data.Movie.MovieNameKR;
                     const imgUrl = html.data.Trailer.Items[0].ImageURL;
+                    const date = html.data.Movie.PlanedRelsMnth.replace(/-/g, "");
+                   
                     a.push(
                         {   num:i,
                             key:trailerKey[i],
-                        mp4 : `https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202204/${trailerKey[i]}_301_1.mp4`, 
+                        mp4 : `https://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/${date}/${trailerKey[i]}_301_1.mp4`, 
                         img : imgUrl,
                         name: name }
                     );

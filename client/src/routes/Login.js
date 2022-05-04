@@ -13,6 +13,7 @@ class Login extends React.Component {
       event.preventDefault();
       const data = new FormData(event.target);
       const email = data.get("email");
+      localStorage.setItem("id", email);
       const password = data.get("password");
       // ApiService의 signin 메서드를 사용 해 로그인.
       signin({ email: email, password: password });
