@@ -66,8 +66,13 @@
     margin-right: 5px;
 }
 .favoriteBar{
+    background-color: gray;
     margin: 0;
     width: 100px;
     height: 8px;
     border-radius: 9%;
+}
+
+.favoritePercent{
+    
 }

@@ -8,6 +8,45 @@ let trailerKey = [];
 let a = [];
 let MovieDetail = [];
 
+function getCgvMovieDetail(key){
+    const getHTML = async() => {
+        try{
+            return await axios.get(`http://www.cgv.co.kr/${key}`);
+        }catch(err){
+            console.log(err);
+        }   
+    }
+    
+    const parsing =async() => {
+        const html = await getHTML();
+        const $ = cheerio.load(html.data);
+        const $coureList = $("#contents");
+        
+    
+        $coureList.each((idx, node) => {
+            const key = $(node).find(".box-image > a").attr("href");
+            const title = $(node).find(".box-contents > .title").text();
+            console.log(title);
+            
+           
+            
+            
+        });
+        
+    
+    
+
+    
+    
+}
+
+
+    parsing();
+    
+    
+}
+
+
 function getCgv(){
     const getHTML = async() => {
         try{
@@ -21,12 +60,13 @@ function getCgv(){
         const html = await getHTML();
         const $ = cheerio.load(html.data);
         const $coureList = $(".sect-movie-chart > ol > li");
-
+        
         
     
         
     
     $coureList.each((idx, node) => {
+        const key = $(node).find(".box-image > a").attr("href");
         
         cgv.push({
             company: "CGV",
@@ -36,10 +76,14 @@ function getCgv(){
             img: $(node).find(".thumb-image > img").attr("src"),
             age: $(node).find(".thumb-image > span").text(),
             key: $(node).find(".box-image > a").attr("href")
-        })
+        });
+       
+        getCgvMovieDetail(key);
         
     });
 
+    
+    
 }
 
 
