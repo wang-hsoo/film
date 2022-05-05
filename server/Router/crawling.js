@@ -7,6 +7,7 @@ let lotte = [];
 let trailerKey = [];
 let a = [];
 let MovieDetail = [];
+let lotteMovieDetail = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -24,10 +25,16 @@ function getCgvMovieDetail(key){
         
     
         $coureList.each((idx, node) => {
-            const key = $(node).find(".box-image > a").attr("href");
-            const title = $(node).find(".box-contents > .title").text();
-            console.log(title);
+          
+            console.log($(node).find(".slider > .item-wrap > .item > img").attr("data-src"));
             
+            lotteMovieDetail.push({
+                company: "CGV",
+                title: $(node).find(".box-contents > .title > strong").text(),
+                name: $(node).find(".spec > .on > a").text(),
+                // AgePrefer10: 
+                
+            });
            
             
             

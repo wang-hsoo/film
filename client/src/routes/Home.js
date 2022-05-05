@@ -20,6 +20,7 @@ function Home(){
     const [loading, setLoading] = useState(false);
     const [trailer, setTrailer] = useState([]);
     const [genre, setGenre] = useState(["드라마", "멜로/로맨스"]);
+    const [checkLogin , setLogin] = useState(false);
     const slideImages  = [{
         url : "https://caching2.lottecinema.co.kr/lotte_image/2022/Hot/0323/Hot_1920774.jpg",
     }, 
@@ -121,10 +122,10 @@ function Home(){
 
     const trailerClick = (event) => {
 
-        if(event.target.className == "Home_tailerImg__GTNWn"){
+        if(event.target.className === "Home_tailerImg__GTNWn"){
             setTrailerTitle(event.target.offsetParent.innerText);
             setlOpen("inline-block");
-        }else if(event.target.className == "Home_playBtn__EKuPx"){
+        }else if(event.target.className === "Home_playBtn__EKuPx"){
             setTrailerTitle(event.nativeEvent.path[2].innerText);
             setlOpen("inline-block");
         }
@@ -132,11 +133,33 @@ function Home(){
 
     }
 
+    const logCheck = () => {
+        const id = localStorage.getItem("id");
+
+        if(id){
+            setLogin(true);
+        }
+    }
+
+    const onLog = (event) => {
+        const id = localStorage.getItem("id");
+        console.log(id);
+
+        if( id){
+            setLogin(false);
+            localStorage.removeItem("id");
+            event.preventDefault();
+        }
+    }
+
+    
+
   
 
   
     useEffect(()=>{
       callApi();
+      logCheck();
     }, []);
 
     filter();
@@ -151,7 +174,7 @@ function Home(){
               <> 
                 <header>
                     <h2>Film</h2>
-                    <Link to={'/Login'} className = {style.loginBtn}>Login</Link>
+                    <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "로그아웃" : "로그인"}</Link>
                 </header>
                 <main>
                     <div className="slide-container">

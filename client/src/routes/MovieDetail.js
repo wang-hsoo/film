@@ -121,8 +121,8 @@ function MovieDetail(){
                                 <div className={style2.detailGenre}>{detail.genre2}</div>
                             </div>
                             
-                            <div className={style2.viewRate}>평점 : {detail.viewRate}</div>
-                            <div className={style2.viewEvalu}>예매율 : {detail.viewEvalu}</div>
+                            <div className={style2.viewRate}>예매율 : {detail.viewRate}</div>
+                            <div className={style2.viewEvalu}>평점 : {detail.viewEvalu}</div>
                             <div className={style2.playTime}>{detail.playTime}분</div>
                             {console.log(detail.synops)}
                         </div>
