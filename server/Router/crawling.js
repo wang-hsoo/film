@@ -23,15 +23,25 @@ function getCgvMovieDetail(key){
         const $ = cheerio.load(html.data);
         const $coureList = $("#contents");
         
+        //$(node).find(".spec > dl").children("dd").eq(0).find("a").attr("href") 감독 정보 사이트 주소
     
         $coureList.each((idx, node) => {
-          
-            console.log($(node).find(".slider > .item-wrap > .item > img").attr("data-src"));
+            const name = [];
+            const image = [];
+            name.push($(node).find(".spec > dl").children("dd").eq(0).text().replace(/\n/g, "").replace(/\s*/g, ""));
+
+            for(let i = 0; i < 4; i++){
+                name.push($(node).find(".spec > dl > .on").children("a").eq(i).text());
+            }
+            
+
+            console.log();
             
             lotteMovieDetail.push({
                 company: "CGV",
                 title: $(node).find(".box-contents > .title > strong").text(),
-                name: $(node).find(".spec > .on > a").text(),
+                name: name,
+                synops: $(node).find(".sect-story-movie").text(),
                 // AgePrefer10: 
                 
             });
@@ -45,7 +55,7 @@ function getCgvMovieDetail(key){
 
     
     
-}
+    }
 
 
     parsing();
