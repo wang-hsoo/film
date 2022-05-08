@@ -15,6 +15,7 @@ function MovieDetail(){
     const {company} = useParams();
     const [detail, getDetail] = useState([]);
     let movieD = [];
+    let movieC = [];
     let imgD = [];
     const [poster, setPosetr] = useState();
     const [age10, setAge10] = useState("");
@@ -27,11 +28,13 @@ function MovieDetail(){
         
         movieD = response.data.lotteMovieDetail;
         imgD = response.data.lotte;
-
+        movieC = response.data.cgvMovieDetail;
+        
+        console.log(movieC);
         sel();
 
        
-        if(movieD){
+        if(movieD && movieC){
             setLoading(true);
         }
       };
@@ -59,7 +62,12 @@ function MovieDetail(){
                 }
             }
         }else if(company === "CGV"){
-
+            for(let i = 0; i < movieC.length; i++){
+                if(title === movieC[i].title){
+                    getDetail(movieC[i]);
+      
+                }
+            }
         }
       }
 

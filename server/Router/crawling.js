@@ -7,12 +7,13 @@ let lotte = [];
 let trailerKey = [];
 let a = [];
 let MovieDetail = [];
-let lotteMovieDetail = [];
+let CGVMovieDetail = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
         try{
-            return await axios.get(`http://www.cgv.co.kr/${key}`);
+            if(key !== "undefined")
+                return await axios.get(`http://www.cgv.co.kr/${key}`);
         }catch(err){
             console.log(err);
         }   
@@ -23,26 +24,59 @@ function getCgvMovieDetail(key){
         const $ = cheerio.load(html.data);
         const $coureList = $("#contents");
         
-        //$(node).find(".spec > dl").children("dd").eq(0).find("a").attr("href") 감독 정보 사이트 주소
     
-        $coureList.each((idx, node) => {
+        $coureList.each(async(idx, node) => {
             const name = [];
             const image = [];
             name.push($(node).find(".spec > dl").children("dd").eq(0).text().replace(/\n/g, "").replace(/\s*/g, ""));
+            const p = $(node).find(".spec > dl").children(".on").eq(1).text().split(',');
+            const directerImg = $(node).find(".spec > dl").children("dd").eq(0).find("a").attr("href");
 
+            const getdirectImg = await await axios.get(`http://www.cgv.co.kr/${directerImg}`);
+            const $$ = cheerio.load(getdirectImg.data);
+            const $get = $$(".wrap-people");
+            $get.each((idx,node)=> {image.push($(node).find(".thumb-image > img").attr("src") === "" ? "/LCHS/Image/Thum/movie_no_casting.jpg" : $(node).find(".thumb-image > img").attr("src") )});
+            
             for(let i = 0; i < 4; i++){
                 name.push($(node).find(".spec > dl > .on").children("a").eq(i).text());
+                const actorImg = $(node).find(".spec > dl > .on").children("a").eq(i).attr("href");
+                const getActorImg = await await axios.get(`http://www.cgv.co.kr/${actorImg}`);
+                const $$$ = cheerio.load(getActorImg.data);
+                const $$get = $$$(".wrap-people");
+                $$get.each((idx, node)=> {image.push($(node).find(".thumb-image > img").attr("src") === "" ? "/LCHS/Image/Thum/movie_no_casting.jpg" : $(node).find(".thumb-image > img").attr("src") )})
             }
-            
+            const trailKey = $(node).find(".heading .link-more").attr("href");
 
-            console.log();
+            if(trailKey !== undefined){
+                let kk;
+                kk = trailKey.replace(/trailer/g, "");
+                const getTrail = await await axios.get(`http://www.cgv.co.kr/movies/detail-view/still-cut${kk}`);
+                const $$$ = cheerio.load(getTrail.data);
+                const $$$get = $$$(".curation");
+                
+                $$$get.each((idx, node) => {console.log($(node).find("div > #tile_0 > img").attr("src"))});
+            }
+                
             
-            lotteMovieDetail.push({
+            
+            
+            CGVMovieDetail.push({
                 company: "CGV",
                 title: $(node).find(".box-contents > .title > strong").text(),
                 name: name,
                 synops: $(node).find(".sect-story-movie").text(),
-                // AgePrefer10: 
+                image: image,
+                genre1: $(node).find(".spec > dl").children("dt").eq(2).text().replace(/장르 :/g, ""),
+                genre2: "",
+                age : p[0],
+                viewRate:  $(node).find(".score > .percent > span").text(),   //예매율
+                playTime: p[1],
+                viewEvalu: $(node).find(".score > .egg-gage > .percent").text(),
+                AgePrefer10: null,
+                AgePrefer20: null,
+                AgePrefer30: null,
+                AgePrefer40: null,
+                trailImg: null
                 
             });
            
@@ -265,7 +299,8 @@ router.get('/', (req, res)=>{
       cgv: cgv,
       lotte: lotte,
       trailer: a,
-      lotteMovieDetail : MovieDetail
+      lotteMovieDetail : MovieDetail,
+      cgvMovieDetail: CGVMovieDetail
     });
 });
 
