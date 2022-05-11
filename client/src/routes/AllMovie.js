@@ -16,6 +16,7 @@ function AllMovie(){
         
   
         setMovie(response.data);
+
        
   
       

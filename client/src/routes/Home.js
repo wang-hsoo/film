@@ -38,6 +38,7 @@ function Home(){
       setMovie(response.data);
       setTrailer(response.data.trailer);
 
+      console.log(response.data);
     
       if(movie){
           setLoading(true);

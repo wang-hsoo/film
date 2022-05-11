@@ -46,16 +46,16 @@ function getCgvMovieDetail(key){
                 $$get.each((idx, node)=> {image.push($(node).find(".thumb-image > img").attr("src") === "" ? "/LCHS/Image/Thum/movie_no_casting.jpg" : $(node).find(".thumb-image > img").attr("src") )})
             }
             const trailKey = $(node).find(".heading .link-more").attr("href");
+            
 
-            if(trailKey !== undefined){
-                let kk;
-                kk = trailKey.replace(/trailer/g, "");
-                const getTrail = await await axios.get(`http://www.cgv.co.kr/movies/detail-view/still-cut${kk}`);
-                const $$$ = cheerio.load(getTrail.data);
-                const $$$get = $$$(".curation");
-                
-                $$$get.each((idx, node) => {console.log($(node).find("div > #tile_0 > img").attr("src"))});
-            }
+            // if(trailKey !== undefined){
+            //     let kk;
+            //     kk = trailKey.split('=');
+            //     var dic = { 'movieIdx': `${kk}`, 'pageIndex': 1, 'pageSize': 6, 'orderType': 0, 'filterType': 1, 'isTotalCount' : true, 'isMyPoint' : 'false' };
+            //     const stilCutData = await axios.post("http://www.cgv.co.kr/common/ajax/point.aspx/GetMoviePointVariableList", 'ParamList'+JSON.stringify(dic));
+
+            //     console.log(stilCutData);
+            // }
                 
             
             
@@ -72,11 +72,11 @@ function getCgvMovieDetail(key){
                 viewRate:  $(node).find(".score > .percent > span").text(),   //예매율
                 playTime: p[1],
                 viewEvalu: $(node).find(".score > .egg-gage > .percent").text(),
-                AgePrefer10: null,
-                AgePrefer20: null,
-                AgePrefer30: null,
-                AgePrefer40: null,
-                trailImg: null
+                AgePrefer10: "0",
+                AgePrefer20: "0",
+                AgePrefer30: "0",
+                AgePrefer40: "0",
+                trailImg: []
                 
             });
            

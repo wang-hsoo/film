@@ -17,6 +17,7 @@ function MovieDetail(){
     let movieD = [];
     let movieC = [];
     let imgD = [];
+    let imgC = [];
     const [poster, setPosetr] = useState();
     const [age10, setAge10] = useState("");
     const [age20, setAge20] = useState("");
@@ -29,8 +30,8 @@ function MovieDetail(){
         movieD = response.data.lotteMovieDetail;
         imgD = response.data.lotte;
         movieC = response.data.cgvMovieDetail;
+        imgC = response.data.cgv;
         
-        console.log(movieC);
         sel();
 
        
@@ -65,6 +66,11 @@ function MovieDetail(){
             for(let i = 0; i < movieC.length; i++){
                 if(title === movieC[i].title){
                     getDetail(movieC[i]);
+                    for(let a = 0; a < imgC.length; a++){
+                        if(imgC[a].title == title){    
+                            setPosetr(imgC[a].img );
+                        }
+                    }
       
                 }
             }
@@ -72,7 +78,7 @@ function MovieDetail(){
       }
 
       const favorite = () => {
-          console.log(detail);
+          
             const age10 = parseFloat(detail.AgePrefer10);
             const age20 = parseFloat(detail.AgePrefer20);
             const age30 = parseFloat(detail.AgePrefer30);
@@ -132,7 +138,7 @@ function MovieDetail(){
                             <div className={style2.viewRate}>예매율 : {detail.viewRate}</div>
                             <div className={style2.viewEvalu}>평점 : {detail.viewEvalu}</div>
                             <div className={style2.playTime}>{detail.playTime}분</div>
-                            {console.log(detail.synops)}
+                            
                         </div>
                         <div>
                             <div>{detail.synops.replace(/(<br>|<br\/>|<br \/>)/g,   `\r\n`)}</div>
