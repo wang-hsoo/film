@@ -7,6 +7,7 @@ import style2 from "./MovieDetail.module.css";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import noImg from "../img/no_img.png";
+import KakaoMap from "../component/KakaoMap";
 
 
 function MovieDetail(){
@@ -33,6 +34,8 @@ function MovieDetail(){
         imgC = response.data.cgv;
         
         sel();
+
+        console.log(response.data);
 
        
         if(movieD && movieC){
@@ -184,12 +187,16 @@ function MovieDetail(){
                                 {detail.trailImg.map( (detail, index) => (
                                     <div>
                                         <div className="each-slide" key={index}></div>
-                                        <div style={{'backgroundImage': `url(${detail.ImageURL})`, 'width': '900px' ,'height': '500px'}} />
+                                        <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '900px' ,'height': '500px'}} />
+                                        {console.log(detail.ImageURL)}
                                     </div>
                                 ))}
                              </Slide>
                         </div>
                        
+                    </div>
+                    <div>
+                        <KakaoMap />
                     </div>
                     
 

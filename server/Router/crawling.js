@@ -76,7 +76,7 @@ function getCgvMovieDetail(key){
                 AgePrefer20: "0",
                 AgePrefer30: "0",
                 AgePrefer40: "0",
-                trailImg: []
+                trailImg: ["noImg"]
                 
             });
            

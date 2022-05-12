@@ -11,86 +11,143 @@
 
 /*header*/
 header{
-    
+    width: 85vw;
+    height: 46px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header > h2 {
-    color: #f5c510;
+
+.logo{
+    width: 80px;
+    height: 35px;
+    margin: 0;
 }
+
 .loginBtn{
-
+    margin: 0;
 }
 
 /*main*/
+.slide-container {
+    width: 100vw;
+}
+
+.menu{
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .top_movie{
-/*현재 상영중인 영화 전체 묶음*/
+    width: 78vw;
+    margin-top: 76px;
 }
 
-.top_movie > h3{
-
+.top_movie_head{
+    height: 49px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.top_movie_button{
+    width: 130px;
+    margin: 0;
+    display: flex;
+}
+
 .allBtn{
-  
+    margin: 0;
+    justify-items: end;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
+
 .btn{
+    justify-content: flex-end;
     display: inline-block;
     background-color: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 #top_movie_group{
-/*영화 리스트 전체 묶음*/
-
-
+    width: 100%;
 }
 
 .nonscroll{
     overflow: hidden;
 }
 .top_movie_ul{
-    transition-duration: 1.7s;
-    
+    transition-duration: 1.5s;
     width: 100vw;
     display: flex;
 }
 
 .top_movie_li{
-    
-    margin-right: 5vw;
+    margin: 0;
+    width: 18.5vw;
     display: inline-block;
-    text-align: center;
+    margin-right: 20px;
 }
 
 .top_movie_li_title{
-display: block;
+    text-align: start;
+    display: block;
 }
 
 .top_movie_li > img{
-    width: 14vw;
+    width: 100%;
     display: block;
+    justify-content: center;
 }
 
 .top_movie_li_percent{
     display: block;
+    text-align: start;
 }
 
 .top_movie_li_open{
-
     display: block;
+    text-align: start;
 }
 
 .top_movie_li_age{
     display: block;
-
+    text-align: start;
 }
 
 /*trailer*/
 .trailer{
-    /*트레일러 전체 묶음*/
-    
+    width: 78vw;
+    margin-top: 76px;
 }
 
-.trailer > h3{
+.trailer_head{
+    height: 49px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.trailer_head > h3{
+    margin: 0;
+}
+
+.trailer_button{
+    width: 130px;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .trailer_group{
@@ -101,11 +158,11 @@ display: block;
 }
 
 .tailerImg{
-    width: 20vw;
+    width: 23vw;
     position: relative;
 }
 .trailer_ul{
-    transition-duration: 1.7s;
+    transition-duration: 1.5s;
     width: 100vw;
     display: flex;
 }
@@ -126,7 +183,6 @@ display: block;
  .ss{
     position: relative;
     cursor: pointer;
-    
     margin-right: 5vw;
 } 
 .movieTrail{
@@ -141,6 +197,7 @@ display: block;
     width: 100vw;
     height: 100vh;
     position: fixed;
+    left: 0;
     top: 0;
     z-index: 3;
     background-color: rgba(5, 5, 5, 0.98);
@@ -159,7 +216,8 @@ display: block;
 
 /*장르별*/
 .genre{
-    
+    width: 78vw;
+    margin-top: 76px;
 }
 
 .genre h3{

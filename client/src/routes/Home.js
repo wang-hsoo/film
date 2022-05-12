@@ -8,6 +8,8 @@ import style from "./Home.module.css";
 import next from "../img/next.png";
 import prev from "../img/prev.png";
 import closeBtn from "../img/close.png";
+import logo from "../img/logo.png";
+import plus from "../img/plus.png";
 
 function Home(){
     let moviesA = [];
@@ -47,9 +49,9 @@ function Home(){
 
     const sliderNext = () => {
         let length = moviesA.length;
-        const ulWidth = length * 19 - 100;
+        const ulWidth = length * 19.5 - 100;
         if(move > -ulWidth){
-            moving = move - 50;
+            moving = move - 78;
             setMove(moving);
         } 
 
@@ -59,7 +61,7 @@ function Home(){
         if(move === 0){
 
         }else if(move < 0){
-            moving = move + 50;
+            moving = move + 78;
             setMove(moving);
         }
         
@@ -174,41 +176,44 @@ function Home(){
             {loading ? 
               <> 
                 <header>
-                    <h2>Film</h2>
-                    <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "로그아웃" : "로그인"}</Link>
+                    <img src={logo} className = {style.logo}></img>
+                    <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "LogOut" : "LogIn"}</Link>
                 </header>
                 <main>
                     <div className="slide-container">
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
-                                <div className="each-slide" key={index}>
-                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '774px'}} />
+                                <div className="each-slide" key={index} style={{'width' : '100vw', 'height' : '774px'}}>
+                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '100%' , 'width' : '100%' , 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
                                 </div>
                             ))} 
                         </Slide>
                     </div>
 
-                    <div className={style.top_movie} >
-                        <h3>현재 상영중인 영화</h3>
-                        <Link to={'/film/movies'} className={style.allBtn}>모두보기</Link>
+                    <div className={style.top_movie}>
+                        <div className={style.top_movie_head}>
+                            <a className={style.menu}>현재 상영중인 영화</a>
+                            <div className={style.top_movie_button}>
+                                <Link to={'/film/movies'} className={style.allBtn}> <img src={plus} /> </Link>
+                                <div onClick={sliderPrev} className={style.btn}> <img src={prev} /> </div>
+                                <div onClick={sliderNext} className={style.btn}> <img src={next} /> </div>
+                            </div>
+                        </div>
                         <div id={style.top_movie_group} className={style.nonscroll}>
-                            <div onClick={sliderPrev} className={style.btn}> <img src={prev} /> </div>
-                            <div onClick={sliderNext} className={style.btn}> <img src={next} /> </div>
                             <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
                                 <Link to={`/film/${movies.title}/${movies.company}`} >
                                     <li key = {movies.key} className = {style.top_movie_li}>
-                                        <span className = {style.top_movie_li_title}>{movies.title}</span>
                                         <img src={movies.img}></img>
+                                        <span className = {style.top_movie_li_title}>{movies.title}</span>
+                                        <span className = {style.top_movie_li_open}>{movies.open}</span>
                                         <span className = {style.top_movie_li_percent}>{movies.percent}</span>
-                                        <span  className = {style.top_movie_li_open}>{movies.open}</span>
                                         <span className = {style.top_movie_li_age}>{movies.age}</span>
                                         {/* 구성에 따라 순서 바꿔도 무관 */}
                                     </li>
                                 </Link>
                                 ))}
                             </ul>
-                            
                         </div>
                     </div>
 
