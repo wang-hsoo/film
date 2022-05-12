@@ -35,7 +35,6 @@ function MovieDetail(){
         
         sel();
 
-        console.log(response.data);
 
        
         if(movieD && movieC){
@@ -188,7 +187,6 @@ function MovieDetail(){
                                     <div>
                                         <div className="each-slide" key={index}></div>
                                         <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '900px' ,'height': '500px'}} />
-                                        {console.log(detail.ImageURL)}
                                     </div>
                                 ))}
                              </Slide>
