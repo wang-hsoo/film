@@ -8,6 +8,7 @@ let trailerKey = [];
 let a = [];
 let MovieDetail = [];
 let CGVMovieDetail = [];
+let lottecinemaInf = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -289,10 +290,34 @@ function getMovieDetail() {
     detail();
 }
 
+function lottecinemaInfo(){
+    const detail = async() => {  
+       var dic = {"MethodName":"GetTicketingPageTOBE","channelType":"HO","osType":"W","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36","memberOnNo":"0"}
+       const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx", 'ParamList='+JSON.stringify(dic));
+       
+       lottecinemaInf.push(html.data.Cinemas.Cinemas.Items);
+                    
+                   
+                    
+
+                    
+                    
+        }
+           
+        
+    
+        
+        
+
+    detail();
+
+}
+
 getCgv();
 getLotte();
 getTrailer();
 getMovieDetail();
+lottecinemaInfo();
 
 router.get('/', (req, res)=>{
   res.send({
@@ -300,7 +325,8 @@ router.get('/', (req, res)=>{
       lotte: lotte,
       trailer: a,
       lotteMovieDetail : MovieDetail,
-      cgvMovieDetail: CGVMovieDetail
+      cgvMovieDetail: CGVMovieDetail,
+      lottecinemaInf: lottecinemaInf
     });
 });
 

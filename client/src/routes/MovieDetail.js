@@ -15,6 +15,7 @@ function MovieDetail(){
     const {title} = useParams();
     const {company} = useParams();
     const [detail, getDetail] = useState([]);
+    const [data, setData] = useState([]);
     let movieD = [];
     let movieC = [];
     let imgD = [];
@@ -32,6 +33,7 @@ function MovieDetail(){
         imgD = response.data.lotte;
         movieC = response.data.cgvMovieDetail;
         imgC = response.data.cgv;
+        setData(response.data);
         
         sel();
 
@@ -194,7 +196,7 @@ function MovieDetail(){
                        
                     </div>
                     <div>
-                        <KakaoMap />
+                        <KakaoMap data = {data}/>
                     </div>
                     
 

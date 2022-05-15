@@ -9,3 +9,50 @@
     border-width: medium;
     border-color: #D8D8D8;
   }
+
+  .kakomap_form{
+
+  }
+  .mapTitle{
+
+  }
+  .mapContain{
+
+  }
+  .list_palytime{
+
+  }
+  .movieList{
+    background-color: #555555;
+  }
+  
+  .listTitle{
+
+  }
+  .list_Form{
+    width: 50vw;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+
+  }
+  .list_Form::-webkit-scrollbar{
+    width: 0.5em;
+  }
+  .list_Form::-webkit-scrollbar-thumb{
+    background-color: #999999;
+  }
+
+  .list_Form::-webkit-scrollbar-track{
+    background-color: #222222;
+  }
+  .listName{
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  .playTime{
+
+  }
+  .playTimeList{
+
+  }
