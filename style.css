@@ -1,0 +1,14 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    color: white;
+}
+body{
+    background-color: black;
+}
+button{
+    background-color: black;
+}
+a{
+    text-decoration: none;
+}
