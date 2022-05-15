@@ -69,9 +69,9 @@ function Home(){
 
     const trailerNext = () => {
         let length = trailer.length;
-        const ulWidth = length * 25 - 100;
+        const ulWidth = length * 26 - 100;
         if(trailmove > -ulWidth){
-            moving = trailmove - 50;
+            moving = trailmove - 78;
             settrailMove(moving);
         } 
     }
@@ -80,7 +80,7 @@ function Home(){
         if(trailmove === 0){
 
         }else if(trailmove < 0){
-            trailMoving = trailmove + 50;
+            trailMoving = trailmove + 78;
             settrailMove(trailMoving);
         }
 
@@ -218,11 +218,14 @@ function Home(){
                     </div>
 
                     <div className={style.trailer}>
-                        <h3>예고편</h3>
+                        <div className={style.top_movie_head}>
+                            <h3 className={style.menu}>예고편</h3>
 
-                        <div onClick={trailerPrev} className={style.btn}> <img src={prev} /> </div>
-                        <div onClick={trailerNext} className={style.btn}> <img src={next} /> </div>
-                        
+                            <div className={style.top_movie_button}>
+                                <div onClick={trailerPrev} className={style.btn}> <img src={prev} /> </div>
+                                <div onClick={trailerNext} className={style.btn}> <img src={next} /> </div>
+                            </div>
+                        </div>
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
                             <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>

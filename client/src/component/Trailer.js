@@ -15,14 +15,14 @@ function Trailer( {id , name, key, trailer, img}) {
       
     return(
         <div className={style.ss} >
-            <div>
+            
                 <div className={style.playBtnBox} >
                     <img src={play} className={style.playBtn} />
                 </div>
                     
                 <img src={img} className={style.tailerImg} />
                 <div>{name}</div>
-            </div>
+            
             
 
             

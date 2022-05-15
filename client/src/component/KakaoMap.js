@@ -106,17 +106,20 @@ function KakaoMap(data) {
           });
           
           setMovieInfo(filter);
+          console.log(filter)
           for ( let b = 0; b < 10; b++){
             placesSearchCB(filter[b]);
           }
           
           
+        }else if(company === "CGV"){
+          ps.keywordSearch("cgv", placesSearch);
         }
 
         
 
         function placesSearchCB(data){
-
+          
           const markerSet = new kakao.maps.LatLng(data.lati, data.lone);
             markers = new kakao.maps.Marker({
               position: markerSet,
@@ -132,6 +135,33 @@ function KakaoMap(data) {
 
 
             
+        }
+
+        function placesSearch(data, status, pagination){
+          setMovieInfo(data);
+          
+          for(var i = 0; i < data.length; i++){
+            
+
+            const markerSet = new kakao.maps.LatLng(data[i].y, data[i].x);
+            markers = new kakao.maps.Marker({
+              position: markerSet,
+            });
+
+            var movieInfowindow = new kakao.maps.InfoWindow({
+              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black;">${data[i].place_name}</div>`
+            });
+
+          
+            markers.setMap(map);
+            movieInfowindow.open(map, markers);
+
+            
+            
+          }
+
+          map.setCenter(markerPosition);
+          map.relayout();
         }
 
         
@@ -178,8 +208,9 @@ function KakaoMap(data) {
                 <ul className={style.list_Form}>
                   {movieInfo.map((movie ,idx) => (
                     idx > 9 ? null :
-                    <li className={style.listName}>{movie.name} </li>
+                    <li className={style.listName}>{company === "LOTTE" ? movie.name : movie.place_name} </li>
                   ))}
+                  {console.log(movieInfo)}
                 </ul>
               </div>
 

@@ -55,29 +55,49 @@ header{
 }
 
 .top_movie_button{
-    width: 130px;
     margin: 0;
+    margin-bottom: 7px;
     display: flex;
+    justify-content: flex-end;
 }
 
 .allBtn{
     margin: 0;
-    justify-items: end;
     background-color: #ffffff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .btn{
-    justify-content: flex-end;
+    margin: 0;
     display: inline-block;
     background-color: #ffffff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
+    margin-left: 8px;
+    opacity: 0.8;
+}
+.btn:hover, .allBtn:hover{
+    transition: 0.4s;
+    opacity: 1;
+}
+.btn:nth-child(3){
+    margin-right: 18px;
+}
+.btn:nth-child(3) img {
+    padding-left: 3px;
+}
+
+
+
+.btn img, .allBtn img{
+    width: 100%;
+    
 }
 
 #top_movie_group{
@@ -88,7 +108,7 @@ header{
     overflow: hidden;
 }
 .top_movie_ul{
-    transition-duration: 1.5s;
+    transition-duration: 1s;
     width: 100vw;
     display: flex;
 }
@@ -131,34 +151,35 @@ header{
     width: 78vw;
     margin-top: 76px;
 }
+.trailer h3{
+    display: inline-block;
+    width: 10vw;
+}
+
+
 
 .trailer_head{
     height: 49px;
+    padding-bottom: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.trailer_head > h3{
-    margin: 0;
-}
-
 .trailer_button{
-    width: 130px;
+    width: 90px;
     margin: 0;
     display: flex;
-    align-items: center;
 }
 
 .trailer_group{
     /*트레일러 영상 영역*/
     display: flex;
     overflow: hidden;
-    
 }
 
 .tailerImg{
-    width: 23vw;
+    width: 25vw;
     position: relative;
 }
 .trailer_ul{
@@ -166,6 +187,7 @@ header{
     width: 100vw;
     display: flex;
 }
+
 .playBtn{
     z-index: 2;
     position: absolute;
@@ -175,15 +197,15 @@ header{
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 100%;
-    height: 256px;
+    width: 25vw;
+    height: 320px;
 }
 
 /*트레일러 영상 팝업 부분*/
  .ss{
     position: relative;
-    cursor: pointer;
-    margin-right: 5vw;
+    cursor: pointer; 
+    margin-right: 1vw;
 } 
 .movieTrail{
     width: 100vw;
@@ -220,8 +242,9 @@ header{
     margin-top: 76px;
 }
 
-.genre h3{
-
+.genre_head{
+    height: 49px;
+    padding-bottom: 15px;
 }
 
 .genreBtns{
@@ -231,6 +254,7 @@ header{
 .genreBtns > button{
 
 }
+
 .genreList{
 
 }
@@ -238,21 +262,21 @@ header{
     display: flex;
     overflow: hidden;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .genreMovies{
+    width: 200px;
     margin: 0;
+    margin-right: 14px;
 }
 
 .genreMovies a li{
-    
     display: inline-block;
-    
-    
 }
 
 .genreMovies li img{
-    width: 10vw;
+    width: 100%;
 }
 .genreTitle{
     display: block;
