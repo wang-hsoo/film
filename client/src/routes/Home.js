@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import { Link } from "react-router-dom";
@@ -10,8 +10,10 @@ import prev from "../img/prev.png";
 import closeBtn from "../img/close.png";
 import logo from "../img/logo.png";
 import plus from "../img/plus.png";
+import { animate, motion } from "framer-motion";
+import { color, display, margin } from "@mui/system";
 
-function Home(){
+function Home(data){
     let moviesA = [];
     let moving = 0;
     let trailMoving = 0;
@@ -33,19 +35,7 @@ function Home(){
         url :"https://caching2.lottecinema.co.kr/lotte_image/2022/Ani/Ani_1920774.jpg",
     } ]
     
-    const callApi = async()=>{
-      const response = await axios.get('http://localhost:5000/');
-      
-
-      setMovie(response.data);
-      setTrailer(response.data.trailer);
-
-      console.log(response.data);
     
-      if(movie){
-          setLoading(true);
-      }
-    };
 
     const sliderNext = () => {
         let length = moviesA.length;
@@ -155,15 +145,21 @@ function Home(){
         }
     }
 
-    
+ 
+
+    function onTap(event, info) {
+        console.log(info.point.x, info.point.y);
+      }
 
   
 
   
     useEffect(()=>{
-      callApi();
+      setMovie(data.data);
+      setTrailer(data.data.trailer);
+      setLoading(true);
       logCheck();
-    }, []);
+    }, [data]);
 
     filter();
     
@@ -192,7 +188,7 @@ function Home(){
 
                     <div className={style.top_movie}>
                         <div className={style.top_movie_head}>
-                            <a className={style.menu}>현재 상영중인 영화</a>
+                            <a className={style.menu}>HOT</a>
                             <div className={style.top_movie_button}>
                                 <Link to={'/film/movies'} className={style.allBtn}> <img src={plus} /> </Link>
                                 <div onClick={sliderPrev} className={style.btn}> <img src={prev} /> </div>
@@ -219,7 +215,7 @@ function Home(){
 
                     <div className={style.trailer}>
                         <div className={style.top_movie_head}>
-                            <h3 className={style.menu}>예고편</h3>
+                            <h3 className={style.menu}>TRAILER</h3>
 
                             <div className={style.top_movie_button}>
                                 <div onClick={trailerPrev} className={style.btn}> <img src={prev} /> </div>
@@ -229,7 +225,7 @@ function Home(){
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
                             <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>
-                                {trailer.map( (trailer) => (   
+                                {trailer?.map( (trailer) => (   
                                     <Trailer 
                                         id = {trailer.num}
                                         name = {trailer.name}
@@ -243,7 +239,7 @@ function Home(){
                         </div>
                         <div className={style.mainTrailer} style={{"display": `${Open}`}}>
                             <div onClick={close} className={style.closeBtn}><img src={closeBtn} /> </div>
-                            {trailer.map( (trailer) => (   
+                            {trailer?.map( (trailer) => (   
                                     trailerTitle === trailer.name ? 
                                     <div>
                                         <video autoPlay id="Video1">
@@ -256,13 +252,23 @@ function Home(){
                     </div>
 
                     <div className={style.genre}>
-                        <h3>장르별 영화</h3>
-                        <div className={style.genreBtns}>
-                            <button onClick={changeGenre}>드라마</button>
-                            <button onClick={changeGenre}>액션</button>
-                            <button onClick={changeGenre}>애니메이션</button>
-                            <button onClick={changeGenre}>공포(호러)</button>
+                        <div className={style.genreHeader}>
+                            <h3 className={style.menu}>BY GENRE</h3>
+                            <div className={style.genreBtns}>
+                                <button onClick={changeGenre}>드라마</button>
+                                <button onClick={changeGenre}>액션</button>
+                                <button onClick={changeGenre}>애니메이션</button>
+                                <button onClick={changeGenre}>공포(호러)</button>
+                            </div>
+                            <motion.div 
+                                className={style.menuBar}
+                                animate={{rotate:180}}
+                            >
+                                <img src={next} />
+                            </motion.div>
+                            
                         </div>
+                    
                         <div className={style.genreList}>
                             <ul>
                                 
