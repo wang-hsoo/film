@@ -11,7 +11,7 @@ import closeBtn from "../img/close.png";
 import logo from "../img/logo.png";
 import plus from "../img/plus.png";
 import { animate, motion } from "framer-motion";
-import { color, display, margin } from "@mui/system";
+
 
 function Home(data){
     let moviesA = [];

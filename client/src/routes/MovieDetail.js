@@ -145,7 +145,7 @@ function MovieDetail(){
                             
                         </div>
                         <div>
-                            <div>{detail.synops.replace(/(<br>|<br\/>|<br \/>)/g,   `\r\n`)}</div>
+                            <div>{detail.synops}</div>
                         </div>
                         <div className={style2.movieCasting}>
                             <div className={style2.movieMan}>감독: {detail.name[0] }</div>

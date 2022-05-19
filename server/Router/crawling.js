@@ -9,6 +9,7 @@ let a = [];
 let MovieDetail = [];
 let CGVMovieDetail = [];
 let lottecinemaInf = [];
+let  cgvInfo = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -313,11 +314,50 @@ function lottecinemaInfo(){
 
 }
 
+function CgvInfo(){
+    const getHTML = async() => {
+        try{
+            return await axios.get("https://thewiki.kr/w/CGV/%EC%A7%80%EC%A0%90");
+        }catch(err){
+            console.log(err);
+        }   
+    }
+    
+    const parsing =async() => {
+        const html = await getHTML();
+        const $ = cheerio.load(html.data);
+        const $coureList = $(".wiki-size");
+
+        
+        
+        
+    
+        
+    
+    $coureList.each((idx, node) => {
+        if($(node).find("a > span > strong").text() !== ""){
+            cgvInfo.push($(node).find("a > span > strong").text());
+            
+        }
+       
+    
+    });
+
+    
+    
+}
+
+
+    parsing();
+
+}
+
 getCgv();
 getLotte();
 getTrailer();
 getMovieDetail();
 lottecinemaInfo();
+CgvInfo();
 
 router.get('/', (req, res)=>{
   res.send({
@@ -326,7 +366,8 @@ router.get('/', (req, res)=>{
       trailer: a,
       lotteMovieDetail : MovieDetail,
       cgvMovieDetail: CGVMovieDetail,
-      lottecinemaInf: lottecinemaInf
+      lottecinemaInf: lottecinemaInf,
+      cgvInfo: cgvInfo
     });
 });
 

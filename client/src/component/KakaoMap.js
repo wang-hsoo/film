@@ -4,9 +4,10 @@ import style from "./KakaoMap.module.css";
 import {useParams} from "react-router-dom";
 
 function KakaoMap(data) {
-   
+  let cgvLength = [];
   const {company} = useParams();
   const [movieInfo, setMovieInfo] = useState([]);
+  
 
   const onGeoOk = (position) => {
     localStorage.setItem('lati', position.coords.latitude);
@@ -43,6 +44,7 @@ function KakaoMap(data) {
     //스크립트 읽기 완료 후 카카오맵 설정
     my_script.then(() => { 
       let markers;
+      
       const kakao = window['kakao']; 
       kakao.maps.load(() => {
         const mapContainer = document.getElementById('map');
@@ -106,14 +108,21 @@ function KakaoMap(data) {
           });
           
           setMovieInfo(filter);
-          console.log(filter)
           for ( let b = 0; b < 10; b++){
             placesSearchCB(filter[b]);
           }
           
           
         }else if(company === "CGV"){
-          ps.keywordSearch("cgv", placesSearch);
+          
+          
+          for ( let q = 0; q < data.data.cgvInfo.length; q++){
+            ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);
+            
+          }
+
+          console.log(cgvLength);
+          cgvMarkerSet();
         }
 
         
@@ -137,31 +146,19 @@ function KakaoMap(data) {
             
         }
 
-        function placesSearch(data, status, pagination){
-          setMovieInfo(data);
+        function placesSearch(db, status, pagination){
+          var r = 6371;
+          var dLat = deg2rad(db[0].y - lati);
+          var dLon = deg2rad(db[0].x - lone);
+          var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lati)) * Math.cos(deg2rad(db[0].y)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          var d = r * c;
           
-          for(var i = 0; i < data.length; i++){
-            
+          cgvLength.push(d);
+        }
 
-            const markerSet = new kakao.maps.LatLng(data[i].y, data[i].x);
-            markers = new kakao.maps.Marker({
-              position: markerSet,
-            });
-
-            var movieInfowindow = new kakao.maps.InfoWindow({
-              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black;">${data[i].place_name}</div>`
-            });
-
+        function cgvMarkerSet(){
           
-            markers.setMap(map);
-            movieInfowindow.open(map, markers);
-
-            
-            
-          }
-
-          map.setCenter(markerPosition);
-          map.relayout();
         }
 
         
@@ -210,7 +207,6 @@ function KakaoMap(data) {
                     idx > 9 ? null :
                     <li className={style.listName}>{company === "LOTTE" ? movie.name : movie.place_name} </li>
                   ))}
-                  {console.log(movieInfo)}
                 </ul>
               </div>
 
