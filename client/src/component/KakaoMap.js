@@ -4,9 +4,10 @@ import style from "./KakaoMap.module.css";
 import {useParams} from "react-router-dom";
 
 function KakaoMap(data) {
-  let cgvLength = [];
+  
   const {company} = useParams();
   const [movieInfo, setMovieInfo] = useState([]);
+  const [selectMovie, setSelectMovie] = useState();
   
 
   const onGeoOk = (position) => {
@@ -77,7 +78,7 @@ function KakaoMap(data) {
           return deg * (Math.PI/180)
         }
         const currentLotte = [];
-       
+        const cgvLength = [];
         if(company === "LOTTE"){
           
           for(let i = 0; i < lotteCinema.length; i++){
@@ -108,6 +109,7 @@ function KakaoMap(data) {
           });
           
           setMovieInfo(filter);
+          setSelectMovie(filter[0].name);
           for ( let b = 0; b < 10; b++){
             placesSearchCB(filter[b]);
           }
@@ -121,8 +123,8 @@ function KakaoMap(data) {
             
           }
 
-          console.log(cgvLength);
-          cgvMarkerSet();
+          setSelectMovie(movieInfo[0].name);
+         
         }
 
         
@@ -147,6 +149,7 @@ function KakaoMap(data) {
         }
 
         function placesSearch(db, status, pagination){
+          
           var r = 6371;
           var dLat = deg2rad(db[0].y - lati);
           var dLon = deg2rad(db[0].x - lone);
@@ -154,12 +157,29 @@ function KakaoMap(data) {
           var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
           var d = r * c;
           
-          cgvLength.push(d);
-        }
+          if( d < 11){
+            const markerSet = new kakao.maps.LatLng(db[0].y, db[0].x);
+            markers = new kakao.maps.Marker({
+              position: markerSet,
+            });
 
-        function cgvMarkerSet(){
+            var movieInfowindow = new kakao.maps.InfoWindow({
+              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 1; position: absolute">${db[0].place_name}</div>`
+            });
+
+            markers.setMap(map);
+            movieInfowindow.open(map, markers);
+            cgvLength.push({
+              name : db[0].place_name});
+            setMovieInfo(cgvLength);
+            
+           
+          }
+          
           
         }
+
+        
 
         
 
@@ -183,7 +203,9 @@ function KakaoMap(data) {
   }, []);
 
 
-  
+  const clickMovie = (event) => {
+    setSelectMovie(event.target.innerText);
+  }
 
 
 
@@ -203,15 +225,19 @@ function KakaoMap(data) {
                 <h3 className={style.listTitle}>영화관 목록</h3>
 
                 <ul className={style.list_Form}>
+                  
                   {movieInfo.map((movie ,idx) => (
                     idx > 9 ? null :
-                    <li className={style.listName}>{company === "LOTTE" ? movie.name : movie.place_name} </li>
+                    <li className={style.listName} onClick={clickMovie}> {movie.name} </li>
+                    
                   ))}
                 </ul>
               </div>
 
               <div className={style.playTime}>
                 <h3 className={style.playTimeList}>상영시간</h3>
+                <div>{selectMovie}</div>
+                <div></div>
               </div>  
             </div>
             

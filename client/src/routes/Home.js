@@ -10,7 +10,6 @@ import prev from "../img/prev.png";
 import closeBtn from "../img/close.png";
 import logo from "../img/logo.png";
 import plus from "../img/plus.png";
-import { animate, motion } from "framer-motion";
 
 
 function Home(data){
@@ -18,11 +17,9 @@ function Home(data){
     let moving = 0;
     let trailMoving = 0;
     const [trailerTitle, setTrailerTitle ] = useState("");
-    const [movie, setMovie] = useState([]);
     const [move, setMove] = useState(0);
     const [trailmove, settrailMove] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [trailer, setTrailer] = useState([]);
     const [genre, setGenre] = useState(["드라마", "멜로/로맨스"]);
     const [checkLogin , setLogin] = useState(false);
     const slideImages  = [{
@@ -58,7 +55,7 @@ function Home(data){
     };
 
     const trailerNext = () => {
-        let length = trailer.length;
+        let length = data.data.trailer.length;
         const ulWidth = length * 26 - 100;
         if(trailmove > -ulWidth){
             moving = trailmove - 78;
@@ -77,8 +74,8 @@ function Home(data){
     }
 
     const filter = () => {
-        movie.cgv?.map( (cgv) => {
-            movie.lotte?.map( (lotte) => {
+        data.data.cgv?.map( (cgv) => {
+            data.data.lotte?.map( (lotte) => {
                 if(cgv.title === lotte.title){
                     moviesA.push(cgv);
                 }
@@ -155,9 +152,8 @@ function Home(data){
 
   
     useEffect(()=>{
-      setMovie(data.data);
-      setTrailer(data.data.trailer);
-      setLoading(true);
+        if(data)
+            setLoading(true);
       logCheck();
     }, [data]);
 
@@ -225,7 +221,7 @@ function Home(data){
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
                             <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>
-                                {trailer?.map( (trailer) => (   
+                                {data.data.trailer.map( (trailer) => (   
                                     <Trailer 
                                         id = {trailer.num}
                                         name = {trailer.name}
@@ -239,7 +235,7 @@ function Home(data){
                         </div>
                         <div className={style.mainTrailer} style={{"display": `${Open}`}}>
                             <div onClick={close} className={style.closeBtn}><img src={closeBtn} /> </div>
-                            {trailer?.map( (trailer) => (   
+                            {data.data.trailer.map( (trailer) => (   
                                     trailerTitle === trailer.name ? 
                                     <div>
                                         <video autoPlay id="Video1">
@@ -260,19 +256,14 @@ function Home(data){
                                 <button onClick={changeGenre}>애니메이션</button>
                                 <button onClick={changeGenre}>공포(호러)</button>
                             </div>
-                            <motion.div 
-                                className={style.menuBar}
-                                animate={{rotate:180}}
-                            >
-                                <img src={next} />
-                            </motion.div>
+                            
                             
                         </div>
                     
                         <div className={style.genreList}>
                             <ul>
                                 
-                                {movie.lotte?.map( (lotte) => (
+                                {data.data.lotte?.map( (lotte) => (
                                     <>
                                         {genre[0] === lotte.genre ||  genre[1] === lotte.genre? 
                                         <div className={style.genreMovies}>

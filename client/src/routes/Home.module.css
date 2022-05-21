@@ -272,11 +272,20 @@ header{
 
 .genreBtns{
     margin: 0;
-    display: none;
+    margin-left: 10px;
+    
 }
-
 .genreBtns > button{
-
+    cursor: pointer;
+    opacity: 0.8;
+    margin-left: 3px;
+}
+.genreBtns > button:hover {
+    font-size: 18px;
+    opacity: 1;
+    color: #ffffff;
+    transition: 0.5s;
+    font-weight: bold;
 }
 
 .genreList{
