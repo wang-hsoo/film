@@ -10,6 +10,7 @@ let MovieDetail = [];
 let CGVMovieDetail = [];
 let lottecinemaInf = [];
 let  cgvInfo = [];
+let lottecinemaTimeList = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -184,7 +185,7 @@ function getLotte(){
 function getTrailer() {
     const trailerImg = async() => {
 
-       
+       try {
         trailerKey = await t;
         
         for(let i = 0; i < 10; i++){
@@ -212,6 +213,11 @@ function getTrailer() {
             }
            
         }
+       } catch (error) {
+           console.log(error);
+       }
+
+        
     };
         
         
@@ -222,8 +228,8 @@ function getTrailer() {
 function getMovieDetail() {
     const detail = async() => {
 
-       
-        key = await t;
+        try {
+            key = await t;
         
         for(let i = 0; i < key.length; i++){
             if(key[i] === "AD"){
@@ -246,7 +252,7 @@ function getMovieDetail() {
                     const title = html.data.Movie.MovieNameKR;
                     const genre1 = html.data.Movie.MovieGenreNameKR;
                     const genre2 = html.data.Movie.MovieGenreNameKR3;
-                    const synops = html.data.Movie.SynopsisKR;
+                    const synops = html.data.Movie.SynopsisKR.replace(/<br>/g, "").replace(/<b>/g, "").replace(/<\/b>/g, "");
                     const viewRate = html.data.Movie.ViewRate; //평점
                     const age = html.data.Movie.ViewGradeCode;
                     const viewEvalu = html.data.Movie.ViewEvaluation;//예매율
@@ -281,9 +287,13 @@ function getMovieDetail() {
 
                     
                     
-            }
-           
+            }}
+        } catch (error) {
+            
         }
+
+           
+        
     };
         
         
@@ -293,24 +303,69 @@ function getMovieDetail() {
 
 function lottecinemaInfo(){
     const detail = async() => {  
-       var dic = {"MethodName":"GetTicketingPageTOBE","channelType":"HO","osType":"W","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36","memberOnNo":"0"}
-       const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx", 'ParamList='+JSON.stringify(dic));
-       
-       lottecinemaInf.push(html.data.Cinemas.Cinemas.Items);
-                    
-                   
-                    
-
-                    
-                    
+        try {
+            var dic = {"MethodName":"GetTicketingPageTOBE","channelType":"HO","osType":"W","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36","memberOnNo":"0"}
+            const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx", 'ParamList='+JSON.stringify(dic));
+            
+            lottecinemaInf.push(html.data.Cinemas.Cinemas.Items);
+            return lottecinemaInf;
+        } catch (error) {
+            console.log(error);
         }
+       
+    }
+
+    const movieTime = async(data) => {
+        try {
+            for(let i = 0; i < data[0].length; i++){
+                const  temStorage = [];
+                var dic = {"MethodName":"GetPlaySequence",
+                            "channelType":"HO",
+                            "osType":"W",
+                            "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36",
+                            "playDate":"2022-05-21",
+                            "cinemaID":`${data[0][i].DivisionCode}|${data[0][i].DetailDivisionCode}|${data[0][i].CinemaID}`,
+                            "representationMovieCode":""}
+    
+                const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx", 'ParamList='+JSON.stringify(dic));
+    
+                const d = html.data.PlaySeqs.Items;
+                for(let a = 0; a < d.length; a++){
+                    temStorage.push({
+                        CinemaNameKR: d[a].CinemaNameKR,
+                        MovieNameKR: d[a].MovieNameKR,
+                        FilmNameKR: d[a].FilmNameKR,
+                        PlayDt : d[a].PlayDt,
+                        StartTime : d[a].StartTime,
+                        EndTime : d[a].EndTime,
+                        ScreenNameKR : d[a].ScreenNameKR
+                    })
+                }
+    
+                
+                
+                lottecinemaTimeList.push(temStorage);
+    
+                
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
+        
+        
+    }
            
         
     
-        
+    const crawl = async() => {
+        const data = await detail();
+        movieTime(data);
+    }
         
 
-    detail();
+    
+    crawl();
 
 }
 
@@ -367,7 +422,8 @@ router.get('/', (req, res)=>{
       lotteMovieDetail : MovieDetail,
       cgvMovieDetail: CGVMovieDetail,
       lottecinemaInf: lottecinemaInf,
-      cgvInfo: cgvInfo
+      cgvInfo: cgvInfo,
+      lottecinemaTimeList : lottecinemaTimeList
     });
 });
 

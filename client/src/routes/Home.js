@@ -13,6 +13,7 @@ import plus from "../img/plus.png";
 
 
 function Home(data){
+    console.log(data);
     let moviesA = [];
     let moving = 0;
     let trailMoving = 0;
@@ -152,9 +153,10 @@ function Home(data){
 
   
     useEffect(()=>{
-        if(data)
-            setLoading(true);
+        
+        
       logCheck();
+      return () => setLoading(true);
     }, [data]);
 
     filter();

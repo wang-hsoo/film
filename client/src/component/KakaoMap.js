@@ -6,8 +6,11 @@ import {useParams} from "react-router-dom";
 function KakaoMap(data) {
   
   const {company} = useParams();
+  const {title} = useParams();
   const [movieInfo, setMovieInfo] = useState([]);
   const [selectMovie, setSelectMovie] = useState();
+  const [movieTimeList, setMoviTimeList] = useState([]);
+  const timeCount = [];
   
 
   const onGeoOk = (position) => {
@@ -196,7 +199,19 @@ function KakaoMap(data) {
         
       });   
 
-      
+      const timeList = data.data.lottecinemaTimeList;
+      for(let w = 0; w < timeList.length; w++){
+            
+        if(timeList[w][0] === undefined){
+          
+        }else{ 
+            timeCount.push({
+              name : timeList[w][0].CinemaNameKR,
+              count : timeList[w].length
+            });
+         
+        }
+      }
       
       
     
@@ -208,6 +223,29 @@ function KakaoMap(data) {
   }
 
 
+  useEffect(() => {
+    if(company === "LOTTE"){
+      const timeList = data.data.lottecinemaTimeList;
+      const AllTime = [];
+    
+      for(let w = 0; w < timeList.length - 2; w++){
+
+            if(timeList[w][0] === undefined){
+              
+            }
+            else if(selectMovie === timeList[w][0].CinemaNameKR){
+              for(let y = 0; y < timeList[w].length; y++){
+                if(title === timeList[w][y].MovieNameKR){
+                  AllTime.push(timeList[w][y]);
+                }
+              }
+              setMoviTimeList(AllTime);
+              break;
+            }
+          }
+    }
+
+  },[selectMovie])
 
 
 
@@ -224,20 +262,36 @@ function KakaoMap(data) {
               <div className={style.movieList}>
                 <h3 className={style.listTitle}>영화관 목록</h3>
 
-                <ul className={style.list_Form}>
+                <div className={style.list_Form}>
                   
-                  {movieInfo.map((movie ,idx) => (
-                    idx > 9 ? null :
-                    <li className={style.listName} onClick={clickMovie}> {movie.name} </li>
-                    
-                  ))}
-                </ul>
+                    {movieInfo.map((movie ,idx) => (
+                      idx > 9 ? null :
+                      <div>
+                        <span className={style.listName} onClick={clickMovie}>{movie.name}</span>
+                        
+                      </div>
+                    ))}
+
+
+
+                  
+                </div>
               </div>
 
               <div className={style.playTime}>
                 <h3 className={style.playTimeList}>상영시간</h3>
                 <div>{selectMovie}</div>
-                <div></div>
+                <div>
+                  
+                  {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
+                  { movieTimeList.map((time) => (
+                    <ul>
+                      <li>{time.MovieNameKR}</li>
+                      <li>{time.ScreenNameKR}</li>
+                      <li>{time.StartTime}</li>
+                    </ul>
+                  ))}
+                </div>
               </div>  
             </div>
             
