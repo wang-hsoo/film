@@ -153,8 +153,8 @@ function Home(data){
 
   
     useEffect(()=>{
-        
-        
+    
+      console.log(data);    
       logCheck();
       return () => setLoading(true);
     }, [data]);

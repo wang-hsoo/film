@@ -11,6 +11,7 @@ let CGVMovieDetail = [];
 let lottecinemaInf = [];
 let  cgvInfo = [];
 let lottecinemaTimeList = [];
+let cgvTimeList = [];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -319,11 +320,16 @@ function lottecinemaInfo(){
         try {
             for(let i = 0; i < data[0].length; i++){
                 const  temStorage = [];
+                let today = new Date();   
+
+                let year = today.getFullYear(); // 년도
+                let month = today.getMonth() + 1;  // 월
+                let date = today.getDate();
                 var dic = {"MethodName":"GetPlaySequence",
                             "channelType":"HO",
                             "osType":"W",
                             "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36",
-                            "playDate":"2022-05-21",
+                            "playDate":`${year}-${month}-${date}`,
                             "cinemaID":`${data[0][i].DivisionCode}|${data[0][i].DetailDivisionCode}|${data[0][i].CinemaID}`,
                             "representationMovieCode":""}
     
@@ -407,12 +413,46 @@ function CgvInfo(){
 
 }
 
+function cgvTime(){
+    const getHTML = async() => {
+        try{
+            return await axios.get("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx");
+        }catch(err){
+            console.log(err);
+        }   
+    }
+    
+    const parsing =async() => {
+        const html = await getHTML();
+        const $ = cheerio.load(html.data);
+        const $coureList = $("#divWrap > a");
+
+        
+       
+        
+    
+        
+    
+    $coureList.each((idx, node) => {
+       console.log($(node).attr("href"));
+    });
+
+    
+    
+}
+
+
+    parsing();
+
+}
+
 getCgv();
 getLotte();
 getTrailer();
 getMovieDetail();
 lottecinemaInfo();
 CgvInfo();
+cgvTime();
 
 router.get('/', (req, res)=>{
   res.send({
