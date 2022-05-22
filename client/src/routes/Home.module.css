@@ -1,11 +1,43 @@
 .loading{
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    flex-flow: row nowrap;
     align-items: center;
-    justify-content: center;
-    font-size: 3em;
+    justify-content: space-between;
+    width: 5em;
+    height: 100vh;
 }
+.loading span {
+    width: 1em;
+    height: 3em;
+    background-color: #ffd600;
+  }
+  
+  .loading span:nth-of-type(1) {
+    animation: grow 1s -0.45s ease-in-out infinite;
+  }
+  
+  .loading span:nth-of-type(2) {
+    animation: grow 1s -0.3s ease-in-out infinite;
+  }
+  
+  .loading span:nth-of-type(3) {
+    animation: grow 1s -0.15s ease-in-out infinite;
+  }
+  
+  .loading span:nth-of-type(4) {
+    animation: grow 1s ease-in-out infinite;
+  }
+  
+  @keyframes grow {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+  
+    50% {
+      transform: scaleY(2);
+    }
+  }
 /*h3는 임의로 정해둔거여서 스타일에 따라 바꿔도 무관 바꿀 때 Home.js 부분도 수정*/
 /*Home.js Link to 는 버튼이라고 생각하면 됨*/
 
@@ -115,15 +147,26 @@ header{
 }
 
 .top_movie_li{
-    margin: 0;
     width: 18.5vw;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-right: 20px;
 }
-
+.top_movie_box{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 .top_movie_li_title{
-    text-align: start;
-    display: block;
+    display: inline-block;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 1.1em;
+    
 }
 
 .top_movie_li > img{
@@ -135,16 +178,21 @@ header{
 .top_movie_li_percent{
     display: block;
     text-align: start;
+    margin: 0;
+    margin-top: 2px;
 }
 
 .top_movie_li_open{
-    display: block;
+    display: inline-block;
     text-align: start;
+    margin: 0;
+    margin-top: 2px;
 }
 
 .top_movie_li_age{
     display: block;
     text-align: start;
+    margin: 0;
 }
 
 /*trailer*/
@@ -299,9 +347,10 @@ header{
 }
 
 .genreMovies{
-    width: 200px;
+    width: 220px;
     margin: 0;
-    margin-right: 14px;
+    margin-right: 30px;
+    
 }
 
 .genreMovies a li{
@@ -313,6 +362,7 @@ header{
 }
 .genreTitle{
     display: block;
+    font-size: 0.8em;
 }
 
 .genreMovies li span{

@@ -145,18 +145,14 @@ function Home(data){
 
  
 
-    function onTap(event, info) {
-        console.log(info.point.x, info.point.y);
-      }
-
-  
-
-  
-    useEffect(()=>{
     
-      console.log(data);    
+
+  
+
+  
+    useEffect(()=>{   
       logCheck();
-      return () => setLoading(true);
+      setTimeout(() => setLoading(true), 500);
     }, [data]);
 
     filter();
@@ -199,10 +195,14 @@ function Home(data){
                                 <Link to={`/film/${movies.title}/${movies.company}`} >
                                     <li key = {movies.key} className = {style.top_movie_li}>
                                         <img src={movies.img}></img>
-                                        <span className = {style.top_movie_li_title}>{movies.title}</span>
-                                        <span className = {style.top_movie_li_open}>{movies.open}</span>
+                                        <span className={style.top_movie_box}>
+                                            <span className = {style.top_movie_li_title}>{movies.title}</span>
+                                            <span className = {style.top_movie_li_age}>{movies.age}</span>
+                                        </span>
                                         <span className = {style.top_movie_li_percent}>{movies.percent}</span>
-                                        <span className = {style.top_movie_li_age}>{movies.age}</span>
+                                        <span className = {style.top_movie_li_open}>{movies.open}</span>
+                                        
+                                        
                                         {/* 구성에 따라 순서 바꿔도 무관 */}
                                     </li>
                                 </Link>
@@ -287,8 +287,13 @@ function Home(data){
                     
                 </>:
                 <div className={style.loading}>
-                    Loading...
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
+              
+                
         
             }
         

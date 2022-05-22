@@ -123,11 +123,11 @@ function KakaoMap(data) {
           
           for ( let q = 0; q < data.data.cgvInfo.length; q++){
             ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);
-            
+          
           }
 
-          setSelectMovie(movieInfo[0].name);
-         
+          
+          
         }
 
         
@@ -174,12 +174,10 @@ function KakaoMap(data) {
             movieInfowindow.open(map, markers);
             cgvLength.push({
               name : db[0].place_name});
-            setMovieInfo(cgvLength);
             
-           
+            setTimeout( () => setMovieInfo(cgvLength), 500);
+           setSelectMovie(cgvLength[0].name); 
           }
-          
-          
         }
 
         

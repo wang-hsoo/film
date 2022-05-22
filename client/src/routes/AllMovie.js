@@ -51,6 +51,8 @@ function AllMovie(){
       useEffect(()=>{
         callApi();
       }, []);
+      
+      
 
       return(
         <div>
