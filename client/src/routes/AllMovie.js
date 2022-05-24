@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 import movieStyle from "./AllMovie.module.css";
+import logo from "../img/logo.png";
 
 
 function AllMovie(){
@@ -10,6 +11,7 @@ function AllMovie(){
     const [movie, setMovie] = useState([]);
     const [lotteDisplay, setLotteDisplay] = useState("block");
     const [cgvDisplay, setCgvDisplay] = useState("block");
+    const [checkLogin , setLogin] = useState(false);
 
     const callApi = async()=>{
         const response = await axios.get('http://localhost:5000/');
@@ -48,8 +50,28 @@ function AllMovie(){
         }
       }
 
+      const logCheck = () => {
+        const id = localStorage.getItem("id");
+
+        if(id){
+            setLogin(true);
+        }
+    }
+
+    const onLog = (event) => {
+        const id = localStorage.getItem("id");
+        console.log(id);
+
+        if( id){
+            setLogin(false);
+            localStorage.removeItem("id");
+            event.preventDefault();
+        }
+    }
+
       useEffect(()=>{
         callApi();
+        logCheck();
       }, []);
       
       
@@ -58,16 +80,18 @@ function AllMovie(){
         <div>
             {loading ? 
               <> 
-                <header>
-                    <h2><Link to={'/'}>Film</Link></h2>
-                    <Link to={'/Login'} className = {style.loginBtn}>Login</Link>
+               <header>
+                    <Link to ={"/"}><img src={logo} className = {style.logo}></img></Link>
+                    <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "LogOut" : "LogIn"}</Link>
                 </header>
                 <main>
                     <div className = {movieStyle.companyBtn}>
-                        <h3>현재 상영중인 영화</h3>
-                        <button onClick={changeDisplay}>ALL</button>
-                        <button onClick={changeDisplay}>LOTTE</button>
-                        <button onClick={changeDisplay}>CGV</button>
+                        <h3>All MOVIES</h3>
+                        <div>
+                            <button onClick={changeDisplay}>ALL</button>
+                            <button onClick={changeDisplay}>LOTTE</button>
+                            <button onClick={changeDisplay}>CGV</button>
+                        </div>
                     </div>
                     
                     <div className={movieStyle.allList}>
@@ -78,8 +102,8 @@ function AllMovie(){
                                     <div className={movieStyle.movieCompany}>{lotte.company}</div>
                                     <div className={movieStyle.moviePoster}><img src = {lotte.img} /></div>
                                     <div className={movieStyle.movieTitle}>{lotte.title}</div>
-                                    <div className={movieStyle.movieAge}>{lotte.age}</div>
-                                    <div className={movieStyle.moviePercent}>{lotte.percent}</div>
+                                    <div className={movieStyle.movieAge}>{lotte.age === "청불" || lotte.age ==="전체" ? lotte.age : lotte.age + "세 이상"}</div>
+                                    <div className={movieStyle.moviePercent}>예매율: {lotte.percent}</div>
                                 </div>
                             </Link>
                         ))}
@@ -102,8 +126,11 @@ function AllMovie(){
                     
                 </>:
                 <div className={style.loading}>
-                    Loading...
-                </div>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         
             }
         

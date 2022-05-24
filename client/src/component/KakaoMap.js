@@ -11,6 +11,8 @@ function KakaoMap(data) {
   const [selectMovie, setSelectMovie] = useState();
   const [movieTimeList, setMoviTimeList] = useState([]);
   const timeCount = [];
+  // const timeResult = [];
+  const [timeResult, setTimeResult] = useState();
   
 
   const onGeoOk = (position) => {
@@ -228,6 +230,31 @@ function KakaoMap(data) {
     
       for(let w = 0; w < timeList.length - 2; w++){
 
+        if(timeList[w][0] === undefined){
+              
+        }else{
+          for(let y = 0; y < timeList[w].length; y++){
+            if(title === timeList[w][y].MovieNameKR){
+              timeCount.push(
+                timeList[w][y].CinemaNameKR
+              )
+            }
+            
+          }
+
+          const count = timeCount.reduce((accu, curr) => {
+            accu.set(curr, (accu.get(curr)||0) +1) ;
+            return accu
+          },new Map());
+          
+          setTimeResult(count);
+          
+          
+          
+          
+          
+        }
+
             if(timeList[w][0] === undefined){
               
             }
@@ -240,7 +267,13 @@ function KakaoMap(data) {
               setMoviTimeList(AllTime);
               break;
             }
+
+            
+
+            
           }
+        
+        
     }
 
   },[selectMovie])
@@ -266,7 +299,10 @@ function KakaoMap(data) {
                       idx > 9 ? null :
                       <div>
                         <span className={style.listName} onClick={clickMovie}>{movie.name}</span>
-                        
+                        {/* {timeResult.map((time, idx) => (
+                          <span>{time.name === movie.name ? time.count : null}</span>
+                        ))} */}
+                        {timeResult.get(movie.name) === undefined ? 0 : timeResult.get(movie.name) }
                       </div>
                     ))}
 

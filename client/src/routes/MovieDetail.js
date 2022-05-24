@@ -8,6 +8,7 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import noImg from "../img/no_img.png";
 import KakaoMap from "../component/KakaoMap";
+import logo from "../img/logo.png";
 
 
 function MovieDetail(){
@@ -25,6 +26,7 @@ function MovieDetail(){
     const [age20, setAge20] = useState("");
     const [age30, setAge30] = useState("");
     const [age40, setAge40] = useState("");
+    const [checkLogin , setLogin] = useState(false);
 
     const callApi = async()=>{
         const response = await axios.get('http://localhost:5000/');
@@ -113,6 +115,25 @@ function MovieDetail(){
       useEffect( () => {
         favorite();
       }, window.onload);
+
+      const logCheck = () => {
+        const id = localStorage.getItem("id");
+
+        if(id){
+            setLogin(true);
+        }
+    }
+
+    const onLog = (event) => {
+        const id = localStorage.getItem("id");
+        console.log(id);
+
+        if( id){
+            setLogin(false);
+            localStorage.removeItem("id");
+            event.preventDefault();
+        }
+    }
       
     
     useEffect(()=>{
@@ -125,7 +146,8 @@ function MovieDetail(){
             {loading ? 
               <> 
                 <header>
-                    <h2><Link to={'/'}>Film</Link></h2>
+                    <Link to ={"/"}><img src={logo} className = {style.logo}></img></Link>
+                    <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "LogOut" : "LogIn"}</Link>
                 </header>
                 <main>
                     <div className={style2.detail}>
@@ -205,8 +227,11 @@ function MovieDetail(){
                     
                 </>:
                 <div className={style.loading}>
-                    Loading...
-                </div>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         
             }
         
