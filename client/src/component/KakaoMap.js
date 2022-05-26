@@ -123,8 +123,10 @@ function KakaoMap(data) {
         }else if(company === "CGV"){
           
           
-          for ( let q = 0; q < data.data.cgvInfo.length; q++){
-            ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);
+          for ( let q = 0; q < data.data.cgvInfo.length; q++){  
+              ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);
+            
+            
           
           }
 
@@ -154,7 +156,7 @@ function KakaoMap(data) {
         }
 
         function placesSearch(db, status, pagination){
-          
+          if(db.length !== 0){
           var r = 6371;
           var dLat = deg2rad(db[0].y - lati);
           var dLon = deg2rad(db[0].x - lone);
@@ -179,10 +181,10 @@ function KakaoMap(data) {
             
             setTimeout( () => setMovieInfo(cgvLength), 500);
            setSelectMovie(cgvLength[0].name); 
-          }
+          }}
         }
 
-        
+      
 
         
 
@@ -300,7 +302,7 @@ function KakaoMap(data) {
                   
                     {movieInfo.map((movie ,idx) => (
                       idx > 9 ? null :
-                      <div>
+                      <div key={idx}>
                         <span className={style.listName} onClick={clickMovie}>{movie.name}</span>
                         {/* {timeResult.map((time, idx) => (
                           <span>{time.name === movie.name ? time.count : null}</span>
@@ -321,8 +323,8 @@ function KakaoMap(data) {
                 <div>
                   
                   {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
-                  { movieTimeList.map((time) => (
-                    <ul>
+                  { movieTimeList.map((time, idx) => (
+                    <ul key={idx}>
                       <li>{time.MovieNameKR}</li>
                       <li>{time.ScreenNameKR}</li>
                       <li>{time.StartTime}</li>

@@ -137,6 +137,7 @@ function MovieDetail(){
       
     
     useEffect(()=>{
+        logCheck();
         callApi();
       }, []);
       
@@ -208,9 +209,9 @@ function MovieDetail(){
                         <div className="slide-container">
                             <Slide>
                                 {detail.trailImg.map( (detail, index) => (
-                                    <div style={{'width': '100vw', 'height' : '80vh'}}>
+                                    <div style={{'width': '100vw', 'height' : '80vh'}} key={index}>
                                         <div className="each-slide" key={index}></div>
-                                        <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'background-repeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
+                                        <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'backgroundRepeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
                                     </div>
                                 ))}
                              </Slide>

@@ -95,9 +95,9 @@ function AllMovie(){
                     </div>
                     
                     <div className={movieStyle.allList}>
-                        {movie.lotte.map( (lotte) => (
+                        {movie.lotte.map( (lotte, idx) => (
                             lotte.title === "AD" ? null :
-                            <Link to={`/film/${lotte.title}/${lotte.company}`} className={movieStyle.detailLink}>
+                            <Link to={`/film/${lotte.title}/${lotte.company}`} className={movieStyle.detailLink} key={idx}>
                                 <div style={{"display" : `${lotteDisplay}`}} className={movieStyle.detailBox}> 
                                     <div className={movieStyle.movieCompany}>{lotte.company}</div>
                                     <div className={movieStyle.moviePoster}><img src = {lotte.img} /></div>
@@ -107,8 +107,8 @@ function AllMovie(){
                                 </div>
                             </Link>
                         ))}
-                        {movie.cgv.map( (cgv) => (
-                            <Link to={`/film/${cgv.title}/${cgv.company}`} className={movieStyle.detailLink}>
+                        {movie.cgv.map( (cgv, idx) => (
+                            <Link to={`/film/${cgv.title}/${cgv.company}`} className={movieStyle.detailLink} key={idx}>
                                 <div style={{"display" : `${cgvDisplay}`}} className={movieStyle.detailBox}>
                                     <div className={movieStyle.movieCompany}>{cgv.company}</div>
                                     <div className={movieStyle.moviePoster}><img src = {cgv.img} /></div>
