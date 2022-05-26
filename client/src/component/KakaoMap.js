@@ -212,21 +212,8 @@ function KakaoMap(data) {
          
         }
       }
+
       
-      
-    
-  }, []);
-
-
-  const clickMovie = (event) => {
-    setSelectMovie(event.target.innerText);
-  }
-
-
-  useEffect(() => {
-    if(company === "LOTTE"){
-      const timeList = data.data.lottecinemaTimeList;
-      const AllTime = [];
     
       for(let w = 0; w < timeList.length - 2; w++){
 
@@ -253,8 +240,24 @@ function KakaoMap(data) {
           
           
           
-        }
+        }}
+      
+      
+    
+  }, []);
 
+
+  const clickMovie = (event) => {
+    setSelectMovie(event.target.innerText);
+  }
+
+
+  useEffect(() => {
+    if(company === "LOTTE"){
+      const timeList = data.data.lottecinemaTimeList;
+      const AllTime = [];
+
+      for(let w = 0; w < timeList.length - 2; w++){
             if(timeList[w][0] === undefined){
               
             }
@@ -269,12 +272,12 @@ function KakaoMap(data) {
             }
 
             
-
+          }
             
           }
         
         
-    }
+    
 
   },[selectMovie])
 

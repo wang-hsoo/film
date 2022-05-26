@@ -190,10 +190,10 @@ function Home(data){
                             </div>
                         </div>
                         <div id={style.top_movie_group} className={style.nonscroll}>
-                            <ul className = {style.top_movie_ul} style = {{"margin-left": `${move}vw`}}>
+                            <ul className = {style.top_movie_ul} style = {{"marginLeft": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
-                                <Link to={`/film/${movies.title}/${movies.company}`} >
-                                    <li key = {movies.key} className = {style.top_movie_li}>
+                                <Link to={`/film/${movies.title}/${movies.company}`} key = {movies.key}>
+                                    <li  className = {style.top_movie_li}>
                                         <img src={movies.img}></img>
                                         <span className={style.top_movie_box}>
                                             <span className = {style.top_movie_li_title}>{movies.title}</span>
@@ -222,13 +222,13 @@ function Home(data){
                         </div>
                         <div className={style.trailer_group}>
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
-                            <div className={style.trailer_ul}  style = {{"margin-left": `${trailmove}vw`}} onClick={trailerClick}>
-                                {data.data.trailer.map( (trailer) => (   
-                                    <Trailer 
-                                        id = {trailer.num}
+                            <div className={style.trailer_ul}  style = {{"marginLeft": `${trailmove}vw`}} onClick={trailerClick}>
+                                {data.data.trailer.map( (trailer, idx) => (  
+                                //  console.log(trailer.key)
+                                    <Trailer
                                         name = {trailer.name}
-                                        key = {trailer.name}
-                                        trailer = {trailer.mp4}
+                                        id = {"trailer"+ idx}
+                                        key = {trailer.key}
                                         img = {trailer.img}
                                     /> 
                                 ))}
@@ -237,9 +237,9 @@ function Home(data){
                         </div>
                         <div className={style.mainTrailer} style={{"display": `${Open}`}}>
                             <div onClick={close} className={style.closeBtn}><img src={closeBtn} /> </div>
-                            {data.data.trailer.map( (trailer) => (   
+                            {data.data.trailer.map( (trailer, idx) => (   
                                     trailerTitle === trailer.name ? 
-                                    <div>
+                                    <div key={idx}>
                                         <video autoPlay id="Video1">
                                             <source src={trailer.mp4}/>
                                         </video>
@@ -265,10 +265,10 @@ function Home(data){
                         <div className={style.genreList}>
                             <ul>
                                 
-                                {data.data.lotte?.map( (lotte) => (
-                                    <>
+                                {data.data.lotte?.map( (lotte, idx) => (
+                                    <div key={idx}>
                                         {genre[0] === lotte.genre ||  genre[1] === lotte.genre? 
-                                        <div className={style.genreMovies}>
+                                        <div className={style.genreMovies} key={idx}>
                                             <Link to={`/film/${lotte.title}/${lotte.company}`} >
                                                 <li>
                                                     <img src={lotte.img} />
@@ -277,7 +277,7 @@ function Home(data){
                                             </Link> 
                                         </div>: null
                                         }
-                                    </>
+                                    </div>
                                 ))}
                             </ul>
                         </div>

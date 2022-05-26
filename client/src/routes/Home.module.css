@@ -232,6 +232,7 @@ header > a {
 
 .tailerImg{
     width: 25vw;
+    height: 100%;
     position: relative;
 }
 .trailer_ul{
@@ -258,6 +259,8 @@ header > a {
     position: relative;
     cursor: pointer; 
     margin-right: 1vw;
+    width: 25vw;
+    height: 320px;
 } 
 .movieTrail{
     width: 100vw;

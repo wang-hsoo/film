@@ -4,17 +4,12 @@ import React, { useEffect, useState } from "react";
 import style from "../routes/Home.module.css";
 import play from "../img/play.png";
 
-function Trailer( {id , name, key, trailer, img}) {
+function Trailer( { name, id, img}) {
    
-            
 
-  
-
-
-    
       
     return(
-        <div className={style.ss} >
+        <div className={style.ss} id={id}>
             
                 <div className={style.playBtnBox} >
                     <img src={play} className={style.playBtn} />
@@ -22,10 +17,6 @@ function Trailer( {id , name, key, trailer, img}) {
                     
                 <img src={img} className={style.tailerImg} />
                 <div>{name}</div>
-            
-            
-
-            
         </div>
 
     )
