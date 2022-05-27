@@ -232,7 +232,7 @@ header > a {
 
 .tailerImg{
     width: 25vw;
-    height: 100%;
+    height: 80%;
     position: relative;
 }
 .trailer_ul{
@@ -250,8 +250,8 @@ header > a {
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 25vw;
-    height: 320px;
+    width: 480px;
+    height: 256px;
 }
 
 /*트레일러 영상 팝업 부분*/

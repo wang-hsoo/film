@@ -5,7 +5,7 @@ import style from "../routes/Home.module.css";
 import play from "../img/play.png";
 
 function Trailer( { name, id, img}) {
-   
+    
 
       
     return(

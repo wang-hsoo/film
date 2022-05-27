@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require("axios"); 
 const cheerio = require("cheerio");
+const iconv = require('iconv-lite');
 let cgv = [];
 let lotte = [];
 let trailerKey = [];
@@ -416,7 +417,7 @@ function CgvInfo(){
 function cgvTime(){
     const getHTML = async() => {
         try{
-            return await axios.get("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx");
+            return await axios.post("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx", "scriptManager= rptRegion$ctl01$lbtnRegion",{responseType: 'arraybuffer'});
         }catch(err){
             console.log(err);
         }   
@@ -424,7 +425,8 @@ function cgvTime(){
     
     const parsing =async() => {
         const html = await getHTML();
-        const $ = cheerio.load(html.data);
+        const content = iconv.decode(html.data, "EUC-KR").toString();
+        const $ = cheerio.load(content);
         const $coureList = $("#divWrap > a");
 
         
@@ -434,7 +436,7 @@ function cgvTime(){
         
     
     $coureList.each((idx, node) => {
-       console.log($(node).attr("href"));
+       console.log($(node).find("span").text(), $(node).attr("href"));
     });
 
     

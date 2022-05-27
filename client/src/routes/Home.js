@@ -112,8 +112,9 @@ function Home(data){
   
 
     const trailerClick = (event) => {
-
+        
         if(event.target.className === "Home_tailerImg__GTNWn"){
+            
             setTrailerTitle(event.target.offsetParent.innerText);
             setlOpen("inline-block");
         }else if(event.target.className === "Home_playBtn__EKuPx"){
@@ -224,7 +225,7 @@ function Home(data){
                             {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
                             <div className={style.trailer_ul}  style = {{"marginLeft": `${trailmove}vw`}} onClick={trailerClick}>
                                 {data.data.trailer.map( (trailer, idx) => (  
-                                //  console.log(trailer.key)
+                                
                                     <Trailer
                                         name = {trailer.name}
                                         id = {"trailer"+ idx}
