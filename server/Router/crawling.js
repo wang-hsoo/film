@@ -417,7 +417,8 @@ function CgvInfo(){
 function cgvTime(){
     const getHTML = async() => {
         try{
-            return await axios.post("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx", "scriptManager= rptRegion$ctl01$lbtnRegion",{responseType: 'arraybuffer'});
+            // return await axios.post("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx", "scriptManager= rptRegion$ctl01$lbtnRegion",{responseType: 'arraybuffer'});
+            return await axios.get("http://www.cgv.co.kr/theaters/");
         }catch(err){
             console.log(err);
         }   
@@ -425,9 +426,10 @@ function cgvTime(){
     
     const parsing =async() => {
         const html = await getHTML();
-        const content = iconv.decode(html.data, "EUC-KR").toString();
-        const $ = cheerio.load(content);
-        const $coureList = $("#divWrap > a");
+        // const content = iconv.decode(html.data, "EUC-KR").toString();
+        const $ = cheerio.load(html.data);
+        // const $coureList = $("#divWrap > a");
+        const $coureList = $(".area > ul > .on");
 
         
        
@@ -436,7 +438,8 @@ function cgvTime(){
         
     
     $coureList.each((idx, node) => {
-       console.log($(node).find("span").text(), $(node).attr("href"));
+    //    console.log($(node).find("span").text(), $(node).attr("href"));
+    console.log($(node).find("a").arrt("href"));
     });
 
     
