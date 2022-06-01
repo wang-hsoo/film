@@ -13,6 +13,12 @@ let lottecinemaInf = [];
 let  cgvInfo = [];
 let lottecinemaTimeList = [];
 let cgvTimeList = [];
+const cgvCode = [
+    {name: "강남",code: "0056",area: "01"},{name: "강변",code: "0001",area: "01"},{name: "건대입구",code: "0229",area: "01"},{name: "구로",code: "0010",area: "01"},{name: "대학로",code: "0063",area: "01"},
+    {name: "동대문",code: "0252",area: "01"},{name: "등촌",code: "0230",area: "01"},{name: "천호",code: "0199",area: "01"},{name: "송파",code: "0088",area: "01"},{name: "홍대",code: "0191",area: "01"},
+    {name: "경기광주",code: "0260",area: "02"},{name: "하남미사",code: "0326",area: '02'},{name: "야탑",code: "0003",area: "02"},{name: "시흥",code: "0073",area: "02"},{name: "성남모란",code: "0304",area: "02"},
+    {name: "판교",code: "0181",area: "02"},{name: "일산",code: "0054",area: "02"},{name: "광교",code: "0257",area: "02"},{name: "수원",code: "0012",area: "02"},{name: "서현",code: "0196",area: "02"},
+];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -62,7 +68,6 @@ function getCgvMovieDetail(key){
             //     console.log(stilCutData);
             // }
                 
-            
             
             
             CGVMovieDetail.push({
@@ -379,7 +384,10 @@ function lottecinemaInfo(){
 function CgvInfo(){
     const getHTML = async() => {
         try{
-            return await axios.get("https://thewiki.kr/w/CGV/%EC%A7%80%EC%A0%90");
+            
+                return await axios.get("https://thewiki.kr/w/CGV/%EC%A7%80%EC%A0%90");
+            
+            
         }catch(err){
             console.log(err);
         }   
@@ -417,8 +425,17 @@ function CgvInfo(){
 function cgvTime(){
     const getHTML = async() => {
         try{
-            // return await axios.post("http://section.cgv.co.kr/theater/popup/r_TimeTable.aspx", "scriptManager= rptRegion$ctl01$lbtnRegion",{responseType: 'arraybuffer'});
-            return await axios.get("http://www.cgv.co.kr/theaters/");
+            
+            let today = new Date();   
+
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();
+            console.log(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=${cgvCode[0].area}&theatercode=${cgvCode[0].code}&date=${year}${month < 10 ? "0" + month : month }${date < 10 ? "0" + date : date}`)
+            //for(let i = 0; i < cgvCode.length; i++){
+                return await axios.get(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0056&date=20220601`);
+            //}
+            
         }catch(err){
             console.log(err);
         }   
@@ -426,10 +443,9 @@ function cgvTime(){
     
     const parsing =async() => {
         const html = await getHTML();
-        // const content = iconv.decode(html.data, "EUC-KR").toString();
         const $ = cheerio.load(html.data);
-        // const $coureList = $("#divWrap > a");
-        const $coureList = $(".area > ul > .on");
+        const $coureList = $("sect-showtimes > ul > li > .col-times");
+        console.log($coureList);
 
         
        
@@ -437,10 +453,10 @@ function cgvTime(){
     
         
     
-    $coureList.each((idx, node) => {
-    //    console.log($(node).find("span").text(), $(node).attr("href"));
-    console.log($(node).find("a").arrt("href"));
-    });
+    // $coureList.each((idx, node) => {
+    //    console.log($(node).find(".info-movie").text());
+    
+    // });
 
     
     

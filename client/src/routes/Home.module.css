@@ -374,3 +374,27 @@ header > a {
 .genreMovies li span{
 
 }
+
+/*반응형*/
+@media (max-width:500px){
+    #sliderCon{
+        display: none;
+    }
+    .top_movie_li{
+        width: 75vw;
+    }
+    .genreMovies{
+        width: 20vw;
+    }
+    .ss{
+        width: 75vw;
+        margin-right: 4vw;
+        
+    }
+    .playBtnBox{
+        width: 75vw;
+    }
+    .tailerImg{
+        width: 75vw;
+    }
+}

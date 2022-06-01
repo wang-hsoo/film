@@ -1,62 +1,101 @@
 .detail{
-
+    width: 78vw;
+    font-size: 16px;
 }
+
+.detailimpo{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 25.5vw);
+    grid-gap: 15px;
+    margin-bottom: 15px;
+}
+
+.detailMore{
+    
+}
+
 .detailPoster{
-
+    margin: 0;
 }
-.detailContent{
 
+.detailPoster > img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.detailContent{
+    font-size: 16px;
 }
 
 .detailTitle{
-
+    font-size: 33px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 .detailAge{
+    margin-bottom: 5px;
+}
 
+.detailGenreBox{
+    margin-bottom: 5px;
+    display: inline-flex;
+}
+.detailGenreTitle{
+    
 }
 .detailGenre{
     
 }
-.detailGenreTitle{
 
-}
-.detailGenre{
-
-}
 .viewRate{
-
+    font-size: 22px;
+    margin-bottom: 5px;
 }
 .viewEvalu{
-
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 .playTime{
-
+    margin-bottom: 15px;
 }
 
 
 .movieCasting{
-
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 12.5vw);
+    grid-gap: 10px;
 }
 .movieMan{
-
+    text-align: center;
+    font-size: 20px;
 }
 
 .castingImg{
+    margin: 0;
+}
 
+.castingImg > img {
+    width: 12vw;
+    object-fit: cover;
 }
 
 .movieFavorite{
-
+    
 }
 
 .favoriteTitle{
-
+    font-size: 18px;
+    margin-top: 30px;
 }
+
 .favoriteBox{
-    width: 500px;
-
+    margin: 20px 0px;
 }
+
 .favoriteSet{
+    margin: 0;
     display: flex;
     width: 200px;
     align-items: center;
@@ -74,5 +113,5 @@
 }
 
 .favoritePercent{
-    
+
 }

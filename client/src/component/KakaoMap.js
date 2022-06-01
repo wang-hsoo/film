@@ -284,7 +284,20 @@ function KakaoMap(data) {
   },[selectMovie])
 
 
-
+  function playTime(){
+    for(let i = 0; i < movieTimeList.length; i++){
+      if(movieTimeList[0].ScreenNameKR === movieTimeList[i].ScreenNameKR){
+        console.log("같음" + movieTimeList[i].ScreenNameKR);
+      }else{
+        console.log("다름" + movieTimeList[i].ScreenNameKR);
+      }
+    }
+    return(
+      <>
+        
+      </>
+    )
+  }
 
     
       
@@ -321,15 +334,17 @@ function KakaoMap(data) {
                 <h3 className={style.playTimeList}>상영시간</h3>
                 <div>{selectMovie}</div>
                 <div>
-                  
+                  {console.log(movieTimeList)}
                   {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
                   { movieTimeList.map((time, idx) => (
                     <ul key={idx}>
-                      <li>{time.MovieNameKR}</li>
                       <li>{time.ScreenNameKR}</li>
-                      <li>{time.StartTime}</li>
+                      <li>{time.MovieNameKR}</li>
+                      <li>{time.FilmNameKR}</li>
+                      <li>{time.StartTime} ~ {time.EndTime}</li>
                     </ul>
                   ))}
+                  {/* {playTime()} */}
                 </div>
               </div>  
             </div>

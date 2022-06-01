@@ -27,6 +27,7 @@ function MovieDetail(){
     const [age30, setAge30] = useState("");
     const [age40, setAge40] = useState("");
     const [checkLogin , setLogin] = useState(false);
+    const [cgvImg, setCgvImg] = useState([]);
 
     const callApi = async()=>{
         const response = await axios.get('http://localhost:5000/');
@@ -38,7 +39,7 @@ function MovieDetail(){
         setData(response.data);
         
         sel();
-
+        console.log(response.data.cgv);
 
        
         if(movieD && movieC){
@@ -72,6 +73,14 @@ function MovieDetail(){
             for(let i = 0; i < movieC.length; i++){
                 if(title === movieC[i].title){
                     getDetail(movieC[i]);
+
+                    
+                    for(let q = 0; q < movieD.length; q++){
+                        if(movieD[q].title === title){
+                            setCgvImg(movieD[q].trailImg);
+                        }
+                    }
+                    
                     for(let a = 0; a < imgC.length; a++){
                         if(imgC[a].title == title){    
                             setPosetr(imgC[a].img );
@@ -126,7 +135,7 @@ function MovieDetail(){
 
     const onLog = (event) => {
         const id = localStorage.getItem("id");
-        console.log(id);
+        
 
         if( id){
             setLogin(false);
@@ -142,7 +151,7 @@ function MovieDetail(){
       }, []);
       
 
-    return(
+      return(
         <div>
             {loading ? 
               <> 
@@ -152,61 +161,75 @@ function MovieDetail(){
                 </header>
                 <main>
                     <div className={style2.detail}>
-                        <div className={style2.detailPoster}><img src={poster} /></div>
-                        <div className={style2.detailTitle}>{detail.title}</div>
-                        <div className={style2.detailContent}>
-                            <div className={style2.detailAge}>{detail.age === 0 ? "전체연령대" : detail.age}</div>
-                            <div className={style2.detailGenre}>
-                                <div className={style2.detailGenreTitle}>장르 : </div> 
-                                <div className={style2.detailGenre}>{detail.genre1}</div>
-                                <div className={style2.detailGenre}>{detail.genre2}</div>
-                            </div>
-                            
-                            <div className={style2.viewRate}>예매율 : {detail.viewRate}</div>
-                            <div className={style2.viewEvalu}>평점 : {detail.viewEvalu}</div>
-                            <div className={style2.playTime}>{detail.playTime}분</div>
-                            
-                        </div>
-                        <div>
-                            <div>{detail.synops}</div>
-                        </div>
-                        <div className={style2.movieCasting}>
-                            <div className={style2.movieMan}>감독: {detail.name[0] }</div>
-                            <div className={style2.castingImg}><img src = {detail.image[0] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[0]} /></div>
-                            <div className={style2.movieMan}>출연: {detail.name[1]}</div>
-                            <div className={style2.castingImg}><img src = {detail.image[1] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[1]} /></div>
-                            <div className={style2.movieMan}>출연: {detail.name[2]}</div>
-                            <div className={style2.castingImg}><img src = {detail.image[2] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[2]} /></div>
-                            <div className={style2.movieMan}>출연: {detail.name[3]}</div>
-                            <div className={style2.castingImg}><img src = {detail.image[3] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[3]} /></div>
-                        </div>
-                        <div className={style2.movieFavorite}>
-                            <div className={style2.favoriteTitle}>연령별 선호도</div>
-                            <div className={style2.favoriteBox}>
-                                <div className={style2.favoriteSet}>
-                                    <div className={style2.favoriteAge}>10대</div>
-                                    <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer10}%` ,"background":`${age10}`}}></div>
-                                    <div className={style2.favoritePercent}>{detail.AgePrefer10}%</div>
-                                </div>
-                                <div className={style2.favoriteSet}>
-                                    <div className={style2.favoriteAge}>20대</div>
-                                    <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer20}%`, "background":`${age20}`}}></div>
-                                    <div className={style2.favoritePercent}>{detail.AgePrefer20}%</div>
-                                </div>
-                                <div className={style2.favoriteSet}>
-                                    <div className={style2.favoriteAge}>30대</div>
-                                    <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer30}%`, "background":`${age30}`}}></div>
-                                    <div className={style2.favoritePercent}>{detail.AgePrefer30}%</div>
-                                </div>
-                                <div className={style2.favoriteSet}>
-                                    <div className={style2.favoriteAge}>40대</div>
-                                    <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer40}%`, "background":`${age40}`}}></div>
-                                    <div className={style2.favoritePercent}>{detail.AgePrefer40}%</div>
+                        <div className={style2.detailimpo}>
+                            <div className={style2.detailPoster}><img src={poster} /></div>
+                            <div className={style2.detailMore}>
+                                <div className={style2.detailTitle}>{detail.title}</div>
+                                <div className={style2.detailContent}>
+                                    <div className={style2.viewRate}>예매율 : {detail.viewRate}</div>
+                                    <div className={style2.viewEvalu}>평점 : {detail.viewEvalu}</div>
+                                    <div className={style2.detailAge}>{detail.age === 0 ? "전체연령대" : detail.age}</div>
+                                    <div className={style2.detailGenreBox}>
+                                        <div className={style2.detailGenreTitle}>장르 :&nbsp;</div> 
+                                        <div className={style2.detailGenre}>{detail.genre1}</div>
+                                        <div className={style2.detailGenre}>{detail.genre2}</div>
+                                    </div>
+                                    <div className={style2.playTime}>{detail.playTime}분</div>
                                 </div>
                                 
+                                <div>
+                                    <div>{detail.synops}</div>
+                                </div>
+                                <div className={style2.movieFavorite}>
+                                    <div className={style2.favoriteTitle}>연령별 선호도</div>
+                                    <div className={style2.favoriteBox}>
+                                        <div className={style2.favoriteSet}>
+                                            <div className={style2.favoriteAge}>10대</div>
+                                            <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer10}%` ,"background":`${age10}`}}></div>
+                                            <div className={style2.favoritePercent}>{detail.AgePrefer10}%</div>
+                                        </div>
+                                        <div className={style2.favoriteSet}>
+                                            <div className={style2.favoriteAge}>20대</div>
+                                            <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer20}%`, "background":`${age20}`}}></div>
+                                            <div className={style2.favoritePercent}>{detail.AgePrefer20}%</div>
+                                        </div>
+                                        <div className={style2.favoriteSet}>
+                                            <div className={style2.favoriteAge}>30대</div>
+                                            <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer30}%`, "background":`${age30}`}}></div>
+                                            <div className={style2.favoritePercent}>{detail.AgePrefer30}%</div>
+                                        </div>
+                                        <div className={style2.favoriteSet}>
+                                            <div className={style2.favoriteAge}>40대</div>
+                                            <div className={style2.favoriteBar} style = {{"width" : `${detail.AgePrefer40}%`, "background":`${age40}`}}></div>
+                                            <div className={style2.favoritePercent}>{detail.AgePrefer40}%</div>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={style2.movieCasting}>
+                                <div>
+                                    
+                                    <div className={style2.castingImg}><img src = {detail.image[0] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[0]} /></div>
+                                    <div className={style2.movieMan}>감독: {detail.name[0] }</div>
+                                </div>
+                                <div>
+                                    <div className={style2.castingImg}><img src = {detail.image[1] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[1]} /></div>
+                                    <div className={style2.movieMan}>출연: {detail.name[1]}</div>
+                                </div>
+                                <div>
+                                    <div className={style2.castingImg}><img src = {detail.image[2] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[2]} /></div>
+                                    <div className={style2.movieMan}>출연: {detail.name[2]}</div>
+                                </div>
+                                <div>
+                                    <div className={style2.castingImg}><img src = {detail.image[3] === "/LCHS/Image/Thum/movie_no_casting.jpg" ? noImg : detail.image[3]} /></div>
+                                    <div className={style2.movieMan}>출연: {detail.name[3]}</div>
+                                </div>
                             </div>
                         </div>
+
                         <div className="slide-container">
+                           
+                            {company === "LOTTE" ?
                             <Slide>
                                 {detail.trailImg.map( (detail, index) => (
                                     <div style={{'width': '100vw', 'height' : '80vh'}} key={index}>
@@ -214,7 +237,18 @@ function MovieDetail(){
                                         <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'backgroundRepeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
                                     </div>
                                 ))}
-                             </Slide>
+
+                            </Slide> : 
+                            cgvImg[0] === undefined ? null :
+                            <Slide>
+                                {cgvImg.map( (detail, index) => (
+                                    <div style={{'width': '100vw', 'height' : '80vh'}} key={index}>
+                                        <div className="each-slide" key={index}></div>
+                                        <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'backgroundRepeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
+                                    </div>
+                                ))}    
+                        </Slide>
+                            }
                         </div>
                        
                     </div>

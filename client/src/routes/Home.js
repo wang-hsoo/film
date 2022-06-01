@@ -171,7 +171,7 @@ function Home(data){
                     <Link to={'/Login'} className = {style.loginBtn} onClick={onLog}>{checkLogin ? "LogOut" : "LogIn"}</Link>
                 </header>
                 <main>
-                    <div className="slide-container">
+                    <div className="slide-container" id={style.sliderCon}>
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
                                 <div className="each-slide" key={index} style={{'width' : '100vw', 'height' : '774px'}}>
@@ -193,7 +193,7 @@ function Home(data){
                         <div id={style.top_movie_group} className={style.nonscroll}>
                             <ul className = {style.top_movie_ul} style = {{"marginLeft": `${move}vw`}}>
                             {moviesA?.map( (movies) => (
-                                <Link to={`/film/${movies.title}/${movies.company}`} key = {movies.key}>
+                                <Link to={`/film/${movies.title}/LOTTE`} key = {movies.key}>
                                     <li  className = {style.top_movie_li}>
                                         <img src={movies.img}></img>
                                         <span className={style.top_movie_box}>
@@ -267,7 +267,7 @@ function Home(data){
                             <ul>
                                 
                                 {data.data.lotte?.map( (lotte, idx) => (
-                                    <div key={idx}>
+                                    <div key={idx} style={{"margin" : "0"}}>
                                         {genre[0] === lotte.genre ||  genre[1] === lotte.genre? 
                                         <div className={style.genreMovies} key={idx}>
                                             <Link to={`/film/${lotte.title}/${lotte.company}`} >
@@ -276,7 +276,7 @@ function Home(data){
                                                     <span className={style.genreTitle}>{lotte.title}</span>
                                                 </li>
                                             </Link> 
-                                        </div>: null
+                                        </div>: console.log("film")
                                         }
                                     </div>
                                 ))}
