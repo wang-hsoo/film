@@ -128,11 +128,11 @@ function getCgv(){
     
     $coureList.each((idx, node) => {
         const key = $(node).find(".box-image > a").attr("href");
-        
+        const percent = $(node).find(".percent").text().split("%");
         cgv.push({
             company: "CGV",
             title: $(node).find(".title").text(),
-            percent: $(node).find(".percent").text(),
+            percent: percent[0],
             open: $(node).find(".txt-info").text().replace(/\n/g, "").replace(/\s*/g, ""),
             img: $(node).find(".thumb-image > img").attr("src"),
             age: $(node).find(".thumb-image > span").text(),
@@ -422,30 +422,30 @@ function CgvInfo(){
 
 }
 
-function cgvTime(){
-    const getHTML = async() => {
-        try{
+// function cgvTime(){
+//     const getHTML = async() => {
+//         try{
             
-            let today = new Date();   
+//             let today = new Date();   
 
-            let year = today.getFullYear(); // 년도
-            let month = today.getMonth() + 1;  // 월
-            let date = today.getDate();
-            console.log(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=${cgvCode[0].area}&theatercode=${cgvCode[0].code}&date=${year}${month < 10 ? "0" + month : month }${date < 10 ? "0" + date : date}`)
-            //for(let i = 0; i < cgvCode.length; i++){
-                return await axios.get(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0056&date=20220601`);
-            //}
+//             let year = today.getFullYear(); // 년도
+//             let month = today.getMonth() + 1;  // 월
+//             let date = today.getDate();
+//             console.log(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=${cgvCode[0].area}&theatercode=${cgvCode[0].code}&date=${year}${month < 10 ? "0" + month : month }${date < 10 ? "0" + date : date}`)
+//             //for(let i = 0; i < cgvCode.length; i++){
+//                 return await axios.get(`http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?areacode=01&theatercode=0056&date=20220601`);
+//             //}
             
-        }catch(err){
-            console.log(err);
-        }   
-    }
+//         }catch(err){
+//             console.log(err);
+//         }   
+//     }
     
-    const parsing =async() => {
-        const html = await getHTML();
-        const $ = cheerio.load(html.data);
-        const $coureList = $("sect-showtimes > ul > li > .col-times");
-        console.log($coureList);
+//     const parsing =async() => {
+//         const html = await getHTML();
+//         const $ = cheerio.load(html.data);
+//         const $coureList = $("sect-showtimes > ul > li > .col-times");
+//         console.log($coureList);
 
         
        
@@ -453,19 +453,19 @@ function cgvTime(){
     
         
     
-    // $coureList.each((idx, node) => {
-    //    console.log($(node).find(".info-movie").text());
+//     // $coureList.each((idx, node) => {
+//     //    console.log($(node).find(".info-movie").text());
     
-    // });
+//     // });
 
     
     
-}
+// }
 
 
-    parsing();
+//     parsing();
 
-}
+// }
 
 getCgv();
 getLotte();
@@ -473,7 +473,7 @@ getTrailer();
 getMovieDetail();
 lottecinemaInfo();
 CgvInfo();
-cgvTime();
+// cgvTime();
 
 router.get('/', (req, res)=>{
   res.send({

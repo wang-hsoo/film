@@ -6,26 +6,12 @@ import movieStyle from "./AllMovie.module.css";
 import logo from "../img/logo.png";
 
 
-function AllMovie(){
+function AllMovie( data){
     const [loading, setLoading] = useState(false);
-    const [movie, setMovie] = useState([]);
     const [lotteDisplay, setLotteDisplay] = useState("block");
     const [cgvDisplay, setCgvDisplay] = useState("block");
     const [checkLogin , setLogin] = useState(false);
 
-    const callApi = async()=>{
-        const response = await axios.get('http://localhost:5000/');
-        
-  
-        setMovie(response.data);
-
-       
-  
-      
-        if(movie){
-            setLoading(true);
-        }
-      };
 
       const changeDisplay = (event) => {
         const sel = event.target.innerText;
@@ -70,9 +56,9 @@ function AllMovie(){
     }
 
       useEffect(()=>{
-        callApi();
         logCheck();
-      }, []);
+        setTimeout(() => setLoading(true), 500);
+      }, [data]);
       
       
 
@@ -93,9 +79,8 @@ function AllMovie(){
                             <button onClick={changeDisplay}>CGV</button>
                         </div>
                     </div>
-                    
                     <div className={movieStyle.allList}>
-                        {movie.lotte.map( (lotte, idx) => (
+                        {data.data.lotte.map( (lotte, idx) => (
                             lotte.title === "AD" ? null :
                             <Link to={`/film/${lotte.title}/${lotte.company}`} className={movieStyle.detailLink} key={idx}>
                                 <div style={{"display" : `${lotteDisplay}`}} className={movieStyle.detailBox}> 
@@ -107,7 +92,9 @@ function AllMovie(){
                                 </div>
                             </Link>
                         ))}
-                        {movie.cgv.map( (cgv, idx) => (
+                        <div></div>
+                        <div></div>
+                        {data.data.cgv.map( (cgv, idx) => (
                             <Link to={`/film/${cgv.title}/${cgv.company}`} className={movieStyle.detailLink} key={idx}>
                                 <div style={{"display" : `${cgvDisplay}`}} className={movieStyle.detailBox}>
                                     <div className={movieStyle.movieCompany}>{cgv.company}</div>

@@ -35,8 +35,8 @@ function AppRouter(){
         <Route path="/" element = {<Home data = {data} />} />
         <Route path="/Login" element = {<Login />} />
         <Route path="/SignUp" element = {<SignUp />} />
-        <Route path="/film/:title/:company" element={<MovieDetail />} />
-        <Route path="/film/movies" element={<AllMovie />}  />
+        <Route path="/film/:title/:company" element={<MovieDetail data = {data} />} />
+        <Route path="/film/movies" element={<AllMovie data = {data} />}  />
       </Routes>
     </Router>
     )

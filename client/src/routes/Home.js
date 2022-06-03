@@ -216,6 +216,7 @@ function Home(data){
                         </div>
                         <div id={style.top_movie_group} className={style.nonscroll}>
                             <ul className = {style.top_movie_ul} style = {{"marginLeft": `${move}vw`}}>
+                               
                             {moviesA?.map( (movies) => (
                                 <Link to={`/film/${movies.title}/LOTTE`} key = {movies.key}>
                                     <li  className = {style.top_movie_li}>
@@ -224,7 +225,7 @@ function Home(data){
                                             <span className = {style.top_movie_li_title}>{movies.title}</span>
                                             <span className = {style.top_movie_li_age}>{movies.age}</span>
                                         </span>
-                                        <span className = {style.top_movie_li_percent}>{movies.percent}</span>
+                                        <span className = {style.top_movie_li_percent}>{movies.percent}%</span>
                                         <span className = {style.top_movie_li_open}>{movies.open}</span>
                                         
                                         

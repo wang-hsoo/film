@@ -279,7 +279,6 @@ header > a {
     z-index: 3;
     background-color: rgba(5, 5, 5, 0.98);
     text-align: center;
-    transform: rotate(270deg);
 }
 .closeBtn {
     float: right;
@@ -290,6 +289,7 @@ header > a {
 .mainTrailer > div > video{
     height: 90vh;
     margin-top: 3vh;
+    
 }
 
 /*장르별*/
@@ -378,6 +378,9 @@ header > a {
 
 /*반응형*/
 @media (max-width:500px){
+    .top_movie{
+        margin-top: 0;
+    }
     #sliderCon{
         display: none;
     }
@@ -408,10 +411,20 @@ header > a {
         width: 75vw;
     }
     .mainTrailer{
-        height: 100vh;
-        width: 100vw;
-         transform: rotate(90deg);
-    
+        margin-left: -500px;
+        height: 500px;
+        width: 1500px;
+        transform: rotate(270deg);
+        text-align: center;
+    }
+    .mainTrailer > div > video{
+        margin-top: -160px;
+        margin-left: 115px;
+        width: 750px;
+    }
+    .closeBtn {
+       margin-right: 520px;
+        cursor: pointer;
     }
     
 }

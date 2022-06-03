@@ -97,7 +97,7 @@
 .favoriteSet{
     margin: 0;
     display: flex;
-    width: 200px;
+    width: 500px;
     align-items: center;
 }
 .favoriteAge{
@@ -107,9 +107,8 @@
 .favoriteBar{
     background-color: gray;
     margin: 0;
-    width: 100px;
-    height: 8px;
-    border-radius: 9%;
+    height: 13px;
+    border-radius: 10%;
 }
 
 .favoritePercent{

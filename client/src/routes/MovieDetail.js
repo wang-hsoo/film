@@ -11,7 +11,7 @@ import KakaoMap from "../component/KakaoMap";
 import logo from "../img/logo.png";
 
 
-function MovieDetail(){
+function MovieDetail(datas){
     const [loading, setLoading] = useState(false);
     const {title} = useParams();
     const {company} = useParams();
@@ -30,21 +30,14 @@ function MovieDetail(){
     const [cgvImg, setCgvImg] = useState([]);
 
     const callApi = async()=>{
-        const response = await axios.get('http://localhost:5000/');
         
-        movieD = response.data.lotteMovieDetail;
-        imgD = response.data.lotte;
-        movieC = response.data.cgvMovieDetail;
-        imgC = response.data.cgv;
-        setData(response.data);
+        movieD = datas.data.lotteMovieDetail;
+        imgD = datas.data.lotte;
+        movieC = datas.data.cgvMovieDetail;
+        imgC = datas.data.cgv;
+        setData(datas.data);
         
         sel();
-        console.log(response.data.cgv);
-
-       
-        if(movieD && movieC){
-            setLoading(true);
-        }
       };
 
      
@@ -146,9 +139,9 @@ function MovieDetail(){
       
     
     useEffect(()=>{
-        logCheck();
+        setTimeout(() => setLoading(true), 500);
         callApi();
-      }, []);
+      }, [datas]);
       
 
       return(
