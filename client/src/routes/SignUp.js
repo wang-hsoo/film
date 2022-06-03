@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../service/ApiService";
+import logo from "../img/logo.png";
+import style from "./Home.module.css";
+import style2 from "./Login.module.css";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -26,14 +29,18 @@ class SignUp extends React.Component {
   render() {
     return (
       <div component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
+        <div>
+          <Link to ={"/"}><img src={logo} className = {style.logo}></img></Link>
+        </div>
+        
         <form noValidate onSubmit={this.handleSubmit}>
-          <div container spacing={2}>
-            <div item xs={12}>
+          <div container spacing={2} className={style2.signupForm}>
+            <div item xs={12} className={style2.loginHeader}>
               <h3>
-                계정 생성
+              SING UP
               </h3>
             </div>
-            <div item xs={12}>
+            <div item xs={12} className={style2.userName}>
               <input
                 autoComplete="fname"
                 name="username"
@@ -41,48 +48,48 @@ class SignUp extends React.Component {
                 required
                 fullWidth
                 id="username"
-                placeholder="유저 이름"
+                placeholder="Name"
                 autoFocus
               />
             </div>
-            <div item xs={12}>
+            <div item xs={12} className={style2.userEmail}>
               <input
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
-                placeholder="이메일 주소"
+                placeholder="Email"
                 name="email"
                 autoComplete="email"
               />
             </div>
-            <div item xs={12}>
+            <div item xs={12} className={style2.userPassword}>
               <input
                 variant="outlined"
                 required
                 fullWidth
                 name="password"
-                placeholder="패스워드"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
             </div>
-            <div item xs={12}>
+            <div item xs={12} className={style2.userSubmit}>
               <button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
               >
-                계정 생성
+                SING UP
               </button>
             </div>
           </div>
-          <div container justify="flex-end">
+          <div container justify="flex-end" className={style2.userExist}>
             <div item>
               <Link to ={`/Login`}>
-                이미 계정이 있습니까? 로그인 하세요.
+              Already have an account? Please log in.
               </Link>
             </div>
           </div>

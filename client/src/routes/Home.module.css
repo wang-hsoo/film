@@ -154,7 +154,7 @@ header > a {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 20px;
+    margin-right: 1vw;
 }
 .top_movie_box{
     margin: 0;
@@ -279,6 +279,7 @@ header > a {
     z-index: 3;
     background-color: rgba(5, 5, 5, 0.98);
     text-align: center;
+    transform: rotate(270deg);
 }
 .closeBtn {
     float: right;
@@ -381,8 +382,17 @@ header > a {
         display: none;
     }
     .top_movie_li{
-        width: 75vw;
+        width: 38vw;
     }
+    .top_movie_box{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .top_movie_li_percent, .top_movie_li_open, .top_movie_li_age{
+        font-size: 0.9em;
+    }
+    
     .genreMovies{
         width: 20vw;
     }
@@ -397,4 +407,11 @@ header > a {
     .tailerImg{
         width: 75vw;
     }
+    .mainTrailer{
+        height: 100vh;
+        width: 100vw;
+         transform: rotate(90deg);
+    
+    }
+    
 }

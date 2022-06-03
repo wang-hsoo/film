@@ -37,11 +37,24 @@ function Home(data){
 
     const sliderNext = () => {
         let length = moviesA.length;
-        const ulWidth = length * 19.5 - 100;
-        if(move > -ulWidth){
-            moving = move - 78;
-            setMove(moving);
-        } 
+        var windowWidth = window.innerWidth;
+        
+        
+
+        if(windowWidth === 1920){
+            const ulWidth = length * 19.5 - 100;
+            if(move > -ulWidth){
+                moving = move - 78;
+                setMove(moving);
+            } 
+        }else{
+            const ulWidth = length * 19.5;
+            if(move > -ulWidth){
+                moving = move - 78;
+                setMove(moving);
+            } 
+        }
+        
 
     }
 
@@ -57,11 +70,22 @@ function Home(data){
 
     const trailerNext = () => {
         let length = data.data.trailer.length;
-        const ulWidth = length * 26 - 100;
-        if(trailmove > -ulWidth){
-            moving = trailmove - 78;
-            settrailMove(moving);
-        } 
+        var windowWidth = window.innerWidth;
+
+        if(windowWidth === 1920){
+            const ulWidth = length * 26 - 100;
+            if(trailmove > -ulWidth){
+                moving = trailmove - 78;
+                settrailMove(moving);
+            } 
+        }else{
+            const ulWidth = length * 26;
+            if(trailmove > -ulWidth){
+                moving = trailmove - 78;
+                settrailMove(moving);
+            } 
+
+        }
     }
 
     const trailerPrev = () => {
@@ -175,7 +199,7 @@ function Home(data){
                         <Slide>
                             {slideImages.map((slideImage, index)=> (
                                 <div className="each-slide" key={index} style={{'width' : '100vw', 'height' : '774px'}}>
-                                <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '100%' , 'width' : '100%' , 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
+                                    <div style={{'backgroundImage': `url(${slideImage.url})`,'height': '100%' , 'width' : '100%' , 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
                                 </div>
                             ))} 
                         </Slide>

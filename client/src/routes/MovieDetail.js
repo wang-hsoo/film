@@ -227,14 +227,19 @@ function MovieDetail(){
                             </div>
                         </div>
 
-                        <div className="slide-container">
+                        <div  >
                            
                             {company === "LOTTE" ?
                             <Slide>
                                 {detail.trailImg.map( (detail, index) => (
-                                    <div style={{'width': '100vw', 'height' : '80vh'}} key={index}>
-                                        <div className="each-slide" key={index}></div>
-                                        <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'backgroundRepeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
+                                    <div style={{'width': '100%', 'height' : '80vh'}} key={index}>
+                                        <div style={{
+                                        'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 
+                                        'width': '100%' ,
+                                        'height': '100%', 
+                                        'backgroundPosition' : 'center center' ,
+                                        'backgroundRepeat' : 'no-repeat', 
+                                        'margin' : '0 auto'}} />
                                     </div>
                                 ))}
 
@@ -242,8 +247,8 @@ function MovieDetail(){
                             cgvImg[0] === undefined ? null :
                             <Slide>
                                 {cgvImg.map( (detail, index) => (
-                                    <div style={{'width': '100vw', 'height' : '80vh'}} key={index}>
-                                        <div className="each-slide" key={index}></div>
+                                    <div style={{'width': '100%', 'height' : '80vh'}} key={index}>
+                                        
                                         <div style={{'backgroundImage': `url(${detail.ImageURL === undefined ? noImg : detail.ImageURL})`, 'width': '100%' ,'height': '100%', 'backgroundRepeat' : 'no-repeat', 'backgroundPosition' : 'center center' , 'margin' : '0 auto'}} />
                                     </div>
                                 ))}    

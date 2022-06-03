@@ -336,7 +336,7 @@ function KakaoMap(data) {
                 <div>
                   {console.log(movieTimeList)}
                   {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
-                  { movieTimeList.map((time, idx) => (
+                  { movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> : movieTimeList.map((time, idx) => (
                     <ul key={idx}>
                       <li>{time.ScreenNameKR}</li>
                       <li>{time.MovieNameKR}</li>
