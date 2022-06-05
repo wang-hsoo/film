@@ -12,13 +12,13 @@ let CGVMovieDetail = [];
 let lottecinemaInf = [];
 let  cgvInfo = [];
 let lottecinemaTimeList = [];
-let cgvTimeList = [];
-const cgvCode = [
-    {name: "강남",code: "0056",area: "01"},{name: "강변",code: "0001",area: "01"},{name: "건대입구",code: "0229",area: "01"},{name: "구로",code: "0010",area: "01"},{name: "대학로",code: "0063",area: "01"},
-    {name: "동대문",code: "0252",area: "01"},{name: "등촌",code: "0230",area: "01"},{name: "천호",code: "0199",area: "01"},{name: "송파",code: "0088",area: "01"},{name: "홍대",code: "0191",area: "01"},
-    {name: "경기광주",code: "0260",area: "02"},{name: "하남미사",code: "0326",area: '02'},{name: "야탑",code: "0003",area: "02"},{name: "시흥",code: "0073",area: "02"},{name: "성남모란",code: "0304",area: "02"},
-    {name: "판교",code: "0181",area: "02"},{name: "일산",code: "0054",area: "02"},{name: "광교",code: "0257",area: "02"},{name: "수원",code: "0012",area: "02"},{name: "서현",code: "0196",area: "02"},
-];
+// let cgvTimeList = [];
+// const cgvCode = [
+//     {name: "강남",code: "0056",area: "01"},{name: "강변",code: "0001",area: "01"},{name: "건대입구",code: "0229",area: "01"},{name: "구로",code: "0010",area: "01"},{name: "대학로",code: "0063",area: "01"},
+//     {name: "동대문",code: "0252",area: "01"},{name: "등촌",code: "0230",area: "01"},{name: "천호",code: "0199",area: "01"},{name: "송파",code: "0088",area: "01"},{name: "홍대",code: "0191",area: "01"},
+//     {name: "경기광주",code: "0260",area: "02"},{name: "하남미사",code: "0326",area: '02'},{name: "야탑",code: "0003",area: "02"},{name: "시흥",code: "0073",area: "02"},{name: "성남모란",code: "0304",area: "02"},
+//     {name: "판교",code: "0181",area: "02"},{name: "일산",code: "0054",area: "02"},{name: "광교",code: "0257",area: "02"},{name: "수원",code: "0012",area: "02"},{name: "서현",code: "0196",area: "02"},
+// ];
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {

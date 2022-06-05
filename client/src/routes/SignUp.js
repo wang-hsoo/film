@@ -28,19 +28,20 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
+      <div component="main" maxWidth="xs" className = {style2.HHeader}>
         <div>
           <Link to ={"/"}><img src={logo} className = {style.logo}></img></Link>
         </div>
-        
-        <form noValidate onSubmit={this.handleSubmit}>
-          <div container spacing={2} className={style2.signupForm}>
-            <div item xs={12} className={style2.loginHeader}>
+
+          <div item xs={12} className={style2.loginHeader}>
               <h3>
               SING UP
               </h3>
-            </div>
-            <div item xs={12} className={style2.userName}>
+          </div>
+
+          <form noValidate onSubmit={this.handleSubmit}>
+            <div container spacing={2} className={style2.loginForm}>
+            <div item xs={12} className={style2.emailInput}>
               <input
                 autoComplete="fname"
                 name="username"
@@ -52,7 +53,7 @@ class SignUp extends React.Component {
                 autoFocus
               />
             </div>
-            <div item xs={12} className={style2.userEmail}>
+            <div item xs={12} className={style2.emailInput}>
               <input
                 variant="outlined"
                 required
@@ -63,7 +64,7 @@ class SignUp extends React.Component {
                 autoComplete="email"
               />
             </div>
-            <div item xs={12} className={style2.userPassword}>
+            <div item xs={12} className={style2.emailInput}>
               <input
                 variant="outlined"
                 required
@@ -75,7 +76,7 @@ class SignUp extends React.Component {
                 autoComplete="current-password"
               />
             </div>
-            <div item xs={12} className={style2.userSubmit}>
+            <div item xs={12} className={style2.loginBtn}>
               <button
                 type="submit"
                 fullWidth

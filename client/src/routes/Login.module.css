@@ -1,47 +1,92 @@
+.HHeader{
+    width: 78vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HHeader div, .HHeader a{
+    width: 100%;
+}
+.HHeader form{
+    margin: 0;
+    width: 100%;
+}
+.HHeader div:first-child{
+    margin-top: 12px;
+}
 .loginHeader{
-
+    text-align: center;
+    margin-top: 5vw;
 }
-
+.loginHeader h3{
+    font-size: 3em;
+    color: #ffd600;
+}
 .loginForm{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.emailInput{
-    
+.emailInput,.passwordInput{
+    text-align: center;
 }
-.passwordInput{
-
+.emailInput input, .passwordInput input{
+    width: 400px;
+    height: 45px;
+    padding: 5px;
+    border-radius: 2ch;
+    margin-bottom: 15px;
+    color: black;
+    font-weight: bold;
+    border: none;
+    outline:none;
 }
-.loginBtn{
 
+
+.loginBtn, .signUpBtn{
+    text-align: center;
+  
 }
 .loginBtn button{
     /*로그인 버튼*/
+    width: 410px;
+    height: 45px;
+    padding: 5px;
+    border-radius: 2ch;
+    margin-bottom: 15px;
+    color: #ffffff;
+    background-color: #333333;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 0.8em;
+    margin-bottom: 0;
 }
-.loginBtn div{
+.loginBtn button:hover{
+    opacity: 1;
+    transition: 0.4s;
+}
+.signUpBtn{
 /*회원가입 버튼 박스*/
+    width: 410px!important;
+    padding: 12px 0;
+    border-radius: 2ch;
+    margin-bottom: 15px;
+    color: #ffffff;
+    background-color: #333333;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.8em;
 }
-.loginBtn div a{
-    /*회원가입 버튼*/
+a{
+    margin: 0;
 }
 
 
 /*회원가입 페이지*/
-.signupForm{
-
-}
-.userName{
-    
-}
-.userEmail{
-
-}
-.userPassword{
-
-}
-
-.userSubmit{
-
-}
 .userExist{
-    
+    text-align: center;
 }

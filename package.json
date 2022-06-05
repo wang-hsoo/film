@@ -20,6 +20,7 @@
     "gh-pages": "^4.0.0",
     "material-components-web": "^13.0.0",
     "material-design-kit": "^2.2.1",
+    "node-cron": "^3.0.0",
     "nodemon": "^2.0.15",
     "react-modal": "^3.14.4",
     "react-motion": "^0.5.2",

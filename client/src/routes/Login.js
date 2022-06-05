@@ -20,22 +20,24 @@ class Login extends React.Component {
       const password = data.get("password");
       // ApiService의 signin 메서드를 사용 해 로그인.
       signin({ email: email, password: password });
+   
+      
     }
+    
   
     render() {
+
+      
       return ( 
-        <div component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
-            <div container spacing={2}>
+        <div component="main" maxWidth="xs"className = {style2.HHeader}>
+          <div container spacing={2} >
               <Link to ={"/"}><img src={logo} className = {style.logo}></img></Link>
-              
-            </div>
-          <div container spacing={2} className={style2.loginHeader}>
-            <div item xs={12}>
-              <h3>
-                LOGIN
-              </h3>
-            </div>
           </div>
+
+          <div container spacing={2} className={style2.loginHeader}>
+            <h3>LOGIN</h3>
+          </div>
+
           <form noValidate onSubmit={this.handleSubmit}>
             {" "}
             {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
@@ -46,9 +48,9 @@ class Login extends React.Component {
                   required
                   type="text"
                   id="email"
-                  placeholder="email"
+                  placeholder="Email"
                   name="email"
-                  autoComplete="email"
+                  autoComplete="off"
                 />
               </div>
               <div item xs={12} className={style2.passwordInput}>
@@ -57,7 +59,7 @@ class Login extends React.Component {
                   required
                   fullWidth
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
                   type="password"
                   id="password"
                   autoComplete="current-password"
@@ -72,9 +74,9 @@ class Login extends React.Component {
                 >
                   SIGN IN
                 </button>
-                <div><Link to={'/SignUp'}>SIGN UP</Link></div>
+                
               </div>
-              
+              <Link to={'/SignUp'}><div item xs={12} className={style2.signUpBtn}>SIGN UP</div></Link>
             </div>
           </form>
         </div>

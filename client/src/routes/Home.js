@@ -99,9 +99,10 @@ function Home(data){
     }
 
     const filter = () => {
+        console.log(data);
         data.data.cgv?.map( (cgv) => {
             data.data.lotte?.map( (lotte) => {
-                if(cgv.title === lotte.title){
+                if(cgv.title == lotte.title){
                     moviesA.push(cgv);
                 }
             })
@@ -159,7 +160,6 @@ function Home(data){
 
     const onLog = (event) => {
         const id = localStorage.getItem("id");
-        console.log(id);
 
         if( id){
             setLogin(false);
