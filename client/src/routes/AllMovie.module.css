@@ -60,3 +60,37 @@
 .moviePercent{
     margin-bottom: 30px;
 }
+
+/*반응형 */
+@media (max-width:500px) {
+    .allList{
+        width: 78vw;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(2, 38.2vw);
+        grid-template-rows: auto;
+    }
+
+    .moviePoster{
+        width: 37.4vw;
+    }
+    .moviePoster img{
+        width: 100%;
+    }
+    .movieTitle{
+        font-size: 16px
+    }
+
+    .movieAge{
+        font-size: 15px;
+    }
+
+    .moviePercent{
+        font-size: 15px;
+    }
+
+    .companyBtn > h3{
+        margin: 0;
+        width: 30%;
+    }
+}

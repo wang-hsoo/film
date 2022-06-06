@@ -301,57 +301,49 @@ function KakaoMap(data) {
 
     
       
-    return(
-        <div className={style.kakomap_form}>
-            <h3 className={style.mapTitle}>현재 내위치</h3>
-            <div className={style.mapContain}>
-                <div id = "map" className={style.map} ></div>
-            </div>
-            <div className={style.list_palytime}>
-              <div className={style.movieList}>
-                <h3 className={style.listTitle}>영화관 목록</h3>
-
-                <div className={style.list_Form}>
-                  
-                    {movieInfo.map((movie ,idx) => (
-                      idx > 9 ? null :
-                      <div key={idx}>
-                        <span className={style.listName} onClick={clickMovie}>{movie.name}</span>
-                        {/* {timeResult.map((time, idx) => (
-                          <span>{time.name === movie.name ? time.count : null}</span>
-                        ))} */}
-                        {timeResult.get(movie.name) === undefined ? 0 : timeResult.get(movie.name) }
-                      </div>
-                    ))}
-
-
-
-                  
-                </div>
-              </div>
-
-              <div className={style.playTime}>
-                <h3 className={style.playTimeList}>상영시간</h3>
-                <div>{selectMovie}</div>
-                <div>
-                  {console.log(movieTimeList)}
-                  {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
-                  { movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> : movieTimeList.map((time, idx) => (
-                    <ul key={idx}>
-                      <li>{time.ScreenNameKR}</li>
-                      <li>{time.MovieNameKR}</li>
-                      <li>{time.FilmNameKR}</li>
-                      <li>{time.StartTime} ~ {time.EndTime}</li>
-                    </ul>
-                  ))}
-                  {/* {playTime()} */}
-                </div>
-              </div>  
-            </div>
-            
+  return(
+    <div className={style.kakomap_form}>
+        <h3 className={style.mapTitle}>현재 내위치</h3>
+        <div className={style.mapContain}>
+            <div id = "map" className={style.map} ></div>
         </div>
+        <div className={style.list_palytime}>
+          <div className={style.movieList}>
+            <h3 className={style.listTitle}>영화관 목록</h3>
+            <div className={style.list_Form}>
+                {movieInfo.map((movie ,idx) => (
+                  idx > 9 ? null :
+                  <div className={style.list_select}>
+                    <span className={style.listName} onClick={clickMovie}>{movie.name}</span>
+                    {/* {timeResult.map((time, idx) => (
+                      <span>{time.name === movie.name ? time.count : null}</span>
+                    ))} */}
+                    {timeResult.get(movie.name) === undefined ? (0) : "(" + timeResult.get(movie.name) + ")" }
+                  </div>
+                ))}
+            </div>
+          </div>
 
-    )
+          <div className={style.playTime}>
+            <h3 className={style.playTimeList}>상영시간</h3>
+            <div className={style.selectMovie}>{selectMovie}</div>
+            <div className={style.playTimeBox}>
+              {/* {movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> :} */}
+              { movieTimeList[0] === undefined ? <div>영화 상영 정보가 없습니다</div> : movieTimeList.map((time, idx) => (
+                <ul className={style.playTimeBlock}>
+                  <li>{time.ScreenNameKR} {time.FilmNameKR}</li>
+                  <li>{time.MovieNameKR}</li>
+                  <li></li>
+                  <li>{time.StartTime} ~ {time.EndTime}</li>
+                </ul>
+              ))}
+              {/* {playTime()} */}
+            </div>
+          </div>  
+        </div>
+    </div>
+
+)
 }
 
 

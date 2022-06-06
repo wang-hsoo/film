@@ -17,10 +17,12 @@
 
 .detailPoster{
     margin: 0;
+    height: 680px;
 }
 
 .detailPoster > img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -81,6 +83,15 @@
     object-fit: cover;
 }
 
+.synops{
+    margin: 0;
+    left: 0;
+    width: 500px;
+    
+}
+.synops div{
+    text-align: justify;
+}
 .movieFavorite{
     
 }
@@ -91,26 +102,51 @@
 }
 
 .favoriteBox{
-    margin: 20px 0px;
+    margin: 15px 0px;
 }
 
 .favoriteSet{
     margin: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    
     width: 500px;
-    align-items: center;
+    margin-bottom: 8px;
 }
 .favoriteAge{
     margin: 0;
     margin-right: 5px;
+    font-size: 15px;
 }
 .favoriteBar{
     background-color: gray;
     margin: 0;
-    height: 13px;
-    border-radius: 10%;
+    height: 20px;
+    
 }
 
 .favoritePercent{
+    margin: 0;
+}
 
+
+/*반응형*/
+@media (max-width:500px){
+    .detailimpo{
+        grid-template-columns: 80vw;
+    }
+
+    .favoriteSet{
+        width: 100%;
+    }
+
+    .movieCasting{
+        grid-template-columns: repeat(2, 39vw);
+    }
+
+    .castingImg > img {
+        width: 100%;
+    }
+
+    
 }
