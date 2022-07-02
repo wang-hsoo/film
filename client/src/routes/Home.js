@@ -229,7 +229,7 @@ function Home(data){
                                         <span className = {style.top_movie_li_open}>{movies.open}</span>
                                         
                                         
-                                        {/* 구성에 따라 순서 바꿔도 무관 */}
+                                       
                                     </li>
                                 </Link>
                                 ))}
@@ -247,7 +247,7 @@ function Home(data){
                             </div>
                         </div>
                         <div className={style.trailer_group}>
-                            {/* Trailer.js 파일로 가면됨 component 폴더 밑에 있음 */}
+                           
                             <div className={style.trailer_ul}  style = {{"marginLeft": `${trailmove}vw`}} onClick={trailerClick}>
                                 {data.data.trailer.map( (trailer, idx) => (  
                                 
