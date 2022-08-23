@@ -19,7 +19,6 @@ function AppRouter(){
 
   const callApi = async()=>{
     const response = await axios.get('http://localhost:5000/');
-    console.log("재실행")
     setData(response.data);
 
 

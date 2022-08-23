@@ -1,8 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 import style from "./KakaoMap.module.css";
 import {useParams} from "react-router-dom";
-
 function KakaoMap(data) {
   
   const {company} = useParams();
@@ -13,15 +11,11 @@ function KakaoMap(data) {
   const timeCount = [];
   // const timeResult = [];
   const [timeResult, setTimeResult] = useState();
-  const [lati, setLati] = useState();
-  const [lone,setLone] = useState();
   
-
   const onGeoOk = (position) => {
-    setLati(position.coords.latitude);
-    setLone(position.coords.longitude);
+    localStorage.setItem('lati', position.coords.latitude);
+    localStorage.setItem('lone', position.coords.longitude);
   }
-
   const onGeoError = () => {
     
   }
@@ -43,7 +37,8 @@ function KakaoMap(data) {
   
   useEffect(() => { 
     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
-   
+    const lati = localStorage.getItem('lati');
+    const lone = localStorage.getItem('lone');
     
     //카카오맵 스크립트 읽어오기
     const my_script = new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=8894cb8f3eedf8df828b4dac6c91c873&libraries=services');
@@ -61,7 +56,6 @@ function KakaoMap(data) {
           
         }; 
         const map = new kakao.maps.Map(mapContainer, options); //맵생성
-
         //마커설정
         const markerPosition = new kakao.maps.LatLng(lati,lone); 
         const marker = new kakao.maps.Marker({ 
@@ -74,19 +68,16 @@ function KakaoMap(data) {
         
         infowindow.open(map, marker);
         marker.setMap(map); 
-
-
         const ps = new kakao.maps.services.Places();
         const lotteCinema = data.data.lottecinemaInf[0];
         
-
         function deg2rad(deg){
           return deg * (Math.PI/180)
         }
         const currentLotte = [];
         const cgvLength = [];
         if(company === "LOTTE"){
-          
+          //현재위치로부터 영화관까지 직선거리를 계산하기 위한 코드
           for(let i = 0; i < lotteCinema.length; i++){
             var r = 6371;
             var dLat = deg2rad(lotteCinema[i].Latitude - lati);
@@ -101,14 +92,12 @@ function KakaoMap(data) {
               lone: lotteCinema[i].Longitude
             });
           }
-
           const map = new Map();
           for(const cinema of currentLotte){
             map.set(JSON.stringify(cinema), cinema);
           }
-
+          //계산한 직선거리를 숫자가 작은순으로 나열
           const filter2 = [...map.values()];
-
           var filter;
           filter = filter2.sort(function(a,b){
             return a.length - b.length;
@@ -130,33 +119,27 @@ function KakaoMap(data) {
             
           
           }
-
           
           
         }
-
         
-
         function placesSearchCB(data){
-          
+          //롯데시네마일 경우 마커
           const markerSet = new kakao.maps.LatLng(data.lati, data.lone);
             markers = new kakao.maps.Marker({
               position: markerSet,
             });
-
             var movieInfowindow = new kakao.maps.InfoWindow({
               content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 1; position: absolute">${data.name}</div>`
             });
-
             
             markers.setMap(map);
             movieInfowindow.open(map, markers);
-
-
             
         }
-
+        
         function placesSearch(db, status, pagination){
+          //cgv일 경우 마커
           if(db.length !== 0){
           var r = 6371;
           var dLat = deg2rad(db[0].y - lati);
@@ -170,11 +153,9 @@ function KakaoMap(data) {
             markers = new kakao.maps.Marker({
               position: markerSet,
             });
-
             var movieInfowindow = new kakao.maps.InfoWindow({
               content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 1; position: absolute">${db[0].place_name}</div>`
             });
-
             markers.setMap(map);
             movieInfowindow.open(map, markers);
             cgvLength.push({
@@ -184,24 +165,16 @@ function KakaoMap(data) {
            setSelectMovie(cgvLength[0].name); 
           }}
         }
-
       
-
         
-
         
         
         
     });
-        
-
-        
-        
-
-        
-        
+ 
       });   
 
+      
       const timeList = data.data.lottecinemaTimeList;
       for(let w = 0; w < timeList.length; w++){
             
@@ -215,11 +188,9 @@ function KakaoMap(data) {
          
         }
       }
-
       
     
       for(let w = 0; w < timeList.length - 2; w++){
-
         if(timeList[w][0] === undefined){
               
         }else{
@@ -231,7 +202,6 @@ function KakaoMap(data) {
             }
             
           }
-
           const count = timeCount.reduce((accu, curr) => {
             accu.set(curr, (accu.get(curr)||0) +1) ;
             return accu
@@ -247,19 +217,15 @@ function KakaoMap(data) {
       
       
     
-  }, [selectMovie]);
-
+  }, []);
 
   const clickMovie = (event) => {
     setSelectMovie(event.target.innerText);
   }
-
-
   useEffect(() => {
     if(company === "LOTTE"){
       const timeList = data.data.lottecinemaTimeList;
       const AllTime = [];
-
       for(let w = 0; w < timeList.length - 2; w++){
             if(timeList[w][0] === undefined){
               
@@ -273,7 +239,6 @@ function KakaoMap(data) {
               setMoviTimeList(AllTime);
               break;
             }
-
             
           }
             
@@ -281,24 +246,8 @@ function KakaoMap(data) {
         
         
     
-
   },[selectMovie])
-
-
-  function playTime(){
-    for(let i = 0; i < movieTimeList.length; i++){
-      if(movieTimeList[0].ScreenNameKR === movieTimeList[i].ScreenNameKR){
-        console.log("같음" + movieTimeList[i].ScreenNameKR);
-      }else{
-        console.log("다름" + movieTimeList[i].ScreenNameKR);
-      }
-    }
-    return(
-      <>
-        
-      </>
-    )
-  }
+  
 
     
       

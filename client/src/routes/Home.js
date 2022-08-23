@@ -112,14 +112,31 @@ function Home(data){
     const changeGenre = (event) => {
         const gen = event.target.innerText;
 
-        if(gen === "드라마"){
-            setGenre(["드라마", "멜로/로맨스"]);
-        }else if(gen === "액션"){
-            setGenre(["액션","범죄"]);
-        }else if(gen ==="애니메이션"){
-            setGenre(["애니메이션"]);
-        }else if (gen === "공포(호러)"){
-            setGenre(["공포(호러)","스릴러"]);
+        // if(gen === "드라마"){
+        //     setGenre(["드라마", "멜로/로맨스"]);
+        // }else if(gen === "액션"){
+        //     setGenre(["액션","범죄"]);
+        // }else if(gen ==="애니메이션"){
+        //     setGenre(["애니메이션"]);
+        // }else if (gen === "공포(호러)"){
+        //     setGenre(["공포(호러)","스릴러"]);
+        // }
+
+        switch(gen){
+            case "드라마":
+                setGenre(["드라마", "멜로/로맨스"]);
+                break;
+            
+            case "액션":
+                setGenre(["액션","범죄"]);
+                break;
+            
+            case "애니메이션":
+                setGenre(["애니메이션"]);
+                break;
+
+            case "공포(호러)":
+                setGenre(["공포(호러)","스릴러"]);
         }
     }
 

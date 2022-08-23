@@ -12,13 +12,8 @@ let CGVMovieDetail = [];
 let lottecinemaInf = [];
 let  cgvInfo = [];
 let lottecinemaTimeList = [];
-// let cgvTimeList = [];
-// const cgvCode = [
-//     {name: "강남",code: "0056",area: "01"},{name: "강변",code: "0001",area: "01"},{name: "건대입구",code: "0229",area: "01"},{name: "구로",code: "0010",area: "01"},{name: "대학로",code: "0063",area: "01"},
-//     {name: "동대문",code: "0252",area: "01"},{name: "등촌",code: "0230",area: "01"},{name: "천호",code: "0199",area: "01"},{name: "송파",code: "0088",area: "01"},{name: "홍대",code: "0191",area: "01"},
-//     {name: "경기광주",code: "0260",area: "02"},{name: "하남미사",code: "0326",area: '02'},{name: "야탑",code: "0003",area: "02"},{name: "시흥",code: "0073",area: "02"},{name: "성남모란",code: "0304",area: "02"},
-//     {name: "판교",code: "0181",area: "02"},{name: "일산",code: "0054",area: "02"},{name: "광교",code: "0257",area: "02"},{name: "수원",code: "0012",area: "02"},{name: "서현",code: "0196",area: "02"},
-// ];
+let t = [];
+
 
 function getCgvMovieDetail(key){
     const getHTML = async() => {
@@ -56,17 +51,7 @@ function getCgvMovieDetail(key){
                 const $$get = $$$(".wrap-people");
                 $$get.each((idx, node)=> {image.push($(node).find(".thumb-image > img").attr("src") === "" ? "/LCHS/Image/Thum/movie_no_casting.jpg" : $(node).find(".thumb-image > img").attr("src") )})
             }
-            const trailKey = $(node).find(".heading .link-more").attr("href");
             
-
-            // if(trailKey !== undefined){
-            //     let kk;
-            //     kk = trailKey.split('=');
-            //     var dic = { 'movieIdx': `${kk}`, 'pageIndex': 1, 'pageSize': 6, 'orderType': 0, 'filterType': 1, 'isTotalCount' : true, 'isMyPoint' : 'false' };
-            //     const stilCutData = await axios.post("http://www.cgv.co.kr/common/ajax/point.aspx/GetMoviePointVariableList", 'ParamList'+JSON.stringify(dic));
-
-            //     console.log(stilCutData);
-            // }
                 
             
             
@@ -129,6 +114,7 @@ function getCgv(){
     $coureList.each((idx, node) => {
         const key = $(node).find(".box-image > a").attr("href");
         const percent = $(node).find(".percent").text().split("%");
+        
         cgv.push({
             company: "CGV",
             title: $(node).find(".title").text(),
@@ -187,7 +173,9 @@ function getLotte(){
 }
     
      t = parsing();
+     
 }
+
 
 function getTrailer() {
     const trailerImg = async() => {
@@ -200,7 +188,13 @@ function getTrailer() {
                 continue;
             }else {
                 
-                    var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${trailerKey[i]}`,"memberOnNo":""}
+                    var dic = {"MethodName":"GetMovieDetailTOBE",
+                    "channelType":"HO",
+                    "osType":"Chrome",
+                    "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
+                    "multiLanguageID":"KR",
+                    "representationMovieCode":`${trailerKey[i]}`,
+                    "memberOnNo":""}
         
                     const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
                     const name = html.data.Movie.MovieNameKR;
@@ -243,7 +237,11 @@ function getMovieDetail() {
                 continue;
             }else {
                     
-                    var dic = {"MethodName":"GetMovieDetailTOBE","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR","representationMovieCode":`${key[i]}`,"memberOnNo":""}
+                    var dic = {"MethodName":"GetMovieDetailTOBE",
+                    "channelType":"HO",
+                    "osType":"Chrome",
+                    "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36","multiLanguageID":"KR",
+                    "representationMovieCode":`${key[i]}`,"memberOnNo":""}
         
                     const html = await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx", 'ParamList='+JSON.stringify(dic));
                     const name = [];
@@ -477,14 +475,14 @@ CgvInfo();
 
 router.get('/', (req, res)=>{
   res.send({
-      cgv: cgv,
-      lotte: lotte,
-      trailer: a,
-      lotteMovieDetail : MovieDetail,
-      cgvMovieDetail: CGVMovieDetail,
-      lottecinemaInf: lottecinemaInf,
-      cgvInfo: cgvInfo,
-      lottecinemaTimeList : lottecinemaTimeList
+      cgv: cgv, // cgv 영화 목록 
+      lotte: lotte, // lotte 영화 목록
+      trailer: a, //예고편
+      lotteMovieDetail : MovieDetail, //상세 페이지 정보
+      cgvMovieDetail: CGVMovieDetail, //상세페이지 정보
+      lottecinemaInf: lottecinemaInf, //영화관 목록
+      cgvInfo: cgvInfo,  //영화관 목록
+      lottecinemaTimeList : lottecinemaTimeList  //롯데시네마 영화 시간
     });
 });
 
