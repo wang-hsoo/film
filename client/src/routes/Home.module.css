@@ -101,10 +101,11 @@ header > a {
     margin: 0;
     background-color: #ffffff;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     opacity: 0.4;
+    margin-right: 17px;
 }
 
 .btn{
@@ -112,10 +113,10 @@ header > a {
     display: inline-block;
     background-color: #ffffff;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
-    margin-left: 8px;
+    margin-right: 8px;
     opacity: 0.4;
 }
 .btn:hover, .allBtn:hover{
@@ -229,10 +230,12 @@ header > a {
     display: flex;
     overflow: hidden;
 }
-
+.TrailImgBox{
+    width: 23vw;
+    border: 1px solid white;
+}
 .tailerImg{
-    width: 25vw;
-    height: 80%;
+    width: 23vw;
     position: relative;
 }
 .trailer_ul{
@@ -258,10 +261,11 @@ header > a {
  .ss{
     position: relative;
     cursor: pointer; 
+    margin-right: 4vw;
+}
+.ss:nth-child(3),.ss:nth-child(6),.ss:nth-child(9){
     margin-right: 1vw;
-    width: 25vw;
-    height: 320px;
-} 
+}
 .movieTrail{
     width: 100vw;
     display: flex;
@@ -401,15 +405,20 @@ header > a {
     }
     .ss{
         width: 75vw;
-        margin-right: 4vw;
+        margin-right: 5vw;
         
     }
+    .TrailImgBox{
+        width: 75vw;
+    }
+   
     .playBtnBox{
         width: 75vw;
     }
     .tailerImg{
         width: 75vw;
     }
+    
     .mainTrailer{
         margin-left: -500px;
         height: 500px;

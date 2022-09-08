@@ -14,8 +14,9 @@ function Trailer( { name, id, img}) {
                 <div className={style.playBtnBox} >
                     <img src={play} className={style.playBtn} />
                 </div>
-                    
-                <img src={img} className={style.tailerImg} />
+                <div className={style.TrailImgBox}>
+                    <img src={img} className={style.tailerImg} />
+                </div>
                 <div>{name}</div>
         </div>
 

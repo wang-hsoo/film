@@ -92,9 +92,7 @@ function AllMovie( data){
                                 </div>
                             </Link>
                         ))}
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        
                         {data.data.cgv.map( (cgv, idx) => (
                             <Link to={`/film/${cgv.title}/${cgv.company}`} className={movieStyle.detailLink} key={idx}>
                                 <div style={{"display" : `${cgvDisplay}`}} className={movieStyle.detailBox}>

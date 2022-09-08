@@ -226,9 +226,9 @@ function Home(data){
                         <div className={style.top_movie_head}>
                             <a className={style.menu}>HOT</a>
                             <div className={style.top_movie_button}>
-                                <Link to={'/film/movies'} className={style.allBtn}> <img src={plus} /> </Link>
                                 <div onClick={sliderPrev} className={style.btn}> <img src={prev} /> </div>
                                 <div onClick={sliderNext} className={style.btn}> <img src={next} /> </div>
+                                <Link to={'/film/movies'} className={style.allBtn}> <img src={plus} /> </Link>
                             </div>
                         </div>
                         <div id={style.top_movie_group} className={style.nonscroll}>
