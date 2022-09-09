@@ -17,7 +17,7 @@ function Trailer( { name, id, img}) {
                 <div className={style.TrailImgBox}>
                     <img src={img} className={style.tailerImg} />
                 </div>
-                <div>{name}</div>
+                <div className={style.TrailMovieName}>{name}</div>
         </div>
 
     )

@@ -1,0 +1,19 @@
+.wrapper{
+    width: 100%;
+    height: 300px;
+    background-color: black;
+    margin-top: 15px;
+}
+.bar{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(32, 32, 32);
+    text-align: center;
+}
+.container{
+    width: 78vw;
+}
+.logo{
+    width: 6vw;
+    margin-top: 15px;
+}
