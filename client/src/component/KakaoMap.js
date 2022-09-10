@@ -52,7 +52,7 @@ function KakaoMap(data) {
         const mapContainer = document.getElementById('map');
         const options = { 
           center: new kakao.maps.LatLng(lati, lone), //좌표설정
-          level: 8
+          level: 8,
           
         }; 
         const map = new kakao.maps.Map(mapContainer, options); //맵생성
@@ -111,16 +111,9 @@ function KakaoMap(data) {
           
           
         }else if(company === "CGV"){
-          
-          
           for ( let q = 0; q < data.data.cgvInfo.length; q++){  
-              ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);
-            
-            
-          
-          }
-          
-          
+              ps.keywordSearch("cgv" + data.data.cgvInfo[q], placesSearch);    
+          }     
         }
         
         function placesSearchCB(data){
@@ -130,11 +123,13 @@ function KakaoMap(data) {
               position: markerSet,
             });
             var movieInfowindow = new kakao.maps.InfoWindow({
-              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 1; position: absolute">${data.name}</div>`
+              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 0; position: relative">${data.name}</div>`
             });
             
             markers.setMap(map);
             movieInfowindow.open(map, markers);
+
+           
             
         }
         
@@ -154,7 +149,7 @@ function KakaoMap(data) {
               position: markerSet,
             });
             var movieInfowindow = new kakao.maps.InfoWindow({
-              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 1; position: absolute">${db[0].place_name}</div>`
+              content: `<div style="width:150px;text-align:center;padding:5px 0;color:black; z-index: 0; position: relative;">${db[0].place_name}</div>`
             });
             markers.setMap(map);
             movieInfowindow.open(map, markers);

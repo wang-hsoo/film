@@ -33,7 +33,7 @@
 .detailTitle{
     font-size: 33px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 .detailAge{
     margin-bottom: 5px;
@@ -56,10 +56,10 @@
 }
 .viewEvalu{
     font-size: 22px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 .playTime{
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 
@@ -70,7 +70,8 @@
     grid-gap: 10px;
 }
 .movieMan{
-    text-align: center;
+    text-align: left;
+    margin-top: 5px;
     font-size: 20px;
 }
 
@@ -98,11 +99,11 @@
 
 .favoriteTitle{
     font-size: 18px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .favoriteBox{
-    margin: 15px 0px;
+    margin: 5px 0px;
 }
 
 .favoriteSet{
@@ -153,3 +154,10 @@
 
     
 }
+
+
+
+
+
+
+

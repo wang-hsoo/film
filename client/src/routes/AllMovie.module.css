@@ -52,13 +52,15 @@
     width: 100%;
 }
 .movieTitle{
-    font-size: 18px
+    font-size: 18px;
+    margin-top: 5px;
 }
 .movieAge{
-
+    margin-top: 5px;
 }
 .moviePercent{
     margin-bottom: 30px;
+    margin-top: 5px;
 }
 
 /*반응형 */

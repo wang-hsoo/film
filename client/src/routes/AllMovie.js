@@ -82,8 +82,8 @@ function AllMovie( data){
                     <div className={movieStyle.allList}>
                         {data.data.lotte.map( (lotte, idx) => (
                             lotte.title === "AD" ? null :
-                            <Link to={`/film/${lotte.title}/${lotte.company}`} className={movieStyle.detailLink} key={idx}>
-                                <div style={{"display" : `${lotteDisplay}`}} className={movieStyle.detailBox}> 
+                            <Link to={`/film/${lotte.title}/${lotte.company}`} style={{"display" : `${lotteDisplay}`}} className={movieStyle.detailLink} key={idx}>
+                                <div className={movieStyle.detailBox}> 
                                     <div className={movieStyle.movieCompany}>{lotte.company}</div>
                                     <div className={movieStyle.moviePoster}><img src = {lotte.img} /></div>
                                     <div className={movieStyle.movieTitle}>{lotte.title}</div>
@@ -94,8 +94,8 @@ function AllMovie( data){
                         ))}
                         
                         {data.data.cgv.map( (cgv, idx) => (
-                            <Link to={`/film/${cgv.title}/${cgv.company}`} className={movieStyle.detailLink} key={idx}>
-                                <div style={{"display" : `${cgvDisplay}`}} className={movieStyle.detailBox}>
+                            <Link to={`/film/${cgv.title}/${cgv.company}`} style={{"display" : `${cgvDisplay}`}} className={movieStyle.detailLink} key={idx}>
+                                <div  className={movieStyle.detailBox}>
                                     <div className={movieStyle.movieCompany}>{cgv.company}</div>
                                     <div className={movieStyle.moviePoster}><img src = {cgv.img} /></div>
                                     <div className={movieStyle.movieTitle}>{cgv.title}</div>

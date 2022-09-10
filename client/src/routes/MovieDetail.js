@@ -1,7 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import axios from "axios";
 import style from "./Home.module.css";
 import style2 from "./MovieDetail.module.css";
 import { Slide } from 'react-slideshow-image';
@@ -75,7 +74,7 @@ function MovieDetail(datas){
                     }
                     
                     for(let a = 0; a < imgC.length; a++){
-                        if(imgC[a].title == title){    
+                        if(imgC[a].title === title){    
                             setPosetr(imgC[a].img );
                         }
                     }
@@ -161,12 +160,12 @@ function MovieDetail(datas){
                                 <div className={style2.detailContent}>
                                     <div className={style2.viewRate}>예매율 : {detail.viewRate}%</div>
                                     <div className={style2.viewEvalu}>평점 : {detail.viewEvalu}</div>
-                                    <div className={style2.detailAge}>{detail.age === 0 ? "전체연령대" : detail.age + "세 이상"}</div>
                                     <div className={style2.detailGenreBox}>
                                         <div className={style2.detailGenreTitle}>장르 :&nbsp;</div> 
                                         <div className={style2.detailGenre}>{detail.genre1}</div>
                                         <div className={style2.detailGenre}>{detail.genre2}</div>
                                     </div>
+                                    <div className={style2.detailAge}>{detail.age === 0 ? "전체연령대" : detail.age + "세 이상"}</div>
                                     <div className={style2.playTime}>{detail.playTime}분</div>
                                 </div>
                                 
