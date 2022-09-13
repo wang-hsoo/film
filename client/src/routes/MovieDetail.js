@@ -8,6 +8,7 @@ import 'react-slideshow-image/dist/styles.css';
 import noImg from "../img/no_img.png";
 import KakaoMap from "../component/KakaoMap";
 import logo from "../img/logo.png";
+import Footer from "./Footer";
 
 
 function MovieDetail(datas){
@@ -255,6 +256,7 @@ function MovieDetail(datas){
                     
 
                 </main>
+                <Footer />
          
                     
                 </>:

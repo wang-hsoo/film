@@ -39,6 +39,7 @@ function KakaoMap(data) {
     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
     const lati = localStorage.getItem('lati');
     const lone = localStorage.getItem('lone');
+   
     
     //카카오맵 스크립트 읽어오기
     const my_script = new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=8894cb8f3eedf8df828b4dac6c91c873&libraries=services');

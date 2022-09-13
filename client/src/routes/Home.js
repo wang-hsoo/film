@@ -10,6 +10,7 @@ import prev from "../img/prev.png";
 import closeBtn from "../img/close.png";
 import logo from "../img/logo.png";
 import plus from "../img/plus.png";
+import Footer from "./Footer";
 
 
 function Home(data){
@@ -326,7 +327,7 @@ function Home(data){
                         </div>
                     </div>
                 </main>
-         
+                <Footer />
                     
                 </>:
                 <div className={style.loading}>
@@ -335,7 +336,7 @@ function Home(data){
                     <span></span>
                     <span></span>
                 </div>
-              
+                
                 
         
             }

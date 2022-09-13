@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 import movieStyle from "./AllMovie.module.css";
 import logo from "../img/logo.png";
+import Footer from "./Footer";
 
 
 function AllMovie( data){
@@ -108,6 +109,7 @@ function AllMovie( data){
                     
 
                 </main>
+                <Footer />
          
                     
                 </>:
