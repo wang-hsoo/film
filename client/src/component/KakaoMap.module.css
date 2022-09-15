@@ -12,6 +12,7 @@
 
 .kakomap_form{
   width: 78vw;
+  height: 1100px;
   margin-top: 15px;
   margin-bottom: 100px;
 }
@@ -132,6 +133,10 @@
   font-size: 15px;
   place-items: center;
   justify-items: start;
+}
+.list_select{
+  width: 100%;
+  margin-left: 10px;
 }
 
 .playTime{

@@ -264,7 +264,7 @@ function KakaoMap(data) {
                     {/* {timeResult.map((time, idx) => (
                       <span>{time.name === movie.name ? time.count : null}</span>
                     ))} */}
-                    {timeResult.get(movie.name) === undefined ? (0) : "(" + timeResult.get(movie.name) + ")" }
+                    {timeResult.get(movie.name) === undefined ? "(0)" : "(" + timeResult.get(movie.name) + ")" }
                   </div>
                 ))}
             </div>

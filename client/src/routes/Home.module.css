@@ -169,7 +169,7 @@ header > a {
     font-weight: bold;
     margin: 0;
     margin-top: 5px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     
 }
 
@@ -184,6 +184,7 @@ header > a {
     text-align: start;
     margin: 0;
     margin-top: 5px;
+    font-size: 1.1em;
 }
 
 .top_movie_li_open{
@@ -191,6 +192,7 @@ header > a {
     text-align: start;
     margin: 0;
     margin-top: 5px;
+    font-size: 1.1em;
 }
 
 .top_movie_li_age{
@@ -207,6 +209,7 @@ header > a {
 .trailer h3{
     display: inline-block;
     width: 10vw;
+    font-size: 24px;
 }
 
 
@@ -220,6 +223,7 @@ header > a {
 }
 .TrailMovieName{
     margin-top: 5px;
+    font-size: 1.1em;
 }
 
 .trailer_button{
@@ -235,7 +239,7 @@ header > a {
 }
 .TrailImgBox{
     width: 23vw;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .tailerImg{
     width: 23vw;
@@ -307,7 +311,7 @@ header > a {
     padding-bottom: 15px;
 }
 .genreHeader h3 {
-   
+   font-size: 24px;
 }
 
 .genre{
